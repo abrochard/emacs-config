@@ -43,6 +43,7 @@
 (show-paren-mode 1)
 (electric-pair-mode 1)
 
+(require 'yasnippet)
 (yas-global-mode 1)
 (require 'php-auto-yasnippets)
 (setq php-auto-yasnippet-php-program "~/emacs.d/elpa/php-auto-yasnippets-20141128.1411/Create-PHP-YASnippet.php")
@@ -81,10 +82,6 @@
 ;; scrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-
-;; ffip
-(setq ffip-project-file "~/empire/trunk/.svn")
-(setq fiplr-root-markers '("~/empire/trunk/.svn"))
 
 ;; ecb layout
 (setq ecb-layout-name "left3")
