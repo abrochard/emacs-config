@@ -5,6 +5,7 @@ The =.emacs= file in home directory should only contain
 =(org-babel-load-file "~/.emacs.d/configuration.org")=
 or whatever path to this file
 
+
 * Add Melpa Repo
 #+BEGIN_SRC emacs-lisp
 (when (>= emacs-major-version 24)
@@ -17,6 +18,19 @@ or whatever path to this file
 #+END_SRC
 
 
+
+* Automatic package installation
+List all required packages
+#+BEGIN_SRC emacs-lisp
+(setq package-list '(smex magit flycheck company web-mode dracula-theme go-mode yasnippet php-auto-yasnippets ace-jump-mode helm win-switch emmet-mode multiple-cursors which-key anaconda-mode))
+#+END_SRC
+
+Install them all
+#+BEGIN_SRC emacs-lisp
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+#+END_SRC
 
 
 * Configure =ido=
@@ -87,9 +101,6 @@ Add hooks for particular file extensions
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 #+END_SRC
 
-;; modes
-(show-paren-mode 1)
-(electric-pair-mode 1)
 
 * Custom key remap
 I don't need that anymore, but useful to mitigate the problem between Azerty keyboards and Macs
@@ -203,6 +214,12 @@ Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
 (require 'go-mode)
 (add-hook 'before-save-hook #'gofmt-before-save)
+#+END_SRC
+
+* Parenthesis Support
+#+BEGIN_SRC emacs-lisp
+(show-paren-mode 1)
+(electric-pair-mode 1)
 #+END_SRC
 
 
