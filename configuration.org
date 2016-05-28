@@ -101,7 +101,6 @@ Add hooks for particular file extensions
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 #+END_SRC
 
-
 * Custom key remap
 I don't need that anymore, but useful to mitigate the problem between Azerty keyboards and Macs
 #+BEGIN_SRC emacs-lisp
@@ -136,6 +135,15 @@ Stuff that accumulated with custom themes and others.
  )
 #+END_SRC
 
+
+* Utility functions
+#+BEGIN_SRC emacs-lisp
+(defun generate-scratch-buffer ()
+  "Create and switch to a temporary scratch buffer with a random
+     name."
+  (interactive)
+  (switch-to-buffer (make-temp-name "scratch-")))
+#+END_SRC
 
 * Publishing and task management with Org-mode
 ** Set environment
