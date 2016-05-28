@@ -1,0 +1,288 @@
+#+TITLE: Emacs configuration
+
+* How to use
+The =.emacs= file in home directory should only contain
+=(org-babel-load-file "~/.emacs.d/configuration.org")=
+or whatever path to this file
+
+* Add Melpa Repo
+#+BEGIN_SRC emacs-lisp
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+   'package-archives
+   '("melpa" . "http://melpa.org/packages/")
+   t)
+  (package-initialize))
+#+END_SRC
+
+
+
+
+* Configure =ido=
+#+BEGIN_SRC emacs-lisp
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+#+END_SRC
+
+* Use =smex= to handle =M-x= with =ido=
+#+BEGIN_SRC emacs-lisp
+(require 'smex)
+(global-set-key [(meta x)] (lambda ()
+                             (interactive)
+                             (or (boundp 'smex-cache)
+                                 (smex-initialize))
+                             (global-set-key [(meta x)] 'smex)
+                             (smex)))
+
+(global-set-key [(shift meta x)] (lambda ()
+                                   (interactive)
+                                   (or (boundp 'smex-cache)
+                                       (smex-initialize))
+                                   (global-set-key [(shift meta x)] 'smex-major-mode-commands)
+                                   (smex-major-mode-commands)))
+#+END_SRC
+
+* Version Control
+** Enable =psvn=
+I don't like it very much
+#+BEGIN_SRC emacs-lisp
+;;(require 'psvn)
+;;(load-file "~/.emacs.d/psvn.el")
+#+END_SRC
+** Enable magit
+Best git client
+#+BEGIN_SRC emacs-lisp
+(require 'magit)
+(global-set-key (kbd "C-x g") 'magit-status)
+#+END_SRC
+
+
+* Set personal information
+#+BEGIN_SRC emacs-lisp
+  (setq user-full-name "Adrien Brochard"
+        calendar-latitude 40.7
+        calendar-longitude -73.98
+        calendar-location-name "New York, NY")
+#+END_SRC
+* Custom aliases
+#+BEGIN_SRC emacs-lisp
+(defalias 'qrr 'quickrun-region)
+(defalias 'fff 'fiplr-find-file)
+(defalias 'ffd 'fiplr-find-directory)
+#+END_SRC
+
+* Custom key bindings
+Quickly revert a buffer, useful if file changed on disk
+#+BEGIN_SRC emacs-lisp
+(define-key global-map (kbd "C-c r") 'revert-buffer)
+#+END_SRC
+
+* Custom hooks
+Add hooks for particular file extensions
+#+BEGIN_SRC emacs-lisp
+(add-hook 'php-mode-hook 'flycheck-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+#+END_SRC
+
+;; modes
+(show-paren-mode 1)
+(electric-pair-mode 1)
+
+* Custom key remap
+I don't need that anymore, but useful to mitigate the problem between Azerty keyboards and Macs
+#+BEGIN_SRC emacs-lisp
+;;(setq mac-option-modifier nil
+;;      mac-command-modifier 'meta
+;;      x-select-enable-clipboard t)
+
+;;(global-set-key (kbd "C-\'") (kbd "{"))
+;;(global-set-key (kbd "C-=") (kbd "}"))
+;;(global-set-key (kbd "²") (kbd "<"))
+#+END_SRC
+
+* Custom Set Stuff
+Stuff that accumulated with custom themes and others.
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("ce371b56cf0952d838db6dafd92aaa6e3aadd74199c06ed7440da9df5595c4ae" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "118717ce0a2645a0cf240b044999f964577ee10137b1f992b09a317d5073c02d" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" default)))
+ '(ecb-options-version "2.40")
+ '(global-auto-complete-mode t)
+ '(minimap-window-location (quote right)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+#+END_SRC
+
+
+* Publishing and task management with Org-mode
+** Set environment
+#+BEGIN_SRC emacs-lisp
+(setq org-directory "~/org")
+
+(defun org-file-path (filename)
+  "Return the absolute address of an org file, given its relative name."
+  (concat (file-name-as-directory org-directory) filename))
+#+END_SRC
+** Remove the udnerscore markdown property
+#+BEGIN_SRC emacs-lisp
+(setq org-export-with-sub-superscripts nil)
+#+END_SRC
+** Use syntax highlighting in source blocks while editing
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-fontify-natively t)
+#+END_SRC
+
+
+* Adjust scrolling behavior
+#+BEGIN_SRC emacs-lisp
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+#+END_SRC
+
+
+* Set up fuzzy search in custom folders
+Typically assign keys F6, F7, F8 to currently working projects
+One day I'll switch to Projectile
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/workspace/")(fiplr-find-file)))
+#+END_SRC
+
+
+* Load Cool Theme
+#+BEGIN_SRC emacs-lisp
+(require 'dracula-theme)
+(load-theme 'dracula t)
+#+END_SRC
+
+* Terminal Configuration
+Ignore this if on Windows machine
+#+BEGIN_SRC emacs-lisp
+;;(exec-path-from-shell-copy-env "PATH")
+#+END_SRC
+
+* Disable the bell
+Aweful atrocious noise on Windows
+#+BEGIN_SRC emacs-lisp
+(setq visible-bell 1)
+#+END_SRC
+
+* Code Format
+** Default tab and indetation
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq tab-width 4)
+#+END_SRC
+
+** XML Format function
+This works well on short text, too much and it can block the system
+#+BEGIN_SRC emacs-lisp
+(require 'sgml-mode)
+
+(defun reformat-xml ()
+  (interactive)
+  (save-excursion
+    (sgml-pretty-print (point-min) (point-max))
+    (indent-region (point-min) (point-max))))
+#+END_SRC
+
+** Golang Format 
+Absolutely necessary if working in Go
+#+BEGIN_SRC emacs-lisp
+(require 'go-mode)
+(add-hook 'before-save-hook #'gofmt-before-save)
+#+END_SRC
+
+
+* Configure =yasnippet=
+Enable everywhere
+#+BEGIN_SRC emacs-lisp
+(require 'yasnippet)
+(yas-global-mode 1)
+#+END_SRC
+Add custom PHP snippets
+#+BEGIN_SRC emacs-lisp
+(require 'php-auto-yasnippets)
+(setq php-auto-yasnippet-php-program "~/emacs.d/elpa/php-auto-yasnippets-20141128.1411/Create-PHP-YASnippet.php")
+(define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
+#+END_SRC
+
+
+* Enable =flycheck=
+#+BEGIN_SRC emacs-lisp
+(require 'flycheck)
+(flycheck-mode 1)
+#+END_SRC
+
+* Enable =ace-jump-mode=
+#+BEGIN_SRC emacs-lisp
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'avy-goto-char)
+#+END_SRC
+
+* Enable =helm-occur=
+And map it to =M-s M-w= to mirror =C-s C-w=
+#+BEGIN_SRC emacs-lisp
+(require 'helm)
+(define-key global-map (kbd "M-s M-w") 'helm-occur)
+#+END_SRC
+
+* Enablce =win-switch= behavior
+Super nice to switch between frames and buffers
+#+BEGIN_SRC emacs-lisp
+(require 'win-switch)
+(global-set-key (kbd "C-x o") 'win-switch-dispatch)
+(win-switch-setup-keys-default)
+#+END_SRC
+
+* Enable =emmet-mode=
+Adding the necessary hooks
+#+BEGIN_SRC emacs-lisp
+(require 'emmet-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+#+END_SRC
+
+* Enable =multiple-cursors=
+Useful to edit multiple similar lines
+#+BEGIN_SRC emacs-lisp
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+#+END_SRC
+
+* Enable =which-key=
+Very nice if you don't have a cheat sheet at hand
+#+BEGIN_SRC emacs-lisp
+(require 'which-key)
+(which-key-mode 1)
+#+END_SRC
+
+* Python setup with =anaconda=
+Add hooks
+#+BEGIN_SRC emacs-lisp
+(require 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'eldoc-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
+#+END_SRC
+Set iPython as the default interpreter
+#+BEGIN_SRC emacs-lisp
+(setq python-shell-interpreter "~/anaconda/bin/ipython")
+#+END_SRC
+
+
