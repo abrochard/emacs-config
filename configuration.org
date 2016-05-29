@@ -1,8 +1,8 @@
 #+TITLE: Emacs configuration
 
 * How to use
-The =.emacs= file in home directory should only contain
-=(org-babel-load-file "~/.emacs.d/configuration.org")=
+The =.emacs= file in home directory should only contain\\
+=(org-babel-load-file "~/.emacs.d/configuration.org")=\\
 or whatever path to this file
 
 
@@ -20,6 +20,7 @@ or whatever path to this file
 
 
 * Automatic package installation
+*Ideally this should be replaced by Cask and Pallet, but Windows...* \\
 List all required packages
 #+BEGIN_SRC emacs-lisp
 (setq package-list '(smex magit flycheck company web-mode dracula-theme go-mode yasnippet php-auto-yasnippets ace-jump-mode helm win-switch emmet-mode multiple-cursors which-key anaconda-mode))
