@@ -198,6 +198,10 @@ Aweful atrocious noise on Windows
 (setq visible-bell 1)
 #+END_SRC
 
+* Disable the big fat toolbar
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode -1)
+#+END_SRC
 * Code Format
 ** Default tab and indetation
 #+BEGIN_SRC emacs-lisp
