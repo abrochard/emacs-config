@@ -155,7 +155,7 @@ Stuff that accumulated with custom themes and others.
   "Return the absolute address of an org file, given its relative name."
   (concat (file-name-as-directory org-directory) filename))
 #+END_SRC
-** Remove the udnerscore markdown property
+** Remove the underscore markdown property
 #+BEGIN_SRC emacs-lisp
 (setq org-export-with-sub-superscripts nil)
 #+END_SRC
