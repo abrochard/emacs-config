@@ -189,7 +189,7 @@ Ignore this if on Windows machine
 
 * Toggle fullscreen by default
 #+BEGIN_SRC emacs-lisp
-(toggle-full-screen)
+(toggle-frame-maximized)
 #+END_SRC
 * Disable the bell
 Aweful atrocious noise on Windows
@@ -224,7 +224,7 @@ This works well on short text, too much and it can block the system
     (indent-region (point-min) (point-max))))
 #+END_SRC
 
-** Golang Format 
+** Golang Format
 Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
 (require 'go-mode)
@@ -258,9 +258,9 @@ Add custom PHP snippets
 (flycheck-mode 1)
 #+END_SRC
 
-* Enable =ace-jump-mode=
+* Enable =avy=
 #+BEGIN_SRC emacs-lisp
-(require 'ace-jump-mode)
+(require 'avy)
 (define-key global-map (kbd "C-c SPC") 'avy-goto-char)
 #+END_SRC
 
@@ -314,5 +314,3 @@ Set iPython as the default interpreter
 #+BEGIN_SRC emacs-lisp
 (setq python-shell-interpreter "~/anaconda/bin/ipython")
 #+END_SRC
-
-
