@@ -34,30 +34,30 @@ Install them all
 #+END_SRC
 
 
-* Configure =ido=
+* Configure Helm
+** Enable Helm
 #+BEGIN_SRC emacs-lisp
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
+(require 'helm)
+(require 'helm-config)
+(helm-mode 1)
 #+END_SRC
 
-* Use =smex= to handle =M-x= with =ido=
+** Rebind basic commands to use Helm
 #+BEGIN_SRC emacs-lisp
-(require 'smex)
-(global-set-key [(meta x)] (lambda ()
-                             (interactive)
-                             (or (boundp 'smex-cache)
-                                 (smex-initialize))
-                             (global-set-key [(meta x)] 'smex)
-                             (smex)))
-
-(global-set-key [(shift meta x)] (lambda ()
-                                   (interactive)
-                                   (or (boundp 'smex-cache)
-                                       (smex-initialize))
-                                   (global-set-key [(shift meta x)] 'smex-major-mode-commands)
-                                   (smex-major-mode-commands)))
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(define-key global-map (kbd "M-s M-w") 'helm-occur)
 #+END_SRC
+
+** Enable everything fuzzy
+#+BEGIN_SRC emacs-lisp
+(setq helm-M-x-fuzzy-match t)
+(setq helm-locate-fuzzy-match t)
+(setq helm-lisp-fuzzy-completion t)
+#+END_SRC
+
 
 * Version Control
 ** Enable =psvn=
@@ -260,13 +260,6 @@ Add custom PHP snippets
 #+BEGIN_SRC emacs-lisp
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'avy-goto-char)
-#+END_SRC
-
-* Enable =helm-occur=
-And map it to =M-s M-w= to mirror =C-s C-w=
-#+BEGIN_SRC emacs-lisp
-(require 'helm)
-(define-key global-map (kbd "M-s M-w") 'helm-occur)
 #+END_SRC
 
 * Enablce =win-switch= behavior
