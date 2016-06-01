@@ -192,6 +192,10 @@ Ignore this if on Windows machine
 ;;(exec-path-from-shell-copy-env "PATH")
 #+END_SRC
 
+* Toggle fullscreen by default
+#+BEGIN_SRC emacs-lisp
+(toggle-full-screen)
+#+END_SRC
 * Disable the bell
 Aweful atrocious noise on Windows
 #+BEGIN_SRC emacs-lisp
@@ -209,7 +213,10 @@ Aweful atrocious noise on Windows
 (setq-default tab-width 4)
 (setq tab-width 4)
 #+END_SRC
-
+** Delete trailing white spaces on save
+#+BEGIN_SRC emacs-lisp
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
 ** XML Format function
 This works well on short text, too much and it can block the system
 #+BEGIN_SRC emacs-lisp
@@ -262,6 +269,11 @@ Add custom PHP snippets
 (define-key global-map (kbd "C-c SPC") 'avy-goto-char)
 #+END_SRC
 
+* Enable =viking-mode=
+#+BEGIN_SRC emacs-lisp
+(require 'viking-mode)
+(viking-global-mode)
+#+END_SRC
 * Enablce =win-switch= behavior
 Super nice to switch between frames and buffers
 #+BEGIN_SRC emacs-lisp
