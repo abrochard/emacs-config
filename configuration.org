@@ -60,12 +60,7 @@ Install them all
 
 
 * Version Control
-** Enable =psvn=
-I don't like it very much
-#+BEGIN_SRC emacs-lisp
-;;(require 'psvn)
-;;(load-file "~/.emacs.d/psvn.el")
-#+END_SRC
+For now it's just magit, but can add more systems as necessary.
 ** Enable magit
 Best git client
 #+BEGIN_SRC emacs-lisp
