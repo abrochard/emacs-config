@@ -2,7 +2,7 @@
 
 * How to use
 The =.emacs= file in home directory should only contain\\
-=(org-babel-load-file "~/.emacs.d/configuration.org")=\\
+=(org-babel-load-file "~/.emacs.d/configuration.org")= \\
 or whatever path to this file
 
 
@@ -158,6 +158,11 @@ Stuff that accumulated with custom themes and others.
 #+BEGIN_SRC emacs-lisp
   (setq org-src-fontify-natively t)
 #+END_SRC
+** Setup Org Capture
+#+BEGIN_SRC emacs-lisp
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(define-key global-map "\C-cc" 'org-capture)
+#+END_SRC
 
 
 * Adjust scrolling behavior
@@ -301,6 +306,18 @@ Very nice if you don't have a cheat sheet at hand
 (require 'which-key)
 (which-key-mode 1)
 #+END_SRC
+
+* Enable =undo-tree=
+#+BEGIN_SRC emacs-lisp
+(require 'undo-tree)
+(global-undo-tree-mode t)
+(undo-tree-visualizer-diff t))
+#+END_SRC
+* Enable winner-mode
+#+BEGIN_SRC emacs-lisp
+(winner-mode 1)
+#+END_SRC
+
 
 * Python setup with =anaconda=
 Add hooks
