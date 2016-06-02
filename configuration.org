@@ -49,6 +49,8 @@ Install them all
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "M-s M-w") 'helm-occur)
+(define-key global-map (kbd "C-x r l") 'helm-bookmarks)
+(setq helm-bookmark-show-location t)
 #+END_SRC
 
 ** Enable everything fuzzy
