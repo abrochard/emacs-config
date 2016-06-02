@@ -109,28 +109,6 @@ I don't need that anymore, but useful to mitigate the problem between Azerty key
 ;;(global-set-key (kbd "²") (kbd "<"))
 #+END_SRC
 
-* Custom Set Stuff
-Stuff that accumulated with custom themes and others.
-#+BEGIN_SRC emacs-lisp
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("ce371b56cf0952d838db6dafd92aaa6e3aadd74199c06ed7440da9df5595c4ae" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "118717ce0a2645a0cf240b044999f964577ee10137b1f992b09a317d5073c02d" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" default)))
- '(ecb-options-version "2.40")
- '(global-auto-complete-mode t)
- '(minimap-window-location (quote right)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-#+END_SRC
-
 
 * Utility functions
 #+BEGIN_SRC emacs-lisp
@@ -274,7 +252,7 @@ Add custom PHP snippets
 (require 'viking-mode)
 (viking-global-mode)
 #+END_SRC
-* Enablce =win-switch= behavior
+* Enable =win-switch= behavior
 Super nice to switch between frames and buffers
 #+BEGIN_SRC emacs-lisp
 (require 'win-switch)
@@ -311,7 +289,7 @@ Very nice if you don't have a cheat sheet at hand
 #+BEGIN_SRC emacs-lisp
 (require 'undo-tree)
 (global-undo-tree-mode t)
-(undo-tree-visualizer-diff t))
+(setq undo-tree-visualizer-diff t)
 #+END_SRC
 * Enable winner-mode
 #+BEGIN_SRC emacs-lisp
