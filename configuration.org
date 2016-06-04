@@ -23,7 +23,7 @@ or whatever path to this file
 *Ideally this should be replaced by Cask and Pallet, but Windows...* \\
 List all required packages
 #+BEGIN_SRC emacs-lisp
-(setq package-list '(magit flycheck company web-mode dracula-theme go-mode yasnippet php-auto-yasnippets avy helm win-switch emmet-mode multiple-cursors which-key anaconda-mode))
+(setq package-list '(magit flycheck company web-mode dracula-theme go-mode yasnippet php-auto-yasnippets avy helm win-switch emmet-mode multiple-cursors which-key anaconda-mode viking-mode undo-tree))
 #+END_SRC
 
 Install them all
