@@ -101,6 +101,7 @@ Add hooks for particular file extensions
 (add-hook 'php-mode-hook 'flycheck-mode)
 (add-hook 'after-init-hook 'global-company-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.volt\\'" . web-mode))
 #+END_SRC
 
 * Custom key remap
