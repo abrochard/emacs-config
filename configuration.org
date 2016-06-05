@@ -25,7 +25,7 @@ List all required packages
 #+BEGIN_SRC emacs-lisp
 (setq package-list '(magit flycheck company web-mode dracula-theme go-mode yasnippet php-auto-yasnippets
 avy helm win-switch emmet-mode multiple-cursors which-key anaconda-mode viking-mode undo-tree
-projectile helm-projectile flx helm-flx))
+projectile helm-projectile flx helm-flx diminish))
 #+END_SRC
 
 Install them all
@@ -165,6 +165,7 @@ I don't need that anymore, but useful to mitigate the problem between Azerty key
 * Hide certain modes from the modeline
 Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org#hide-certain-modes-from-the-modeline
 #+BEGIN_SRC emacs-lisp
+(require 'diminish)
 (defmacro diminish-minor-mode (filename mode &optional abbrev)
   `(eval-after-load (symbol-name ,filename)
      '(diminish ,mode ,abbrev)))
