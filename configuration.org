@@ -113,7 +113,7 @@ I don't need that anymore, but useful to mitigate the problem between Azerty key
 
 ;;(global-set-key (kbd "C-\'") (kbd "{"))
 ;;(global-set-key (kbd "C-=") (kbd "}"))
-;;(global-set-key (kbd "²") (kbd "<"))
+;;(global-set-key (kbd "Â²") (kbd "<"))
 #+END_SRC
 
 
@@ -125,6 +125,7 @@ I don't need that anymore, but useful to mitigate the problem between Azerty key
   (interactive)
   (switch-to-buffer (make-temp-name "scratch-")))
 #+END_SRC
+
 
 * Publishing and task management with Org-mode
 ** Set environment
@@ -156,6 +157,31 @@ I don't need that anymore, but useful to mitigate the problem between Azerty key
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 #+END_SRC
 
+* Highlight the current line
+#+BEGIN_SRC emacs-lisp
+(when window-system
+  (global-hl-line-mode))
+#+END_SRC
+* Hide certain modes from the modeline
+Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org#hide-certain-modes-from-the-modeline
+#+BEGIN_SRC emacs-lisp
+(defmacro diminish-minor-mode (filename mode &optional abbrev)
+  `(eval-after-load (symbol-name ,filename)
+     '(diminish ,mode ,abbrev)))
+
+(defmacro diminish-major-mode (mode-hook abbrev)
+  `(add-hook ,mode-hook
+             (lambda () (setq mode-name ,abbrev))))
+
+(diminish-minor-mode 'abbrev 'abbrev-mode)
+(diminish-minor-mode 'company 'company-mode)
+(diminish-minor-mode 'eldoc 'eldoc-mode)
+(diminish-minor-mode 'flycheck 'flycheck-mode)
+(diminish-minor-mode 'global-whitespace 'global-whitespace-mode)
+(diminish-minor-mode 'undo-tree 'undo-tree-mode)
+(diminish-minor-mode 'yasnippet 'yas-minor-mode)
+(diminish-minor-mode 'paredit 'paredit-mode " π")
+#+END_SRC
 
 * Setup =projectile=
 #+BEGIN_SRC emacs-lisp
