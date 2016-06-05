@@ -50,6 +50,7 @@ Install them all
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+(define-key helm-find-files-map (kbd "<C-backspace>") 'backward-kill-word)
 (define-key global-map (kbd "M-s M-w") 'helm-occur)
 (define-key global-map (kbd "C-x r l") 'helm-bookmarks)
 (setq helm-bookmark-show-location t)
