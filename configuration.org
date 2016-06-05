@@ -25,7 +25,7 @@ List all required packages
 #+BEGIN_SRC emacs-lisp
 (setq package-list '(magit flycheck company web-mode dracula-theme go-mode yasnippet php-auto-yasnippets
 avy helm win-switch emmet-mode multiple-cursors which-key anaconda-mode viking-mode undo-tree
-projectile helm-projectile flx helm-flx diminish))
+projectile helm-projectile flx helm-flx diminish ag helm-ag))
 #+END_SRC
 
 Install them all
@@ -189,6 +189,11 @@ Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/config
 (require 'projectile)
 (require 'helm-projectile)
 (projectile-global-mode)
+#+END_SRC
+Remap the shortcut
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c v") 'helm-projectile)
+(global-set-key (kbd "C-c C-v") 'helm-projectile-ag)
 #+END_SRC
 
 * Load Cool Theme
