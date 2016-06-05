@@ -23,7 +23,9 @@ or whatever path to this file
 *Ideally this should be replaced by Cask and Pallet, but Windows...* \\
 List all required packages
 #+BEGIN_SRC emacs-lisp
-(setq package-list '(magit flycheck company web-mode dracula-theme go-mode yasnippet php-auto-yasnippets avy helm win-switch emmet-mode multiple-cursors which-key anaconda-mode viking-mode undo-tree))
+(setq package-list '(magit flycheck company web-mode dracula-theme go-mode yasnippet php-auto-yasnippets
+avy helm win-switch emmet-mode multiple-cursors which-key anaconda-mode viking-mode undo-tree
+projectile helm-projectile flx helm-flx))
 #+END_SRC
 
 Install them all
@@ -55,6 +57,7 @@ Install them all
 
 ** Enable everything fuzzy
 #+BEGIN_SRC emacs-lisp
+(helm-flx-mode +1)
 (setq helm-M-x-fuzzy-match t)
 (setq helm-locate-fuzzy-match t)
 (setq helm-lisp-fuzzy-completion t)
