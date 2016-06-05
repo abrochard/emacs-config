@@ -152,13 +152,12 @@ I don't need that anymore, but useful to mitigate the problem between Azerty key
 #+END_SRC
 
 
-* Set up fuzzy search in custom folders
-Typically assign keys F6, F7, F8 to currently working projects
-One day I'll switch to Projectile
+* Setup =projectile=
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/workspace/")(fiplr-find-file)))
+(require 'projectile)
+(require 'helm-projectile)
+(projectile-global-mode)
 #+END_SRC
-
 
 * Load Cool Theme
 #+BEGIN_SRC emacs-lisp
