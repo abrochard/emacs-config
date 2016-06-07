@@ -95,6 +95,12 @@ Quickly revert a buffer, useful if file changed on disk
 (define-key global-map (kbd "C-c r") 'revert-buffer)
 #+END_SRC
 
+Make helm-imenu easier to acces
+#+BEGIN_SRC emacs-lisp
+(define-key global-map (kbd "C-c i") 'helm-semantic-or-imenu)
+#+END_SRC
+
+
 * Custom hooks
 Add hooks for particular file extensions
 #+BEGIN_SRC emacs-lisp
