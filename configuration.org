@@ -182,6 +182,10 @@ Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/config
 (diminish-minor-mode 'undo-tree 'undo-tree-mode)
 (diminish-minor-mode 'yasnippet 'yas-minor-mode)
 (diminish-minor-mode 'paredit 'paredit-mode " π")
+(diminish-minor-mode 'auto-revert-mode 'auto-revert-mode)
+(diminish-minor-mode 'which-key 'which-key-mode)
+(diminish-minor-mode 'viking-mode 'viking-mode)
+(diminish-minor-mode 'helm 'helm-mode)
 #+END_SRC
 
 * Setup =projectile=
