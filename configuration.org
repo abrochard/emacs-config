@@ -23,9 +23,11 @@ or whatever path to this file
 *Ideally this should be replaced by Cask and Pallet, but Windows...* \\
 List all required packages
 #+BEGIN_SRC emacs-lisp
-(setq package-list '(magit flycheck company web-mode dracula-theme go-mode yasnippet php-auto-yasnippets
-avy helm win-switch emmet-mode multiple-cursors which-key anaconda-mode viking-mode undo-tree
-projectile helm-projectile flx helm-flx diminish ag helm-ag))
+(setq package-list '(magit flycheck company web-mode dracula-theme
+go-mode yasnippet php-auto-yasnippets avy helm win-switch emmet-mode
+multiple-cursors which-key anaconda-mode viking-mode undo-tree
+projectile helm-projectile flx helm-flx diminish ag helm-ag
+whole-line-or-region))
 #+END_SRC
 
 Install them all
@@ -347,7 +349,11 @@ Very nice if you don't have a cheat sheet at hand
 #+BEGIN_SRC emacs-lisp
 (winner-mode 1)
 #+END_SRC
-
+* Enable =whole-line-or-region=
+#+BEGIN_SRC emacs-lisp
+(require 'whole-line-or-region)
+(whole-line-or-region-mode)
+#+END_SRC
 
 * Python setup with =anaconda=
 Add hooks
