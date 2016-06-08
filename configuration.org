@@ -232,6 +232,10 @@ Aweful atrocious noise on Windows
 #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
 #+END_SRC
+* Always ask for confirmation before quitting
+#+BEGIN_SRC emacs-lisp
+(setq confirm-kill-emacs 'y-or-n-p)
+#+END_SRC
 * Code Format
 ** Default tab and indetation
 #+BEGIN_SRC emacs-lisp
