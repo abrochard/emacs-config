@@ -102,6 +102,11 @@ Make helm-imenu easier to acces
 (define-key global-map (kbd "C-c i") 'helm-semantic-or-imenu)
 #+END_SRC
 
+Use the Mac Style Home/End keys
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<home>") 'beginning-of-buffer)
+(global-set-key (kbd "<end>") 'end-of-buffer)
+#+END_SRC
 
 * Custom hooks
 Add hooks for particular file extensions
