@@ -132,6 +132,14 @@ I don't need that anymore, but useful to mitigate the problem between Azerty key
      name."
   (interactive)
   (switch-to-buffer (make-temp-name "scratch-")))
+
+(defun sudo ()
+  "Use TRAMP to `sudo' the current buffer"
+  (interactive)
+  (when buffer-file-name
+    (find-alternate-file
+     (concat "/sudo:root@localhost:"
+             buffer-file-name))))
 #+END_SRC
 
 
