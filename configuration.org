@@ -157,10 +157,6 @@ I don't need that anymore, but useful to mitigate the problem between Azerty key
   "Return the absolute address of an org file, given its relative name."
   (concat (file-name-as-directory org-directory) filename))
 #+END_SRC
-** Remove the underscore markdown property
-#+BEGIN_SRC emacs-lisp
-(setq org-export-with-sub-superscripts nil)
-#+END_SRC
 ** Use syntax highlighting in source blocks while editing
 #+BEGIN_SRC emacs-lisp
   (setq org-src-fontify-natively t)
