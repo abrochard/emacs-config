@@ -224,9 +224,18 @@ Remap the shortcut
 #+END_SRC
 
 * Terminal Configuration
-Ignore this if on Windows machine
+Trying to make it adapt to the OS
 #+BEGIN_SRC emacs-lisp
-;;(exec-path-from-shell-copy-env "PATH")
+(if (eq system-type 'windows-nt)
+    (progn
+      (setenv "PATH" (concat "C:\\cygwin64\\bin\\"
+                             path-separator
+                             (getenv "PATH")))
+      )
+  (progn
+    (exec-path-from-shell-copy-env "PATH")
+    )
+  )
 #+END_SRC
 
 * Toggle fullscreen by default
