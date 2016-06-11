@@ -27,7 +27,7 @@ List all required packages
 go-mode yasnippet php-auto-yasnippets avy helm win-switch emmet-mode
 multiple-cursors which-key anaconda-mode viking-mode undo-tree
 projectile helm-projectile flx helm-flx diminish ag helm-ag
-whole-line-or-region))
+whole-line-or-region xkcd))
 #+END_SRC
 
 Install them all
@@ -168,17 +168,52 @@ I don't need that anymore, but useful to mitigate the problem between Azerty key
 #+END_SRC
 
 
-* Adjust scrolling behavior
+* Startup behavior
+** Toggle fullscreen by default
+#+BEGIN_SRC emacs-lisp
+(toggle-frame-maximized)
+#+END_SRC
+** Disable the big fat toolbar
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode -1)
+#+END_SRC
+
+** Disable splash screen
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+#+END_SRC
+** Empty Scratch buffer
+#+BEGIN_SRC emacs-lisp
+(setq initial-scratch-message nil)
+#+END_SRC
+** Show xkcd comic of the day on start
+Had to disable that on Windows until I figure out proper image support
+#+BEGIN_SRC emacs-lisp
+;; (require 'xkcd)
+;; (xkcd)
+;; (switch-to-buffer "*xkcd*")
+#+END_SRC
+
+
+* Window behavior
+** Disable the bell
+Aweful atrocious noise on Windows
+#+BEGIN_SRC emacs-lisp
+(setq visible-bell 1)
+#+END_SRC
+
+** Adjust scrolling behavior
 #+BEGIN_SRC emacs-lisp
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 #+END_SRC
 
-* Highlight the current line
+** Always ask for confirmation before quitting
 #+BEGIN_SRC emacs-lisp
-(when window-system
-  (global-hl-line-mode))
+(setq confirm-kill-emacs 'y-or-n-p)
 #+END_SRC
+
+
 * Hide certain modes from the modeline
 Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org#hide-certain-modes-from-the-modeline
 #+BEGIN_SRC emacs-lisp
@@ -204,6 +239,13 @@ Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/config
 (diminish-minor-mode 'viking-mode 'viking-mode)
 (diminish-minor-mode 'helm 'helm-mode)
 #+END_SRC
+
+* Highlight the current line
+#+BEGIN_SRC emacs-lisp
+(when window-system
+  (global-hl-line-mode))
+#+END_SRC
+
 
 * Setup =projectile=
 #+BEGIN_SRC emacs-lisp
@@ -238,24 +280,7 @@ Trying to make it adapt to the OS
   )
 #+END_SRC
 
-* Toggle fullscreen by default
-#+BEGIN_SRC emacs-lisp
-(toggle-frame-maximized)
-#+END_SRC
-* Disable the bell
-Aweful atrocious noise on Windows
-#+BEGIN_SRC emacs-lisp
-(setq visible-bell 1)
-#+END_SRC
 
-* Disable the big fat toolbar
-#+BEGIN_SRC emacs-lisp
-(tool-bar-mode -1)
-#+END_SRC
-* Always ask for confirmation before quitting
-#+BEGIN_SRC emacs-lisp
-(setq confirm-kill-emacs 'y-or-n-p)
-#+END_SRC
 * Code Format
 ** Default tab and indetation
 #+BEGIN_SRC emacs-lisp
