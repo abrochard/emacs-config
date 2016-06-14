@@ -27,7 +27,7 @@ List all required packages
 go-mode yasnippet php-auto-yasnippets avy helm win-switch emmet-mode
 multiple-cursors which-key anaconda-mode viking-mode undo-tree
 projectile helm-projectile flx helm-flx diminish ag helm-ag
-whole-line-or-region xkcd exec-path-from-shell-copy-env))
+whole-line-or-region exec-path-from-shell xkcd))
 #+END_SRC
 
 Install them all
