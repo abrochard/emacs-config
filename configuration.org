@@ -117,18 +117,6 @@ Add hooks for particular file extensions
 (add-to-list 'auto-mode-alist '("\\.volt\\'" . web-mode))
 #+END_SRC
 
-* Custom key remap
-I don't need that anymore, but useful to mitigate the problem between Azerty keyboards and Macs
-#+BEGIN_SRC emacs-lisp
-;;(setq mac-option-modifier nil
-;;      mac-command-modifier 'meta
-;;      x-select-enable-clipboard t)
-
-;;(global-set-key (kbd "C-\'") (kbd "{"))
-;;(global-set-key (kbd "C-=") (kbd "}"))
-;;(global-set-key (kbd "Â²") (kbd "<"))
-#+END_SRC
-
 
 * Utility functions
 #+BEGIN_SRC emacs-lisp
