@@ -144,6 +144,12 @@ Add hooks for particular file extensions
   (xkcd)
   (switch-to-buffer "*xkcd*")
   )
+
+(defun replace-token (token)
+  "Replace JSON web token for requests"
+  (interactive "sEnter the new token: ")
+  (while (re-search-forward "Bearer .*\"" nil t)
+    (replace-match (concat "Bearer " token "\""))))
 #+END_SRC
 
 
