@@ -123,13 +123,17 @@ Add hooks for particular file extensions
 
 
 * Utility functions
+Function to generate scratch buffer
 #+BEGIN_SRC emacs-lisp
 (defun generate-scratch-buffer ()
   "Create and switch to a temporary scratch buffer with a random
      name."
   (interactive)
   (switch-to-buffer (make-temp-name "scratch-")))
+#+END_SRC
 
+Function to sudo the current buffer
+#+BEGIN_SRC emacs-lisp
 (defun sudo ()
   "Use TRAMP to `sudo' the current buffer"
   (interactive)
@@ -137,19 +141,37 @@ Add hooks for particular file extensions
     (find-alternate-file
      (concat "/sudo:root@localhost:"
              buffer-file-name))))
+#+END_SRC
 
+Function to show xkcd on start
+#+BEGIN_SRC emacs-lisp
 (defun showxkcd ()
   "Call this to show xkcd comic of the day on start"
   (require 'xkcd)
   (xkcd)
   (switch-to-buffer "*xkcd*")
   )
+#+END_SRC
 
+Regexp based function to replace JSON web token in buffer
+#+BEGIN_SRC emacs-lisp
 (defun replace-token (token)
   "Replace JSON web token for requests"
   (interactive "sEnter the new token: ")
   (while (re-search-forward "Bearer .*\"" nil t)
     (replace-match (concat "Bearer " token "\""))))
+#+END_SRC
+
+Function for Dired to open all marked files. I like this better than the one in =dired+=
+#+BEGIN_SRC emacs-lisp
+(eval-after-load "dired"
+  '(progn
+     (define-key dired-mode-map "F" 'my-dired-find-file)
+     (defun my-dired-find-file (&optional arg)
+       "Open each of the marked files, or the file under the point, or when prefix arg, the next N files "
+       (interactive "P")
+       (let* ((fn-list (dired-get-marked-files nil arg)))
+         (mapc 'find-file fn-list)))))
 #+END_SRC
 
 
