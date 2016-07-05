@@ -24,7 +24,7 @@ or whatever path to this file
 List all required packages
 #+BEGIN_SRC emacs-lisp
 (setq package-list '(magit flycheck company web-mode dracula-theme
-go-mode yasnippet php-auto-yasnippets avy helm win-switch emmet-mode
+go-mode yasnippet avy helm win-switch emmet-mode
 multiple-cursors which-key anaconda-mode viking-mode undo-tree
 projectile helm-projectile flx helm-flx diminish ag helm-ag
 whole-line-or-region exec-path-from-shell xkcd))
@@ -332,12 +332,6 @@ Enable everywhere
 #+BEGIN_SRC emacs-lisp
 (require 'yasnippet)
 (yas-global-mode 1)
-#+END_SRC
-Add custom PHP snippets
-#+BEGIN_SRC emacs-lisp
-(require 'php-auto-yasnippets)
-(setq php-auto-yasnippet-php-program "~/emacs.d/elpa/php-auto-yasnippets-20141128.1411/Create-PHP-YASnippet.php")
-(define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
 #+END_SRC
 
 
