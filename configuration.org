@@ -269,6 +269,7 @@ Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/config
 (diminish-minor-mode 'which-key 'which-key-mode)
 (diminish-minor-mode 'viking-mode 'viking-mode)
 (diminish-minor-mode 'helm 'helm-mode)
+(diminish-minor-mode 'WLR 'whole-line-or-region-mode)
 #+END_SRC
 
 * Highlight the current line
