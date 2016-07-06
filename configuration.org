@@ -1,8 +1,11 @@
 #+TITLE: Emacs configuration
 
 * How to use
-The =.emacs= file in home directory should only contain\\
-=(org-babel-load-file "~/.emacs.d/configuration.org")= \\
+The =.emacs= file in home directory should only contain
+#+BEGIN_SRC emacs-lisp :tangle no
+(require 'org)
+(org-babel-load-file "~/.emacs.d/configuration.org")
+#+END_SRC
 or whatever path to this file
 
 
