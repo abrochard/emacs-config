@@ -30,7 +30,7 @@ List all required packages
 go-mode yasnippet avy helm win-switch emmet-mode
 multiple-cursors which-key anaconda-mode viking-mode undo-tree
 projectile helm-projectile flx helm-flx diminish ag helm-ag
-whole-line-or-region exec-path-from-shell xkcd neotree))
+whole-line-or-region exec-path-from-shell xkcd neotree zzz-to-char))
 #+END_SRC
 
 Install them all
@@ -427,6 +427,11 @@ Very nice if you don't have a cheat sheet at hand
 (whole-line-or-region-mode)
 #+END_SRC
 
+* Enable =zzz-to-char=
+#+BEGIN_SRC emacs-lisp
+(require 'zzz-to-char)
+(global-set-key (kbd "M-z") #'zzz-up-to-char)
+#+END_SRC
 * Enabling =dired-x=
 #+BEGIN_SRC emacs-lisp
 (require 'dired-x)
