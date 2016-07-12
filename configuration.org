@@ -28,7 +28,7 @@ List all required packages
 #+BEGIN_SRC emacs-lisp
 (setq package-list '(magit flycheck company web-mode dracula-theme
 go-mode yasnippet avy helm win-switch emmet-mode
-multiple-cursors which-key anaconda-mode viking-mode undo-tree
+multiple-cursors which-key anaconda-mode undo-tree
 projectile helm-projectile flx helm-flx diminish ag helm-ag helm-swoop
 whole-line-or-region exec-path-from-shell xkcd neotree zzz-to-char))
 #+END_SRC
@@ -373,11 +373,6 @@ Enable everywhere
 (define-key global-map (kbd "C-c SPC") 'avy-goto-char)
 #+END_SRC
 
-* Enable =viking-mode=
-#+BEGIN_SRC emacs-lisp
-(require 'viking-mode)
-(viking-global-mode)
-#+END_SRC
 * Enable =win-switch= behavior
 Super nice to switch between frames and buffers
 #+BEGIN_SRC emacs-lisp
