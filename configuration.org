@@ -466,5 +466,6 @@ TODO: move this to elfeed-org format
         "http://www.wsj.com/xml/rss/3_7031.xml"
         "http://www.wsj.com/xml/rss/3_7085.xml"
         "http://feeds.gawker.com/kotaku/vip"
-        "http://www.polygon.com/rss/index.xml"))
+        "http://www.polygon.com/rss/index.xml"
+        "http://feeds.gawker.com/lifehacker/full"))
 #+END_SRC
