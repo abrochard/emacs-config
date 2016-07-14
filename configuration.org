@@ -99,9 +99,10 @@ Quickly revert a buffer, useful if file changed on disk
 #+BEGIN_SRC emacs-lisp
 (define-key global-map (kbd "C-c r") 'revert-buffer)
 #+END_SRC
-Quickly evaluate a buffer
+Quickly evaluate a buffer or a region
 #+BEGIN_SRC emacs-lisp
 (define-key global-map (kbd "C-c x") 'eval-buffer)
+(define-key global-map (kbd "C-c X") 'eval-region)
 #+END_SRC
 
 Make helm-imenu easier to acces
@@ -152,8 +153,7 @@ Function to show xkcd on start
   "Call this to show xkcd comic of the day on start"
   (require 'xkcd)
   (xkcd)
-  (switch-to-buffer "*xkcd*")
-  )
+  (switch-to-buffer "*xkcd*"))
 #+END_SRC
 
 Regexp based function to replace JSON web token in buffer
