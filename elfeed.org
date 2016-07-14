@@ -1,0 +1,24 @@
+* Blogs                                                              :elfeed:
+** News                                                                :news:
+*** http://www.lemonde.fr/m-actu/rss_full.xml
+*** http://rss.cnn.com/rss/cnn_topstories.rss
+*** http://feeds.gothamistllc.com/gothamist05
+*** http://www.wsj.com/xml/rss/3_7031.xml
+*** http://www.wsj.com/xml/rss/3_7085.xml
+*** http://feeds.feedburner.com/TechCrunch/
+*** http://feeds.gawker.com/lifehacker/full
+** Gaming                                                             :gaming:
+*** http://feeds.feedburner.com/RockPaperShotgun
+*** http://www.jeuxvideo.com/rss/rss.xml
+*** http://www.jeuxvideo.com/rss/itunes-chroniques.xml
+*** http://feeds.gawker.com/kotaku/vip
+*** http://www.polygon.com/rss/index.xml
+** Dev                                                                  :dev:
+*** http://korben.info/feed/                                       :mustread:
+*** http://www.terminally-incoherent.com/blog/feed/
+*** http://nullprogram.com/feed/
+*** https://www.reddit.com/r/emacs.rss                             :mustread:
+** Comics                                                            :comics:
+*** http://xkcd.com/rss.xml
+*** http://feeds.feedburner.com/blogspot/ltkqIZ
+*** http://www.yodablog.net/?feed=rss2
