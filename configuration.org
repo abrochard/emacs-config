@@ -27,7 +27,7 @@ or whatever path to this file
 List all required packages
 #+BEGIN_SRC emacs-lisp
 (setq package-list '(magit flycheck company web-mode dracula-theme
-go-mode yasnippet avy helm win-switch emmet-mode elfeed
+go-mode yasnippet avy helm win-switch emmet-mode elfeed elfeed-org
 multiple-cursors which-key anaconda-mode undo-tree
 projectile helm-projectile flx helm-flx diminish ag helm-ag helm-swoop
 whole-line-or-region exec-path-from-shell xkcd neotree zzz-to-char))
@@ -447,25 +447,12 @@ Set iPython as the default interpreter
 #+END_SRC
 
 * Register RSS feeds
-TODO: move this to elfeed-org format
+Uses =elfeed= and =elfeed-org=
 #+BEGIN_SRC emacs-lisp
 (require 'elfeed)
+(require 'elfeed-org)
 (global-set-key (kbd "C-x w") 'elfeed)
-(setq elfeed-feeds
-      '("http://nullprogram.com/feed/"
-        "http://www.terminally-incoherent.com/blog/feed/"
-        "http://korben.info/feed/"
-        "http://xkcd.com/rss.xml"
-        "http://feeds.feedburner.com/RockPaperShotgun"
-        "http://feeds.feedburner.com/TechCrunch/"
-        "http://www.lemonde.fr/m-actu/rss_full.xml"
-        "http://www.jeuxvideo.com/rss/rss.xml"
-        "http://www.jeuxvideo.com/rss/itunes-chroniques.xml"
-        "http://rss.cnn.com/rss/cnn_topstories.rss"
-        "http://feeds.gothamistllc.com/gothamist05"
-        "http://www.wsj.com/xml/rss/3_7031.xml"
-        "http://www.wsj.com/xml/rss/3_7085.xml"
-        "http://feeds.gawker.com/kotaku/vip"
-        "http://www.polygon.com/rss/index.xml"
-        "http://feeds.gawker.com/lifehacker/full"))
+(elfeed-org)
+(setq rmh-elfeed-org-files (list (concat (file-name-directory load-file-name) "elfeed.org")))
 #+END_SRC
+The last line uses the [[file:elfeed.org][elfeed.org]] file to register the feeds.
