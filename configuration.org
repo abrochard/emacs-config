@@ -28,7 +28,7 @@ List all required packages
 #+BEGIN_SRC emacs-lisp
 (setq package-list '(magit flycheck company web-mode dracula-theme
 go-mode yasnippet avy helm win-switch emmet-mode elfeed elfeed-org
-multiple-cursors which-key anaconda-mode undo-tree
+multiple-cursors which-key anaconda-mode undo-tree refine
 projectile helm-projectile flx helm-flx diminish ag helm-ag helm-swoop
 whole-line-or-region exec-path-from-shell xkcd neotree zzz-to-char))
 #+END_SRC
@@ -431,7 +431,22 @@ Very nice if you don't have a cheat sheet at hand
 #+BEGIN_SRC emacs-lisp
 (require 'dired-x)
 #+END_SRC
-
+* Enable =viking-mode=
+#+BEGIN_SRC emacs-lisp :tangle no
+(require 'viking-mode)
+(viking-global-mode)
+(setq viking-enable-region-kill t)
+(setq viking-kill-functions (list '(lambda() (delete-char 1 t))
+                                  '(lambda()
+                                     (insert (pop kill-ring)) ;; insert the char back
+                                     (kill-new "") ;; start a new entry in teh kill-ring
+                                     (viking-kill-word)
+                                     (kill-append " " nil)) ;; append the extra space
+                                  'viking-kill-line-from-point
+                                  'viking-kill-line
+                                  'viking-kill-paragraph
+                                  'viking-kill-buffer))
+#+END_SRC
 
 * Python setup with =anaconda=
 Add hooks
