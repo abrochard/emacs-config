@@ -91,22 +91,24 @@ Best git client
 #+END_SRC
 
 * Custom key bindings
-Quickly revert a buffer, useful if file changed on disk
+** Quickly revert a buffer
+Useful if file changed on disk
 #+BEGIN_SRC emacs-lisp
 (define-key global-map (kbd "C-c r") 'revert-buffer)
 #+END_SRC
-Quickly evaluate a buffer or a region
+
+** Quickly evaluate a buffer or a region
 #+BEGIN_SRC emacs-lisp
 (define-key global-map (kbd "C-c x") 'eval-buffer)
 (define-key global-map (kbd "C-c X") 'eval-region)
 #+END_SRC
 
-Make helm-imenu easier to acces
+** Make helm-imenu easier to acces
 #+BEGIN_SRC emacs-lisp
 (define-key global-map (kbd "C-c i") 'helm-semantic-or-imenu)
 #+END_SRC
 
-Use the Mac Style Home/End keys
+** Use the Mac Style Home/End keys
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<end>") 'end-of-buffer)
@@ -123,7 +125,7 @@ Add hooks for particular file extensions
 
 
 * Utility functions
-Function to generate scratch buffer
+** Generate scratch buffer
 #+BEGIN_SRC emacs-lisp
 (defun generate-scratch-buffer ()
   "Create and switch to a temporary scratch buffer with a random
@@ -132,7 +134,7 @@ Function to generate scratch buffer
   (switch-to-buffer (make-temp-name "scratch-")))
 #+END_SRC
 
-Function to sudo the current buffer
+** Sudo the current buffer
 #+BEGIN_SRC emacs-lisp
 (defun sudo ()
   "Use TRAMP to `sudo' the current buffer"
@@ -143,7 +145,7 @@ Function to sudo the current buffer
              buffer-file-name))))
 #+END_SRC
 
-Function to show xkcd on start
+** Show xkcd on start
 #+BEGIN_SRC emacs-lisp
 (defun showxkcd ()
   "Call this to show xkcd comic of the day on start"
@@ -152,7 +154,8 @@ Function to show xkcd on start
   (switch-to-buffer "*xkcd*"))
 #+END_SRC
 
-Regexp based function to replace JSON web token in buffer
+** Replace JSON web token in buffer
+This is regexp based
 #+BEGIN_SRC emacs-lisp
 (defun replace-token (token)
   "Replace JSON web token for requests"
@@ -161,7 +164,8 @@ Regexp based function to replace JSON web token in buffer
     (replace-match (concat "Bearer " token "\""))))
 #+END_SRC
 
-Function for Dired to open all marked files. I like this better than the one in =dired+=
+** Open all marked files in Dired
+I like this better than the one in =dired+=
 #+BEGIN_SRC emacs-lisp
 (eval-after-load "dired"
   '(progn
@@ -173,7 +177,8 @@ Function for Dired to open all marked files. I like this better than the one in 
          (mapc 'find-file fn-list)))))
 #+END_SRC
 
-Function to open the current file in browser. Thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-utils.el#L78]]
+** Open the current file in browser.
+Thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-utils.el#L78]]
 #+BEGIN_SRC emacs-lisp
 (defun browse-current-file ()
   "Open the current file as a URL using `browse-url'."
@@ -183,6 +188,18 @@ Function to open the current file in browser. Thanks to [[https://github.com/pur
              (tramp-tramp-file-p file-name))
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
+#+END_SRC
+
+** XML Format function
+This works well on short text, too much and it can block the system
+#+BEGIN_SRC emacs-lisp
+(require 'sgml-mode)
+
+(defun reformat-xml ()
+  (interactive)
+  (save-excursion
+    (sgml-pretty-print (point-min) (point-max))
+    (indent-region (point-min) (point-max))))
 #+END_SRC
 
 
@@ -204,6 +221,18 @@ Function to open the current file in browser. Thanks to [[https://github.com/pur
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (define-key global-map "\C-cc" 'org-capture)
 #+END_SRC
+
+
+* Register RSS feeds
+Uses =elfeed= and =elfeed-org=
+#+BEGIN_SRC emacs-lisp
+(require 'elfeed)
+(require 'elfeed-org)
+(global-set-key (kbd "C-x w") 'elfeed)
+(elfeed-org)
+(setq rmh-elfeed-org-files (list (concat (file-name-directory load-file-name) "elfeed.org")))
+#+END_SRC
+The last line uses the [[file:elfeed.org][elfeed.org]] file to register the feeds.
 
 
 * Startup behavior
@@ -236,7 +265,6 @@ Only on mac or Linux as windows support isn't there yet
     (showxkcd))))
 #+END_SRC
 
-
 * Window behavior
 ** Disable the bell
 Aweful atrocious noise on Windows
@@ -253,6 +281,12 @@ Aweful atrocious noise on Windows
 ** Always ask for confirmation before quitting
 #+BEGIN_SRC emacs-lisp
 (setq confirm-kill-emacs 'y-or-n-p)
+#+END_SRC
+
+** Highlight the current line
+#+BEGIN_SRC emacs-lisp
+(when window-system
+  (global-hl-line-mode))
 #+END_SRC
 
 
@@ -283,35 +317,6 @@ Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/config
 (diminish-minor-mode 'whole-line-or-region 'whole-line-or-region-mode)
 #+END_SRC
 
-* Highlight the current line
-#+BEGIN_SRC emacs-lisp
-(when window-system
-  (global-hl-line-mode))
-#+END_SRC
-
-
-* Setup =projectile=
-#+BEGIN_SRC emacs-lisp
-(require 'projectile)
-(require 'helm-projectile)
-(projectile-global-mode)
-#+END_SRC
-
-Get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-projectile.el#L10]]
-#+BEGIN_SRC emacs-lisp
-(setq-default
-     projectile-mode-line
-     '(:eval
-       (if (file-remote-p default-directory)
-           " Proj"
-         (format " Proj[%s]" (projectile-project-name)))))
-#+END_SRC
-
-Remap the shortcut
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-c v") 'helm-projectile)
-(global-set-key (kbd "C-c C-v") 'helm-projectile-ag)
-#+END_SRC
 
 * Load Cool Theme
 #+BEGIN_SRC emacs-lisp
@@ -346,18 +351,6 @@ Trying to make it adapt to the OS
 #+BEGIN_SRC emacs-lisp
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+END_SRC
-** XML Format function
-This works well on short text, too much and it can block the system
-#+BEGIN_SRC emacs-lisp
-(require 'sgml-mode)
-
-(defun reformat-xml ()
-  (interactive)
-  (save-excursion
-    (sgml-pretty-print (point-min) (point-max))
-    (indent-region (point-min) (point-max))))
-#+END_SRC
-
 ** Golang Format
 Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
@@ -372,15 +365,39 @@ Absolutely necessary if working in Go
 #+END_SRC
 
 
-* Configure =yasnippet=
+* Individual Packages
+** Enable =yasnippet=
 Enable everywhere
 #+BEGIN_SRC emacs-lisp
 (require 'yasnippet)
 (yas-global-mode 1)
 #+END_SRC
 
+** Enable =projectile=
+With a twist of Helm
+#+BEGIN_SRC emacs-lisp
+(require 'projectile)
+(require 'helm-projectile)
+(projectile-global-mode)
+#+END_SRC
 
-* Enable =flycheck=
+Get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-projectile.el#L10]]
+#+BEGIN_SRC emacs-lisp
+(setq-default
+     projectile-mode-line
+     '(:eval
+       (if (file-remote-p default-directory)
+           " Proj"
+         (format " Proj[%s]" (projectile-project-name)))))
+#+END_SRC
+
+Remap the shortcut
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c v") 'helm-projectile)
+(global-set-key (kbd "C-c C-v") 'helm-projectile-ag)
+#+END_SRC
+
+** Enable =flycheck=
 #+BEGIN_SRC emacs-lisp
 (require 'flycheck)
 (flycheck-mode 1)
@@ -392,13 +409,13 @@ Add a little helm twist to it
 (define-key global-map (kbd "C-c f") 'helm-flycheck)
 #+END_SRC
 
-* Enable =avy=
+** Enable =avy=
 #+BEGIN_SRC emacs-lisp
 (require 'avy)
 (define-key global-map (kbd "C-c SPC") 'avy-goto-char)
 #+END_SRC
 
-* Enable =win-switch=
+** Enable =win-switch=
 Super nice to switch between frames and buffers
 #+BEGIN_SRC emacs-lisp
 (require 'win-switch)
@@ -406,7 +423,7 @@ Super nice to switch between frames and buffers
 (win-switch-setup-keys-default)
 #+END_SRC
 
-* Enable =emmet-mode=
+** Enable =emmet-mode=
 Adding the necessary hooks
 #+BEGIN_SRC emacs-lisp
 (require 'emmet-mode)
@@ -414,7 +431,7 @@ Adding the necessary hooks
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 #+END_SRC
 
-* Enable =multiple-cursors=
+** Enable =multiple-cursors=
 Useful to edit multiple similar lines
 #+BEGIN_SRC emacs-lisp
 (require 'multiple-cursors)
@@ -424,39 +441,39 @@ Useful to edit multiple similar lines
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 #+END_SRC
 
-* Enable =which-key=
+** Enable =which-key=
 Very nice if you don't have a cheat sheet at hand
 #+BEGIN_SRC emacs-lisp
 (require 'which-key)
 (which-key-mode 1)
 #+END_SRC
 
-* Enable =undo-tree=
+** Enable =undo-tree=
 #+BEGIN_SRC emacs-lisp
 (require 'undo-tree)
 (global-undo-tree-mode t)
 (setq undo-tree-visualizer-diff t)
 #+END_SRC
-* Enable =winner-mode=
+** Enable =winner-mode=
 #+BEGIN_SRC emacs-lisp
 (winner-mode 1)
 #+END_SRC
-* Enable =whole-line-or-region=
+** Enable =whole-line-or-region=
 #+BEGIN_SRC emacs-lisp
 (require 'whole-line-or-region)
 (whole-line-or-region-mode)
 #+END_SRC
 
-* Enable =zzz-to-char=
+** Enable =zzz-to-char=
 #+BEGIN_SRC emacs-lisp
 (require 'zzz-to-char)
 (global-set-key (kbd "M-z") #'zzz-up-to-char)
 #+END_SRC
-* Enabling =dired-x=
+** Enable =dired-x=
 #+BEGIN_SRC emacs-lisp
 (require 'dired-x)
 #+END_SRC
-* Enable =viking-mode=
+** Enable =viking-mode=
 #+BEGIN_SRC emacs-lisp :tangle no
 (require 'viking-mode)
 (viking-global-mode)
@@ -473,7 +490,7 @@ Very nice if you don't have a cheat sheet at hand
                                   'viking-kill-buffer))
 #+END_SRC
 
-* Enable =smooth-scrolling=
+** Enable =smooth-scrolling=
 But with a margin of 5
 #+BEGIN_SRC emacs-lisp
 (require 'smooth-scrolling)
@@ -481,12 +498,13 @@ But with a margin of 5
 (setq smooth-scroll-margin 5)
 #+END_SRC
 
-* Enable =ibuffer=
+** Enable =ibuffer=
 #+BEGIN_SRC emacs-lisp
 (require 'ibuffer-vc)
 (require 'ibuffer-git)
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
+
 * Python setup with =anaconda=
 Add hooks
 #+BEGIN_SRC emacs-lisp
@@ -499,15 +517,3 @@ Set iPython as the default interpreter
 #+BEGIN_SRC emacs-lisp
 (setq python-shell-interpreter "~/anaconda/bin/ipython")
 #+END_SRC
-
-
-* Register RSS feeds
-Uses =elfeed= and =elfeed-org=
-#+BEGIN_SRC emacs-lisp
-(require 'elfeed)
-(require 'elfeed-org)
-(global-set-key (kbd "C-x w") 'elfeed)
-(elfeed-org)
-(setq rmh-elfeed-org-files (list (concat (file-name-directory load-file-name) "elfeed.org")))
-#+END_SRC
-The last line uses the [[file:elfeed.org][elfeed.org]] file to register the feeds.
