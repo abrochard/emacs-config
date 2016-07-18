@@ -28,7 +28,7 @@ List all required packages
 #+BEGIN_SRC emacs-lisp
 (setq package-list '(magit flycheck company web-mode dracula-theme
 go-mode yasnippet avy helm win-switch emmet-mode elfeed elfeed-org
-multiple-cursors which-key anaconda-mode undo-tree refine
+multiple-cursors which-key anaconda-mode undo-tree refine helm-flycheck
 projectile helm-projectile flx helm-flx diminish ag helm-ag helm-swoop
 whole-line-or-region exec-path-from-shell xkcd neotree zzz-to-char))
 #+END_SRC
@@ -365,6 +365,12 @@ Enable everywhere
 #+BEGIN_SRC emacs-lisp
 (require 'flycheck)
 (flycheck-mode 1)
+#+END_SRC
+
+Add a little helm twist to it
+#+BEGIN_SRC emacs-lisp
+(require 'helm-flycheck)
+(define-key global-map (kbd "C-c f") 'helm-flycheck)
 #+END_SRC
 
 * Enable =avy=
