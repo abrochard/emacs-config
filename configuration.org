@@ -288,6 +288,17 @@ Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/config
 (require 'helm-projectile)
 (projectile-global-mode)
 #+END_SRC
+
+Get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-projectile.el#L10]]
+#+BEGIN_SRC emacs-lisp
+(setq-default
+     projectile-mode-line
+     '(:eval
+       (if (file-remote-p default-directory)
+           " Proj"
+         (format " Proj[%s]" (projectile-project-name)))))
+#+END_SRC
+
 Remap the shortcut
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c v") 'helm-projectile)
