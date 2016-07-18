@@ -27,7 +27,7 @@ or whatever path to this file
 List all required packages
 #+BEGIN_SRC emacs-lisp
 (setq package-list '(magit flycheck company web-mode dracula-theme
-go-mode yasnippet avy helm win-switch emmet-mode elfeed elfeed-org
+go-mode yasnippet avy helm win-switch emmet-mode elfeed elfeed-org smooth-scrolling
 multiple-cursors which-key anaconda-mode undo-tree refine helm-flycheck
 projectile helm-projectile flx helm-flx diminish ag helm-ag helm-swoop
 whole-line-or-region exec-path-from-shell xkcd neotree zzz-to-char))
@@ -402,7 +402,7 @@ Add a little helm twist to it
 (define-key global-map (kbd "C-c SPC") 'avy-goto-char)
 #+END_SRC
 
-* Enable =win-switch= behavior
+* Enable =win-switch=
 Super nice to switch between frames and buffers
 #+BEGIN_SRC emacs-lisp
 (require 'win-switch)
@@ -441,7 +441,7 @@ Very nice if you don't have a cheat sheet at hand
 (global-undo-tree-mode t)
 (setq undo-tree-visualizer-diff t)
 #+END_SRC
-* Enable winner-mode
+* Enable =winner-mode=
 #+BEGIN_SRC emacs-lisp
 (winner-mode 1)
 #+END_SRC
@@ -477,6 +477,14 @@ Very nice if you don't have a cheat sheet at hand
                                   'viking-kill-buffer))
 #+END_SRC
 
+* Enable =smooth-scrolling=
+But with a margin of 5
+#+BEGIN_SRC emacs-lisp
+(require 'smooth-scrolling)
+(smooth-scrolling-mode 1)
+(setq smooth-scroll-margin 5)
+#+END_SRC
+
 * Python setup with =anaconda=
 Add hooks
 #+BEGIN_SRC emacs-lisp
@@ -489,6 +497,7 @@ Set iPython as the default interpreter
 #+BEGIN_SRC emacs-lisp
 (setq python-shell-interpreter "~/anaconda/bin/ipython")
 #+END_SRC
+
 
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
