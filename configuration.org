@@ -177,6 +177,18 @@ Function for Dired to open all marked files. I like this better than the one in 
          (mapc 'find-file fn-list)))))
 #+END_SRC
 
+Function to open the current file in browser. Thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-utils.el#L78]]
+#+BEGIN_SRC emacs-lisp
+(defun browse-current-file ()
+  "Open the current file as a URL using `browse-url'."
+  (interactive)
+  (let ((file-name (buffer-file-name)))
+    (if (and (fboundp 'tramp-tramp-file-p)
+             (tramp-tramp-file-p file-name))
+        (error "Cannot open tramp file")
+      (browse-url (concat "file://" file-name)))))
+#+END_SRC
+
 
 * Publishing and task management with Org-mode
 ** Set environment
