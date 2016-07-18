@@ -30,7 +30,8 @@ List all required packages
 go-mode yasnippet avy helm win-switch emmet-mode elfeed elfeed-org smooth-scrolling
 multiple-cursors which-key anaconda-mode undo-tree refine helm-flycheck
 projectile helm-projectile flx helm-flx diminish ag helm-ag helm-swoop
-whole-line-or-region exec-path-from-shell xkcd neotree zzz-to-char))
+whole-line-or-region exec-path-from-shell xkcd neotree zzz-to-char
+ibuffer-vc ibuffer-git))
 #+END_SRC
 
 Install them all
@@ -485,6 +486,12 @@ But with a margin of 5
 (setq smooth-scroll-margin 5)
 #+END_SRC
 
+* Enable =ibuffer=
+#+BEGIN_SRC emacs-lisp
+(require 'ibuffer-vc)
+(require 'ibuffer-git)
+(define-key global-map (kbd "C-x C-b") 'ibuffer)
+#+END_SRC
 * Python setup with =anaconda=
 Add hooks
 #+BEGIN_SRC emacs-lisp
