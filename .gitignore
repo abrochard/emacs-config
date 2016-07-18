@@ -4,3 +4,4 @@ configuration.html~
 configuration.el
 configuration.el~
 .el~
+*.el~

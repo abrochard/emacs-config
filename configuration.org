@@ -24,14 +24,9 @@ or whatever path to this file
 
 * Automatic package installation
 *Ideally this should be replaced by Cask and Pallet, but Windows...* \\
-List all required packages
+All the packages are in the [[file:package-list.el][package-list.el]] file.
 #+BEGIN_SRC emacs-lisp
-(setq package-list '(magit flycheck company web-mode dracula-theme
-go-mode yasnippet avy helm win-switch emmet-mode elfeed elfeed-org smooth-scrolling
-multiple-cursors which-key anaconda-mode undo-tree refine helm-flycheck
-projectile helm-projectile flx helm-flx diminish ag helm-ag helm-swoop
-whole-line-or-region exec-path-from-shell xkcd neotree zzz-to-char
-ibuffer-vc ibuffer-git))
+(load-file (concat (file-name-directory load-file-name) "package-list.el"))
 #+END_SRC
 
 Install them all
