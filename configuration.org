@@ -294,7 +294,27 @@ Aweful atrocious noise on Windows
   (global-hl-line-mode))
 #+END_SRC
 
+* Better defaults
+Inspired from [[https://github.com/technomancy/better-defaults]]
 
+** Replace dabbrev with hippie-expand
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-/") 'hippie-expand)
+#+END_SRC
+
+** Replace isearch with regexp search
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
+#+END_SRC
+
+** Save all backup files to a common folder
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist `(("." . ,(concat user-emacs-directory
+                                               "backups"))))
+#+END_SRC
 * Hide certain modes from the modeline
 Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org#hide-certain-modes-from-the-modeline
 #+BEGIN_SRC emacs-lisp
@@ -351,6 +371,10 @@ Trying to make it adapt to the OS
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq tab-width 4)
+#+END_SRC
+** Add a new line at the end of files
+#+BEGIN_SRC emacs-lisp
+(setq require-final-newline t)
 #+END_SRC
 ** Delete trailing white spaces on save
 #+BEGIN_SRC emacs-lisp
