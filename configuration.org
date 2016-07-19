@@ -221,6 +221,11 @@ This works well on short text, too much and it can block the system
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (define-key global-map "\C-cc" 'org-capture)
 #+END_SRC
+** Add more states
+#+BEGIN_SRC emacs-lisp
+(setq org-todo-keywords
+       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+#+END_SRC
 
 
 * Register RSS feeds
