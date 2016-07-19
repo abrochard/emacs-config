@@ -1,17 +1,17 @@
-### Personal Emacs configuration
+# Personal Emacs configuration
 
 Written in Org mode
 
-Inspired by the superbs
+## Inspired by the superbs
 * https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org
 * https://github.com/purcell/emacs.d
 
-TODO:
+## TODO:
 - checkout https://www.reddit.com/comments/4nu7in/_/ to improve load time
 - record load time
 - test use-package https://github.com/jwiegley/use-package
 
-Other repos to check out:
+## Other repos to check out:
 - https://github.com/magnars/.emacs.d
 - https://github.com/bbatsov/prelude
 - https://github.com/emacs-tw/awesome-emacs
