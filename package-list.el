@@ -1,8 +1,10 @@
 (setq package-list '(
+                     2048-game
                      ag
                      anaconda-mode
                      avy
                      company
+                     company-php
                      diminish
                      dracula-theme
                      elfeed
@@ -20,11 +22,16 @@
                      helm-swoop
                      ibuffer-git
                      ibuffer-vc
+                     isend-mode
+                     lorem-ipsum
                      magit
                      multiple-cursors
                      neotree
+                     pdf-tools
+                     php-mode
                      projectile
                      refine
+                     request
                      smooth-scrolling
                      undo-tree
                      viking-mode
