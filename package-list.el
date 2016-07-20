@@ -30,6 +30,7 @@
                      pdf-tools
                      php-mode
                      projectile
+                     rainbow-delimiters
                      refine
                      request
                      smooth-scrolling
