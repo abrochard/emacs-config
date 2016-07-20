@@ -509,7 +509,7 @@ Very nice if you don't have a cheat sheet at hand
 (require 'dired-x)
 #+END_SRC
 ** Enable =viking-mode=
-#+BEGIN_SRC emacs-lisp :tangle no
+#+BEGIN_SRC emacs-lisp :tangle yes
 (require 'viking-mode)
 (viking-global-mode)
 (setq viking-enable-region-kill t)
