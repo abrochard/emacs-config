@@ -317,6 +317,16 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
                                                "backups"))))
 #+END_SRC
+
+** Replace 'yes/no' by just 'y/n
+#+BEGIN_SRC emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+** Auto reload tags
+#+BEGIN_SRC emacs-lisp
+(setq tags-revert-without-query 1)
+#+END_SRC
 * Hide certain modes from the modeline
 Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org#hide-certain-modes-from-the-modeline
 #+BEGIN_SRC emacs-lisp
