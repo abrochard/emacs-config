@@ -28,6 +28,7 @@
                      multiple-cursors
                      neotree
                      pdf-tools
+                     php-eldoc
                      php-mode
                      projectile
                      rainbow-delimiters

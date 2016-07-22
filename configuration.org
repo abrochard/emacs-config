@@ -119,6 +119,7 @@ Useful if file changed on disk
 Add hooks for particular file extensions
 #+BEGIN_SRC emacs-lisp
 (add-hook 'php-mode-hook 'flycheck-mode)
+(add-hook 'php-mode-hook 'php-eldoc-enable)
 (add-hook 'after-init-hook 'global-company-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.volt\\'" . web-mode))
