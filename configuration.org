@@ -115,6 +115,10 @@ Useful if file changed on disk
 (global-set-key (kbd "<end>") 'end-of-buffer)
 #+END_SRC
 
+** Quickly turn on auto-fill
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c q") 'auto-fill-mode)
+#+END_SRC
 * Custom hooks
 Add hooks for particular file extensions
 #+BEGIN_SRC emacs-lisp
