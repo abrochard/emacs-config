@@ -120,10 +120,12 @@ Add hooks for particular file extensions
 #+BEGIN_SRC emacs-lisp
 (add-hook 'php-mode-hook 'flycheck-mode)
 (add-hook 'php-mode-hook 'php-eldoc-enable)
+(add-hook 'php-mode-hook 'flyspell-prog-mode)
 (add-hook 'after-init-hook 'global-company-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.volt\\'" . web-mode))
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'org-mode-hook 'flyspell-mode)
 #+END_SRC
 
 
@@ -374,6 +376,19 @@ Trying to make it adapt to the OS
   (progn
     (exec-path-from-shell-copy-env "PATH")
     )
+  )
+#+END_SRC
+
+
+* Dictionary Configuration
+Because Windows sucks I have to do this to use =flyspell=
+#+BEGIN_SRC emacs-lisp
+(if (eq system-type 'windows-nt)
+    (progn
+      (add-to-list 'exec-path "C:/Aspell/bin/")
+      (setq ispell-program-name "aspell")
+      (require 'ispell)
+      )
   )
 #+END_SRC
 
