@@ -146,7 +146,12 @@ Add hooks for particular modes and languages
 #+BEGIN_SRC emacs-lisp
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 #+END_SRC
-
+** Python
+#+BEGIN_SRC emacs-lisp
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'eldoc-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
+#+END_SRC
 
 * Utility functions
 ** Generate scratch buffer
@@ -471,6 +476,7 @@ Remap the shortcut
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c v") 'helm-projectile)
 (global-set-key (kbd "C-c C-v") 'helm-projectile-ag)
+(global-set-key (kbd "C-c w") 'helm-projectile-switch-project)
 #+END_SRC
 
 ** Enable =flycheck=
@@ -592,15 +598,10 @@ And add a rule for PHP
 (electric-operator-add-rules-for-mode 'php-mode
   (cons " - >" "->"))
 #+END_SRC
-* Python setup with =anaconda=
-Add hooks
-#+BEGIN_SRC emacs-lisp
-(require 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'eldoc-mode)
-(add-hook 'python-mode-hook 'flycheck-mode)
-#+END_SRC
+
+** Enable =anaconda=
 Set iPython as the default interpreter
 #+BEGIN_SRC emacs-lisp
+(require 'anaconda-mode)
 (setq python-shell-interpreter "~/anaconda/bin/ipython")
 #+END_SRC
