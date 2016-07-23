@@ -1,5 +1,8 @@
 # Personal Emacs configuration
 
+![Screenshot](/screenshot.JPG)
+Format: ![Alt Text](url)
+
 Written in Org mode
 
 ## Inspired by the superbs
