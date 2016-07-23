@@ -120,11 +120,12 @@ Useful if file changed on disk
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 #+END_SRC
 * Custom hooks
-Add hooks for particular file extensions
+Add hooks for particular file extensions or modes
 #+BEGIN_SRC emacs-lisp
 (add-hook 'php-mode-hook 'flycheck-mode)
 (add-hook 'php-mode-hook 'php-eldoc-enable)
 (add-hook 'php-mode-hook 'flyspell-prog-mode)
+(add-hook 'php-mode-hook 'electric-operator-mode)
 (add-hook 'after-init-hook 'global-company-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.volt\\'" . web-mode))
@@ -570,6 +571,13 @@ But with a margin of 5
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
 
+** Enable =electric-operator=
+And add a rule for PHP
+#+BEGIN_SRC emacs-lisp
+(require 'electric-operator)
+(electric-operator-add-rules-for-mode 'php-mode
+  (cons " - >" "->"))
+#+END_SRC
 * Python setup with =anaconda=
 Add hooks
 #+BEGIN_SRC emacs-lisp

@@ -7,6 +7,7 @@
                      company-php
                      diminish
                      dracula-theme
+                     electric-operator
                      elfeed
                      elfeed-org
                      emmet-mode
