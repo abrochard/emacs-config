@@ -1,13 +1,8 @@
-# Personal Emacs configuration
+# Personal Emacs Configuration
 
 ![Screenshot](/screenshot.JPG)
-Format: ![Alt Text](url)
 
 Written in Org mode
-
-## Inspired by the superbs
-* https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org
-* https://github.com/purcell/emacs.d
 
 ## Overview
 File | Purpose
@@ -16,6 +11,11 @@ README.md | This file
 configuration.org | Main org file with all the configuration in elisp blocks
 elfeed.org | Separate list of blogs and RSS feeds for elfeed to grab
 package-list.el | List of all packages to install automatically for the config to work
+sreenshot.JPG | Just a screenshot of the beast
+
+## Inspired by the superbs
+* https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org
+* https://github.com/purcell/emacs.d
 
 ## TODO:
 - checkout https://www.reddit.com/comments/4nu7in/_/ to improve load time
