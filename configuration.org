@@ -231,6 +231,14 @@ This works well on short text, too much and it can block the system
     (indent-region (point-min) (point-max))))
 #+END_SRC
 
+** Refill paragraphs to be on one line
+#+BEGIN_SRC emacs-lisp
+(defun refill-paragraphs ()
+  "fill individual paragraphs with large fill column"
+  (interactive)
+  (let ((fill-column 100000))
+    (fill-individual-paragraphs (point-min) (point-max))))
+#+END_SRC
 
 * Publishing and task management with Org-mode
 ** Set environment
