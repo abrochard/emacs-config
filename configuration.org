@@ -1,4 +1,4 @@
-#+TITLE: Emacs configuration
+#+TITLE: Emacs Configuration
 
 * How to use
 The =.emacs= file in home directory should only contain
@@ -85,6 +85,7 @@ Best git client
         calendar-location-name "New York, NY")
 #+END_SRC
 * Custom aliases
+I don't use them a lot. Probably going to remove those soon.
 #+BEGIN_SRC emacs-lisp
 (defalias 'qrr 'quickrun-region)
 (defalias 'fff 'fiplr-find-file)
@@ -120,17 +121,30 @@ Useful if file changed on disk
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 #+END_SRC
 * Custom hooks
-Add hooks for particular file extensions or modes
+Add hooks for particular modes and languages
+** Global
+#+BEGIN_SRC emacs-lisp
+(add-hook 'after-init-hook 'global-company-mode)
+#+END_SRC
+** PHP
 #+BEGIN_SRC emacs-lisp
 (add-hook 'php-mode-hook 'flycheck-mode)
 (add-hook 'php-mode-hook 'php-eldoc-enable)
 (add-hook 'php-mode-hook 'flyspell-prog-mode)
 (add-hook 'php-mode-hook 'electric-operator-mode)
-(add-hook 'after-init-hook 'global-company-mode)
+#+END_SRC
+** Web
+#+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.volt\\'" . web-mode))
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+#+END_SRC
+** Org
+#+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook 'flyspell-mode)
+#+END_SRC
+** Emacs Lisp
+#+BEGIN_SRC emacs-lisp
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 #+END_SRC
 
 

@@ -6,6 +6,14 @@ Written in Org mode
 * https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org
 * https://github.com/purcell/emacs.d
 
+## Overview
+File | Purpose
+------------ | -------------
+README.md | This file
+configuration.org | Main org file with all the configuration in elisp blocks
+elfeed.org | Separate list of blogs and RSS feeds for elfeed to grab
+package-list.el | List of all packages to install automatically for the config to work
+
 ## TODO:
 - checkout https://www.reddit.com/comments/4nu7in/_/ to improve load time
 - record load time
@@ -20,3 +28,4 @@ Written in Org mode
 - https://github.com/eschulte/emacs24-starter-kit
 - https://github.com/xiaohanyu/oh-my-emacs
 - https://github.com/rdallasgray/graphene
+- https://github.com/sachac/.emacs.d
