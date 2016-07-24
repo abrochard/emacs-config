@@ -5,3 +5,5 @@ configuration.el
 configuration.el~
 .el~
 *.el~
+/extra/
+!/extra/README.md
