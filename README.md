@@ -20,7 +20,6 @@ extra | Folder to place any extra .el files to be loaded on startup
 
 ## TODO:
 - checkout https://www.reddit.com/comments/4nu7in/_/ to improve load time
-- record load time
 - test use-package https://github.com/jwiegley/use-package
 
 ## Other repos to check out:
