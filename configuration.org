@@ -613,3 +613,12 @@ Set iPython as the default interpreter
 (require 'anaconda-mode)
 (setq python-shell-interpreter "~/anaconda/bin/ipython")
 #+END_SRC
+
+
+* Extra file loading
+If I am working on a separate library, I like to have it loaded on start.
+Just need to place it in the extra folder.
+#+BEGIN_SRC emacs-lisp
+(require 'load-dir)
+(setq load-dirs (concat (file-name-directory load-file-name) "extra/"))
+#+END_SRC

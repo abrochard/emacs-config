@@ -24,6 +24,7 @@
                      ibuffer-git
                      ibuffer-vc
                      isend-mode
+                     load-dir
                      lorem-ipsum
                      magit
                      multiple-cursors
