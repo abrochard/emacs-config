@@ -12,6 +12,7 @@ configuration.org | Main org file with all the configuration in elisp blocks
 elfeed.org | Separate list of blogs and RSS feeds for elfeed to grab
 package-list.el | List of all packages to install automatically for the config to work
 sreenshot.JPG | Just a screenshot of the beast
+extra | Folder to place any extra .el files to be loaded on startup
 
 ## Inspired by the superbs
 * https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org
