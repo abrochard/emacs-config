@@ -5,7 +5,7 @@ The =.emacs= file in home directory should only contain
 #+BEGIN_SRC emacs-lisp :tangle no
 (package-initialize)
 (require 'org)
-(org-babel-load-file "~/.emacs.d/configuration.org")
+(org-babel-load-file "~/emacs-config/configuration.org")
 #+END_SRC
 or whatever path to this file
 

@@ -4,6 +4,15 @@
 
 Written in Org mode
 
+## How to setup
+Git clone this repo wherever you want, and just insert the following at the top of your init file
+```
+(package-initialize)
+(require 'org)
+(org-babel-load-file "~/emacs-config/configuration.org")
+```
+And adjust the path to the location of where you git cloned.
+
 ## Overview
 File | Purpose
 ------------ | -------------
