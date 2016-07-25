@@ -605,6 +605,8 @@ And add a rule for PHP
 (require 'electric-operator)
 (electric-operator-add-rules-for-mode 'php-mode
   (cons " - >" "->"))
+(electric-operator-add-rules-for-mode 'php-mode
+  (cons " / /" " // "))
 #+END_SRC
 
 ** Enable =anaconda=
