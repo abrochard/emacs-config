@@ -240,6 +240,19 @@ This works well on short text, too much and it can block the system
     (fill-individual-paragraphs (point-min) (point-max))))
 #+END_SRC
 
+** Copy filename and path to clipboard
+Thanks to http://emacsredux.com/blog/2013/03/27/copy-filename-to-the-clipboard/
+#+BEGIN_SRC emacs-lisp
+(defun copy-filename ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+#+END_SRC
 * Publishing and task management with Org-mode
 ** Set environment
 #+BEGIN_SRC emacs-lisp
