@@ -4,6 +4,7 @@
                      anaconda-mode
                      avy
                      company
+                     company-go
                      company-php
                      diminish
                      dracula-theme
