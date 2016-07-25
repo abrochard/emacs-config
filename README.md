@@ -13,6 +13,12 @@ Git clone this repo wherever you want, and just insert the following at the top 
 ```
 And adjust the path to the location of where you git cloned.
 
+### For Windows Users
+I tried to make this config also work on Windows. Obviously it won't be as good.
+You will need to do some extra things:
+- Install [Cygwin](https://www.cygwin.com/) at `C:\cygwin64\`
+- Install [Aspell](http://aspell.net/win32/) at `C:\Aspell\` with at least one dictionary
+
 ## Overview
 File | Purpose
 ------------ | -------------
