@@ -189,6 +189,7 @@ This is regexp based
 (defun replace-token (token)
   "Replace JSON web token for requests"
   (interactive "sEnter the new token: ")
+  (goto-char (point-min))
   (while (re-search-forward "Bearer .*\"" nil t)
     (replace-match (concat "Bearer " token "\""))))
 #+END_SRC
