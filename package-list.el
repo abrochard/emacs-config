@@ -3,6 +3,7 @@
                      ag
                      anaconda-mode
                      avy
+                     cheatsheet
                      company
                      company-go
                      company-php

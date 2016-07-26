@@ -19,6 +19,12 @@ You will need to do some extra things:
 - Install [Cygwin](https://www.cygwin.com/) at `C:\cygwin64\`
 - Install [Aspell](http://aspell.net/win32/) at `C:\Aspell\` with at least one dictionary
 
+## How to use
+Most of the useful key bindings linked to this config are recorded in a cheat sheet that you can summon via
+```
+M-x cheatsheet-show
+```
+
 ## Overview
 File | Purpose
 ------------ | -------------

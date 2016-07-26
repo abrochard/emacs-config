@@ -637,3 +637,94 @@ Just need to place it in the extra folder.
 (require 'load-dir)
 (setq load-dirs (concat (file-name-directory load-file-name) "extra/"))
 #+END_SRC
+
+
+* Cheat Sheet
+Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys bindings
+#+BEGIN_SRC emacs-lisp
+(require 'cheatsheet)
+#+END_SRC
+** Common
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Common
+                :key "C-c r"
+                :description "Revert buffer")
+(cheatsheet-add :group 'Common
+                :key "C-c q"
+                :description "Turn on/off autofill mode")
+(cheatsheet-add :group 'Common
+                :key "C-x u"
+                :description "Show the undo-tree")
+(cheatsheet-add :group 'Common
+                :key "M-y"
+                :description "Show the kill-ring")
+(cheatsheet-add :group 'Common
+                :key "C-x r l"
+                :description "Show the bookmarks")
+(cheatsheet-add :group 'Common
+                :key "C-c s"
+                :description "Swoop search through buffer")
+(cheatsheet-add :group 'Common
+                :key "C-c c"
+                :description "Summon org-capture")
+(cheatsheet-add :group 'Common
+                :key "C-x w"
+                :description "Read news and RSS feeds")
+(cheatsheet-add :group 'Common
+                :key "C-c SPC"
+                :description "Jump to char")
+#+END_SRC
+** Projectile
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Projectile
+                :key "C-c v"
+                :description "Find file in project")
+(cheatsheet-add :group 'Projectile
+                :key "C-c C-v"
+                :description "Find word in project")
+(cheatsheet-add :group 'Projectile
+                :key "C-c C-v C-w"
+                :description "Find word under cursor in project")
+(cheatsheet-add :group 'Projectile
+                :key "C-c w"
+                :description "Switch project")
+#+END_SRC
+** Emacs Lisp
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Emacs-Lisp
+                :key "C-x C-e"
+                :description "Evaluate sexp")
+(cheatsheet-add :group 'Emacs-Lisp
+                :key "C-c x"
+                :description "Evaluate buffer")
+(cheatsheet-add :group 'Emacs-Lisp
+                :key "C-c X"
+                :description "Evaluate region")
+#+END_SRC
+** Code
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Code
+                :key "C-c i"
+                :description "List classes and functions in buffer via imenu")
+(cheatsheet-add :group 'Code
+                :key "C-x g"
+                :description "Summon Magit")
+(cheatsheet-add :group 'Code
+                :key "C-c f"
+                :description "Flycheck the buffer")
+#+END_SRC
+** Multiple cursors
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Multiple-Cursors
+                :key "C->"
+                :description "Mark next like this")
+(cheatsheet-add :group 'Multiple-Cursors
+                :key "C-<"
+                :description "Mark previous like this")
+(cheatsheet-add :group 'Multiple-Cursors
+                :key "C-c C-<"
+                :description "Mark all like this")
+(cheatsheet-add :group 'Multiple-Cursors
+                :key "C-s-<mouse-1>"
+                :description "Add cursor on click")
+#+END_SRC
