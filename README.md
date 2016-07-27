@@ -42,6 +42,7 @@ extra | Folder to place any extra .el files to be loaded on startup
 ## TODO:
 - checkout https://www.reddit.com/comments/4nu7in/_/ to improve load time
 - test use-package https://github.com/jwiegley/use-package
+- shave time off org babel with http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
 
 ## Other repos to check out:
 - https://github.com/magnars/.emacs.d
