@@ -623,6 +623,8 @@ And add a rule for PHP
   (cons " / /" "// "))
 (electric-operator-add-rules-for-mode 'php-mode
   (cons " = >" "=>"))
+(electric-operator-add-rules-for-mode 'php-mode
+  (cons " < ?" "<?"))
 #+END_SRC
 
 ** Enable =anaconda=
