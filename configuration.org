@@ -620,7 +620,7 @@ And add a rule for PHP
 (electric-operator-add-rules-for-mode 'php-mode
   (cons " - >" "->"))
 (electric-operator-add-rules-for-mode 'php-mode
-  (cons " / /" " // "))
+  (cons " / /" "// "))
 (electric-operator-add-rules-for-mode 'php-mode
   (cons " = >" "=>"))
 #+END_SRC
