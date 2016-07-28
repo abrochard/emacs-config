@@ -38,6 +38,7 @@ extra | Folder to place any extra .el files to be loaded on startup
 ## Inspired by the superbs
 * https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org
 * https://github.com/purcell/emacs.d
+* https://github.com/jwiegley/use-package
 
 ## TODO:
 - shave time off org babel with http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
