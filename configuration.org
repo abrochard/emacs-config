@@ -58,6 +58,7 @@ And its dependencies if needed.
 (use-package helm-flx)
 (use-package helm
   :demand
+  :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("M-y" . helm-show-kill-ring)
          ("C-x b" . helm-mini)
@@ -361,33 +362,6 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 #+BEGIN_SRC emacs-lisp
 (setq tags-revert-without-query 1)
 #+END_SRC
-* Hide certain modes from the modeline
-Taken from the superb https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org#hide-certain-modes-from-the-modeline
-#+BEGIN_SRC emacs-lisp
-(require 'diminish)
-(defmacro diminish-minor-mode (filename mode &optional abbrev)
-  `(eval-after-load (symbol-name ,filename)
-     '(diminish ,mode ,abbrev)))
-
-(defmacro diminish-major-mode (mode-hook abbrev)
-  `(add-hook ,mode-hook
-             (lambda () (setq mode-name ,abbrev))))
-
-(diminish-minor-mode 'abbrev 'abbrev-mode)
-(diminish-minor-mode 'company 'company-mode)
-(diminish-minor-mode 'eldoc 'eldoc-mode)
-(diminish-minor-mode 'flycheck 'flycheck-mode)
-(diminish-minor-mode 'global-whitespace 'global-whitespace-mode)
-(diminish-minor-mode 'undo-tree 'undo-tree-mode)
-(diminish-minor-mode 'yasnippet 'yas-minor-mode)
-(diminish-minor-mode 'paredit 'paredit-mode " π")
-(diminish-minor-mode 'auto-revert-mode 'auto-revert-mode)
-(diminish-minor-mode 'which-key 'which-key-mode)
-(diminish-minor-mode 'viking-mode 'viking-mode)
-(diminish-minor-mode 'helm 'helm-mode)
-(diminish-minor-mode 'whole-line-or-region 'whole-line-or-region-mode)
-#+END_SRC
-
 
 * Load Cool Theme
 #+BEGIN_SRC emacs-lisp
@@ -453,6 +427,7 @@ Because Windows sucks I have to do this to use =flyspell=
 Enable everywhere
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
+  :diminish yas-minor-mode
   :config (yas-global-mode 1))
 #+END_SRC
 
@@ -485,6 +460,7 @@ With a twist of helm
 ** Enable =company=
 #+BEGIN_SRC emacs-lisp
 (use-package company
+  :diminish company-mode
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 (use-package company-go)
@@ -494,6 +470,7 @@ With a twist of helm
 ** Enable =flycheck=
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
+  :diminish flycheck-mode
   :config (flycheck-mode 1)
   (add-hook 'python-mode-hook 'flycheck-mode)
   (add-hook 'php-mode-hook 'flycheck-mode))
@@ -549,12 +526,14 @@ Useful to edit multiple similar lines
 Very nice if you don't have a cheat sheet at hand
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
+  :diminish which-key-mode
   :config (which-key-mode 1))
 #+END_SRC
 
 ** Enable =undo-tree=
 #+BEGIN_SRC emacs-lisp
 (use-package undo-tree
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode t)
   (setq undo-tree-visualizer-diff t))
@@ -566,6 +545,7 @@ Very nice if you don't have a cheat sheet at hand
 ** Enable =whole-line-or-region=
 #+BEGIN_SRC emacs-lisp
 (use-package whole-line-or-region
+  :diminish whole-line-or-region-mode
   :config (whole-line-or-region-mode))
 #+END_SRC
 
@@ -579,8 +559,10 @@ Very nice if you don't have a cheat sheet at hand
 (require 'dired-x)
 #+END_SRC
 ** Enable =viking-mode=
+And add my personal twist to it.
 #+BEGIN_SRC emacs-lisp
 (use-package viking-mode
+  :diminish viking-mode
   :config
   (viking-global-mode)
   (setq viking-enable-region-kill t)
