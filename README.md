@@ -31,7 +31,6 @@ File | Purpose
 README.md | This file
 configuration.org | Main org file with all the configuration in elisp blocks
 elfeed.org | Separate list of blogs and RSS feeds for elfeed to grab
-package-list.el | List of all packages to install automatically for the config to work
 sreenshot.JPG | Just a screenshot of the beast
 extra | Folder to place any extra .el files to be loaded on startup
 
