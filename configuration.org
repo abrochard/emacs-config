@@ -453,7 +453,7 @@ With a twist of helm
 #+BEGIN_SRC emacs-lisp
 (use-package helm-projectile
   :bind (("C-c v" . helm-projectile)
-         ("C-c V" . helm-projectile-ag)
+         ("C-c C-v" . helm-projectile-ag)
          ("C-c w" . helm-projectile-switch-project)))
 #+END_SRC
 
