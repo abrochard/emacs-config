@@ -12,15 +12,12 @@ The =.emacs= file in home directory should only contain
 where config-load-path is adjusted to wherever this file is.
 
 
-* Add Melpa Repo
+* Add Package Repositories
 #+BEGIN_SRC emacs-lisp
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list
-   'package-archives
-   '("melpa" . "http://melpa.org/packages/")
-   t)
-  (package-initialize))
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(package-initialize)
 #+END_SRC
 
 
@@ -43,6 +40,7 @@ And its dependencies if needed.
       (package-install 'use-package)))
 #+END_SRC
 ** Trigger =use-package=
+And force the install of missing packages.
 #+BEGIN_SRC emacs-lisp
 (eval-when-compile
   (require 'use-package))
@@ -53,6 +51,7 @@ And its dependencies if needed.
 
 
 * Configure Helm
+Make everything fuzzy and also rebind functions.
 #+BEGIN_SRC emacs-lisp
 (use-package flx)
 (use-package helm-flx)
@@ -423,7 +422,100 @@ Because Windows sucks I have to do this to use =flyspell=
 
 
 * Individual Packages
-** Enable =yasnippet=
+** Navigation
+*** Enable =avy=
+#+BEGIN_SRC emacs-lisp
+(use-package avy
+  :bind ("C-c SPC" . avy-goto-char))
+#+END_SRC
+
+*** Enable =win-switch=
+
+*** Enable =which-key=
+Very nice if you don't have a cheat sheet at hand
+#+BEGIN_SRC emacs-lisp
+(use-package which-key
+  :diminish which-key-mode
+  :config (which-key-mode 1))
+#+END_SRC
+
+*** Enable =winner-mode=
+#+BEGIN_SRC emacs-lisp
+(winner-mode 1)
+#+END_SRC
+*** Enable =smooth-scrolling=
+But with a margin of 5
+#+BEGIN_SRC emacs-lisp
+(use-package smooth-scrolling
+  :config
+  (smooth-scrolling-mode 1)
+  (setq smooth-scroll-margin 5))
+#+END_SRC
+
+*** Enable =neotree=
+#+BEGIN_SRC emacs-lisp
+(use-package neotree)
+#+END_SRC
+*** Enable =ibuffer=
+#+BEGIN_SRC emacs-lisp
+(use-package ibuffer-vc)
+(use-package ibuffer-git)
+(define-key global-map (kbd "C-x C-b") 'ibuffer)
+#+END_SRC
+
+** Edition
+*** Enable =multiple-cursors=
+Useful to edit multiple similar lines
+#+BEGIN_SRC emacs-lisp
+(use-package multiple-cursors
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)
+         ("C-s-<mouse-1>" . mc/add-cursor-on-click)))
+#+END_SRC
+
+*** Enable =zzz-to-char=
+#+BEGIN_SRC emacs-lisp
+(use-package zzz-to-char
+  :bind ("M-z" . zzz-up-to-char))
+#+END_SRC
+*** Enable =whole-line-or-region=
+#+BEGIN_SRC emacs-lisp
+(use-package whole-line-or-region
+  :diminish whole-line-or-region-mode
+  :config (whole-line-or-region-mode))
+#+END_SRC
+*** Enable =viking-mode=
+And add my personal twist to it.
+#+BEGIN_SRC emacs-lisp
+(use-package viking-mode
+  :diminish viking-mode
+  :config
+  (viking-global-mode)
+  (setq viking-enable-region-kill t)
+  (setq viking-kill-functions (list '(lambda() (delete-char 1 t))
+                                    '(lambda()
+                                       (insert (pop kill-ring)) ;; insert the char back
+                                       (kill-new "") ;; start a new entry in the kill-ring
+                                       (viking-kill-word)
+                                       (kill-append " " nil)) ;; append the extra space
+                                    'viking-kill-line-from-point
+                                    'viking-kill-line
+                                    'viking-kill-paragraph
+                                    'viking-kill-buffer)))
+#+END_SRC
+
+*** Enable =undo-tree=
+#+BEGIN_SRC emacs-lisp
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :config
+  (global-undo-tree-mode t)
+  (setq undo-tree-visualizer-diff t))
+#+END_SRC
+** Code
+*** Enable =yasnippet=
 Enable everywhere
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
@@ -431,7 +523,7 @@ Enable everywhere
   :config (yas-global-mode 1))
 #+END_SRC
 
-** Enable =projectile=
+*** Enable =projectile=
 And get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-projectile.el#L10]]
 #+BEGIN_SRC emacs-lisp
 (use-package ag)
@@ -457,7 +549,7 @@ With a twist of helm
          ("C-c w" . helm-projectile-switch-project)))
 #+END_SRC
 
-** Enable =company=
+*** Enable =company=
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :diminish company-mode
@@ -467,7 +559,7 @@ With a twist of helm
 (use-package company-php)
 
 #+END_SRC
-** Enable =flycheck=
+*** Enable =flycheck=
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :diminish flycheck-mode
@@ -483,13 +575,6 @@ Add a little helm twist to it
   :bind ("C-c f" . helm-flycheck))
 #+END_SRC
 
-** Enable =avy=
-#+BEGIN_SRC emacs-lisp
-(use-package avy
-  :bind ("C-c SPC" . avy-goto-char))
-#+END_SRC
-
-** Enable =win-switch=
 Super nice to switch between frames and buffers
 #+BEGIN_SRC emacs-lisp
 (use-package win-switch
@@ -501,7 +586,7 @@ Super nice to switch between frames and buffers
   (win-switch-setup-keys-default))
 #+END_SRC
 
-** Enable =emmet-mode=
+*** Enable =emmet-mode=
 Adding the necessary hooks
 #+BEGIN_SRC emacs-lisp
 (use-package emmet-mode
@@ -511,90 +596,43 @@ Adding the necessary hooks
   )
 #+END_SRC
 
-** Enable =multiple-cursors=
-Useful to edit multiple similar lines
+*** Enable =anaconda=
+Set iPython as the default interpreter
 #+BEGIN_SRC emacs-lisp
-(use-package multiple-cursors
-  :bind (("C-S-c C-S-c" . mc/edit-lines)
-         ("C->" . mc/mark-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)
-         ("C-c C-<" . mc/mark-all-like-this)
-         ("C-s-<mouse-1>" . mc/add-cursor-on-click)))
-#+END_SRC
-
-** Enable =which-key=
-Very nice if you don't have a cheat sheet at hand
-#+BEGIN_SRC emacs-lisp
-(use-package which-key
-  :diminish which-key-mode
-  :config (which-key-mode 1))
-#+END_SRC
-
-** Enable =undo-tree=
-#+BEGIN_SRC emacs-lisp
-(use-package undo-tree
-  :diminish undo-tree-mode
+(use-package anaconda-mode
   :config
-  (global-undo-tree-mode t)
-  (setq undo-tree-visualizer-diff t))
-#+END_SRC
-** Enable =winner-mode=
-#+BEGIN_SRC emacs-lisp
-(winner-mode 1)
-#+END_SRC
-** Enable =whole-line-or-region=
-#+BEGIN_SRC emacs-lisp
-(use-package whole-line-or-region
-  :diminish whole-line-or-region-mode
-  :config (whole-line-or-region-mode))
+  (setq python-shell-interpreter "~/anaconda/bin/ipython")
+  (add-hook 'python-mode-hook 'anaconda-mode))
 #+END_SRC
 
-** Enable =zzz-to-char=
+*** Enable =go-mode=
+Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
-(use-package zzz-to-char
-  :bind ("M-z" . zzz-up-to-char))
+(use-package go-mode
+  :config (add-hook 'before-save-hook #'gofmt-before-save))
 #+END_SRC
-** Enable =dired-x=
+
+*** Enable =php-mode=
+And a bunch of hooks with it
 #+BEGIN_SRC emacs-lisp
-(require 'dired-x)
-#+END_SRC
-** Enable =viking-mode=
-And add my personal twist to it.
-#+BEGIN_SRC emacs-lisp
-(use-package viking-mode
-  :diminish viking-mode
+(use-package php-mode
   :config
-  (viking-global-mode)
-  (setq viking-enable-region-kill t)
-  (setq viking-kill-functions (list '(lambda() (delete-char 1 t))
-                                    '(lambda()
-                                       (insert (pop kill-ring)) ;; insert the char back
-                                       (kill-new "") ;; start a new entry in the kill-ring
-                                       (viking-kill-word)
-                                       (kill-append " " nil)) ;; append the extra space
-                                    'viking-kill-line-from-point
-                                    'viking-kill-line
-                                    'viking-kill-paragraph
-                                    'viking-kill-buffer)))
+  (add-hook 'php-mode-hook 'flyspell-prog-mode)
+  (add-hook 'php-mode-hook 'electric-operator-mode))
 #+END_SRC
-
-** Enable =smooth-scrolling=
-But with a margin of 5
+*** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
-(use-package smooth-scrolling
+(use-package php-eldoc
+  :config (add-hook 'php-mode-hook 'php-eldoc-enable))
+#+END_SRC
+*** Enable =rainbow-delimiters=
+But only for emacs-lisp
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters
   :config
-  (smooth-scrolling-mode 1)
-  (setq smooth-scroll-margin 5))
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
-
-** Enable =ibuffer=
-#+BEGIN_SRC emacs-lisp
-(use-package ibuffer-vc)
-(use-package ibuffer-git)
-(define-key global-map (kbd "C-x C-b") 'ibuffer)
-#+END_SRC
-
-** Enable =electric-operator=
+*** Enable =electric-operator=
 And add a rule for PHP
 #+BEGIN_SRC emacs-lisp
 (use-package electric-operator
@@ -609,56 +647,20 @@ And add a rule for PHP
                                         (cons " < ?" "<?")))
 #+END_SRC
 
-** Enable =anaconda=
-Set iPython as the default interpreter
-#+BEGIN_SRC emacs-lisp
-(use-package anaconda-mode
-  :config
-  (setq python-shell-interpreter "~/anaconda/bin/ipython")
-  (add-hook 'python-mode-hook 'anaconda-mode))
-#+END_SRC
-
-** Enable =go-mode=
-Absolutely necessary if working in Go
-#+BEGIN_SRC emacs-lisp
-(use-package go-mode
-  :config (add-hook 'before-save-hook #'gofmt-before-save))
-#+END_SRC
-
-** Enable =php-mode=
-And a bunch of hooks with it
-#+BEGIN_SRC emacs-lisp
-(use-package php-mode
-  :config
-  (add-hook 'php-mode-hook 'flyspell-prog-mode)
-  (add-hook 'php-mode-hook 'electric-operator-mode))
-#+END_SRC
-** Enable =php-eldoc=
-#+BEGIN_SRC emacs-lisp
-(use-package php-eldoc
-  :config (add-hook 'php-mode-hook 'php-eldoc-enable))
-#+END_SRC
-** Enable =rainbow-delimiters=
-But only for emacs-lisp
-#+BEGIN_SRC emacs-lisp
-(use-package rainbow-delimiters
-  :config
-  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
-#+END_SRC
-** Enable =web-mode=
+*** Enable =web-mode=
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :mode "\\.phtml\\'"
   :mode "\\.volt\\'")
 #+END_SRC
 
-* Extra packages to install
+** Extra
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
+(require 'dired-x)
 (use-package 2048-game)
 (use-package isend-mode)
 (use-package lorem-ipsum)
-(use-package neotree)
 (use-package pdf-tools)
 (use-package refine)
 (use-package request)
