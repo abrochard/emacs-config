@@ -548,7 +548,6 @@ And get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/
      (if (file-remote-p default-directory)
          " Proj"
        (format " Proj[%s]" (projectile-project-name))))))
-(require 'projectile)
 #+END_SRC
 
 With a twist of helm
