@@ -7,11 +7,12 @@ Written in Org mode
 ## How to setup
 Git clone this repo wherever you want, and just insert the following at the top of your init file
 ```
+(setq config-load-path "~/emacs-config/")
 (package-initialize)
 (require 'org)
-(org-babel-load-file "~/emacs-config/configuration.org")
+(org-babel-load-file (concat config-load-path "configuration.org"))
 ```
-And adjust the path to the location of where you git cloned.
+And adjust config-load-path to the location of where you git cloned.
 
 ### For Windows Users
 I tried to make this config also work on Windows. Obviously it won't be as good.
@@ -39,8 +40,6 @@ extra | Folder to place any extra .el files to be loaded on startup
 * https://github.com/purcell/emacs.d
 
 ## TODO:
-- checkout https://www.reddit.com/comments/4nu7in/_/ to improve load time
-- test use-package https://github.com/jwiegley/use-package
 - shave time off org babel with http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
 
 ## Other repos to check out:

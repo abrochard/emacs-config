@@ -4,11 +4,12 @@
 * How to use
 The =.emacs= file in home directory should only contain
 #+BEGIN_SRC emacs-lisp :tangle no
+(setq config-load-path "~/emacs-config/")
 (package-initialize)
 (require 'org)
-(org-babel-load-file "~/emacs-config/configuration.org")
+(org-babel-load-file (concat config-load-path "configuration.org"))
 #+END_SRC
-or whatever path to this file
+where config-load-path is adjusted to wherever this file is.
 
 
 * Add Melpa Repo
@@ -56,6 +57,7 @@ And its dependencies if needed.
 (use-package flx)
 (use-package helm-flx)
 (use-package helm
+  :demand
   :bind (("M-x" . helm-M-x)
          ("M-y" . helm-show-kill-ring)
          ("C-x b" . helm-mini)
@@ -63,6 +65,7 @@ And its dependencies if needed.
          ("C-x r l" . helm-bookmarks)
          ("C-c i" . helm-semantic-or-imenu))
   :config
+  (helm-mode 1)
   (helm-flx-mode +1)
   (setq helm-M-x-fuzzy-match t)
   (setq helm-locate-fuzzy-match t)
@@ -267,7 +270,8 @@ Uses =elfeed= and =elfeed-org=
 
 (use-package elfeed-org
   :config
-  (setq rmh-elfeed-org-files (list (concat (file-name-directory load-file-name) "elfeed.org"))))
+  (setq rmh-elfeed-org-files (list (concat config-load-path "elfeed.org")))
+  (elfeed-org))
 #+END_SRC
 The last line uses the [[file:elfeed.org][elfeed.org]] file to register the feeds.
 
@@ -682,7 +686,7 @@ If I am working on a separate library, I like to have it loaded on start.
 Just need to place it in the extra folder.
 #+BEGIN_SRC emacs-lisp
 (use-package load-dir
-  :config (setq load-dirs (concat (file-name-directory load-file-name) "extra/")))
+  :config (setq load-dirs (concat config-load-path "extra/")))
 #+END_SRC
 
 
