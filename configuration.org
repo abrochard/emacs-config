@@ -93,13 +93,7 @@ Best git client
         calendar-longitude -73.98
         calendar-location-name "New York, NY")
 #+END_SRC
-* Custom aliases
-I don't use them a lot. Probably going to remove those soon.
-#+BEGIN_SRC emacs-lisp
-(defalias 'qrr 'quickrun-region)
-(defalias 'fff 'fiplr-find-file)
-(defalias 'ffd 'fiplr-find-directory)
-#+END_SRC
+
 
 * Custom key bindings
 ** Quickly revert a buffer
