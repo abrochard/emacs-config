@@ -32,6 +32,7 @@ M-x cheatsheet-show
 - Whole-line-or-region. Underrated IMO.
 - Magit. Best git client for Emacs out there.
 - Flycheck. Checks syntax everywhere.
+- use-package. Amazing for a clean config file.
 
 ## File Overview
 File | Purpose
