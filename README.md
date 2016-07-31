@@ -26,7 +26,14 @@ Most of the useful key bindings linked to this config are recorded in a cheat sh
 M-x cheatsheet-show
 ```
 
-## Overview
+## Essential Packages
+- Helm. After a full year of playing with both, finally chose Helm over Ido.
+- Company. For code completion.
+- Whole-line-or-region. Underrated IMO.
+- Magit. Best git client for Emacs out there.
+- Flycheck. Checks syntax everywhere.
+
+## File Overview
 File | Purpose
 ------------ | -------------
 README.md | This file
