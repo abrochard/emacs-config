@@ -527,6 +527,17 @@ And add my personal twist to it.
   (global-undo-tree-mode t)
   (setq undo-tree-visualizer-diff t))
 #+END_SRC
+
+*** Enable =volatile-highlights=
+Sweet minor mode for providing visual feedback
+#+BEGIN_SRC emacs-lisp
+(use-package volatile-highlights
+  :diminish volatile-highlights-mode
+  :config
+  (vhl/define-extension 'undo-tree 'undo-tree-yank 'undo-tree-move)
+  (vhl/install-extension 'undo-tree)
+  (volatile-highlights-mode t))
+#+END_SRC
 ** Code
 *** Enable =yasnippet=
 Enable everywhere
