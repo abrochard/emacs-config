@@ -231,6 +231,15 @@ Thanks to http://emacsredux.com/blog/2013/03/27/copy-filename-to-the-clipboard/
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 #+END_SRC
+
+** Align docstring
+I put a double space in between what I want to align and call this:
+#+BEGIN_SRC emacs-lisp
+(defun align-docstring ()
+  "Align lines by double space"
+  (interactive)
+  (align-regexp (region-beginning) (region-end) "\\(\\s-*\\)  " 1 1 t))
+#+END_SRC
 * Publishing and task management with Org-mode
 ** Set environment
 #+BEGIN_SRC emacs-lisp
