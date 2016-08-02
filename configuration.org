@@ -484,7 +484,7 @@ But with a margin of 5
 So much better than the default scroll bar
 #+BEGIN_SRC emacs-lisp
 (use-package yascroll
-  :config (yascroll-bar-mode))
+  :config (global-yascroll-bar-mode 1))
 #+END_SRC
 ** Edition
 *** Enable =multiple-cursors=
