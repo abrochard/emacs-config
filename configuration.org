@@ -492,7 +492,9 @@ So much better than the default scroll bar
 Not all the time, but handy.
 #+BEGIN_SRC emacs-lisp
 (use-package minimap
-  :config (setq minimap-window-location "right"))
+  :config
+  (setq minimap-window-location "right")
+  (setq minimap-major-modes '(prog-mode org-mode)))
 #+END_SRC
 ** Edition
 *** Enable =multiple-cursors=
