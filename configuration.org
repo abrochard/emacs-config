@@ -488,6 +488,12 @@ So much better than the default scroll bar
 (use-package yascroll
   :config (global-yascroll-bar-mode 1))
 #+END_SRC
+*** Enable =minimap=
+Not all the time, but handy.
+#+BEGIN_SRC emacs-lisp
+(use-package minimap
+  :config (setq minimap-window-location "right"))
+#+END_SRC
 ** Edition
 *** Enable =multiple-cursors=
 Useful to edit multiple similar lines
