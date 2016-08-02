@@ -288,10 +288,15 @@ The last line uses the [[file:elfeed.org][elfeed.org]] file to register the feed
 #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
 #+END_SRC
-
+** Disable the scroll bar
+#+BEGIN_SRC emacs-lisp
+(scroll-bar-mode -1)
+#+END_SRC
 ** Disable splash screen
+And set it in emacs-lisp mode
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
+(setq initial-major-mode 'emacs-lisp-mode)
 #+END_SRC
 ** Empty Scratch buffer
 #+BEGIN_SRC emacs-lisp
@@ -475,7 +480,12 @@ But with a margin of 5
 (use-package ibuffer-git)
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
-
+*** Enable =yascroll=
+So much better than the default scroll bar
+#+BEGIN_SRC emacs-lisp
+(use-package yascroll
+  :config (yascroll-bar-mode))
+#+END_SRC
 ** Edition
 *** Enable =multiple-cursors=
 Useful to edit multiple similar lines
