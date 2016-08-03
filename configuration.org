@@ -431,15 +431,14 @@ Because Windows sucks I have to do this to use =flyspell=
 #+END_SRC
 
 
-* Individual Packages
-** Navigation
-*** Enable =avy=
+* Navigation
+** Enable =avy=
 #+BEGIN_SRC emacs-lisp
 (use-package avy
   :bind ("C-c SPC" . avy-goto-char))
 #+END_SRC
 
-*** Enable =win-switch=
+** Enable =win-switch=
 Super nice to switch between frames and buffers
 #+BEGIN_SRC emacs-lisp
 (use-package win-switch
@@ -451,7 +450,7 @@ Super nice to switch between frames and buffers
   (win-switch-setup-keys-default))
 #+END_SRC
 
-*** Enable =which-key=
+** Enable =which-key=
 Very nice if you don't have a cheat sheet at hand
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
@@ -459,11 +458,11 @@ Very nice if you don't have a cheat sheet at hand
   :config (which-key-mode 1))
 #+END_SRC
 
-*** Enable =winner-mode=
+** Enable =winner-mode=
 #+BEGIN_SRC emacs-lisp
 (winner-mode 1)
 #+END_SRC
-*** Enable =smooth-scrolling=
+** Enable =smooth-scrolling=
 But with a margin of 5
 #+BEGIN_SRC emacs-lisp
 (use-package smooth-scrolling
@@ -472,23 +471,23 @@ But with a margin of 5
   (setq smooth-scroll-margin 5))
 #+END_SRC
 
-*** Enable =neotree=
+** Enable =neotree=
 #+BEGIN_SRC emacs-lisp
 (use-package neotree)
 #+END_SRC
-*** Enable =ibuffer=
+** Enable =ibuffer=
 #+BEGIN_SRC emacs-lisp
 (use-package ibuffer-vc)
 (use-package ibuffer-git)
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
-*** Enable =yascroll=
+** Enable =yascroll=
 So much better than the default scroll bar
 #+BEGIN_SRC emacs-lisp
 (use-package yascroll
   :config (global-yascroll-bar-mode 1))
 #+END_SRC
-*** Enable =minimap=
+** Enable =minimap=
 Not all the time, but handy.
 #+BEGIN_SRC emacs-lisp
 (use-package minimap
@@ -496,8 +495,8 @@ Not all the time, but handy.
   (setq minimap-window-location "right")
   (setq minimap-major-modes '(prog-mode org-mode)))
 #+END_SRC
-** Edition
-*** Enable =multiple-cursors=
+* Edition
+** Enable =multiple-cursors=
 Useful to edit multiple similar lines
 #+BEGIN_SRC emacs-lisp
 (use-package multiple-cursors
@@ -508,18 +507,18 @@ Useful to edit multiple similar lines
          ("C-s-<mouse-1>" . mc/add-cursor-on-click)))
 #+END_SRC
 
-*** Enable =zzz-to-char=
+** Enable =zzz-to-char=
 #+BEGIN_SRC emacs-lisp
 (use-package zzz-to-char
   :bind ("M-z" . zzz-up-to-char))
 #+END_SRC
-*** Enable =whole-line-or-region=
+** Enable =whole-line-or-region=
 #+BEGIN_SRC emacs-lisp
 (use-package whole-line-or-region
   :diminish whole-line-or-region-mode
   :config (whole-line-or-region-mode))
 #+END_SRC
-*** Enable =viking-mode=
+** Enable =viking-mode=
 And add my personal twist to it.
 #+BEGIN_SRC emacs-lisp
 (use-package viking-mode
@@ -539,7 +538,7 @@ And add my personal twist to it.
                                     'viking-kill-buffer)))
 #+END_SRC
 
-*** Enable =undo-tree=
+** Enable =undo-tree=
 #+BEGIN_SRC emacs-lisp
 (use-package undo-tree
   :diminish undo-tree-mode
@@ -548,7 +547,7 @@ And add my personal twist to it.
   (setq undo-tree-visualizer-diff t))
 #+END_SRC
 
-*** Enable =volatile-highlights=
+** Enable =volatile-highlights=
 Sweet minor mode for providing visual feedback
 #+BEGIN_SRC emacs-lisp
 (use-package volatile-highlights
@@ -558,8 +557,8 @@ Sweet minor mode for providing visual feedback
   (vhl/install-extension 'undo-tree)
   (volatile-highlights-mode t))
 #+END_SRC
-** Code
-*** Enable =yasnippet=
+* General Code
+** Enable =yasnippet=
 Enable everywhere
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
@@ -567,7 +566,7 @@ Enable everywhere
   :config (yas-global-mode 1))
 #+END_SRC
 
-*** Enable =projectile=
+** Enable =projectile=
 And get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-projectile.el#L10]]
 #+BEGIN_SRC emacs-lisp
 (use-package ag)
@@ -592,7 +591,7 @@ With a twist of helm
          ("C-c w" . helm-projectile-switch-project)))
 #+END_SRC
 
-*** Enable =company=
+** Enable =company=
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :diminish company-mode
@@ -600,7 +599,7 @@ With a twist of helm
   (add-hook 'after-init-hook 'global-company-mode))
 (use-package company-go)
 #+END_SRC
-*** Enable =flycheck=
+** Enable =flycheck=
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :diminish flycheck-mode
@@ -616,62 +615,7 @@ Add a little helm twist to it
   :bind ("C-c f" . helm-flycheck))
 #+END_SRC
 
-*** Enable =emmet-mode=
-Adding the necessary hooks
-#+BEGIN_SRC emacs-lisp
-(use-package emmet-mode
-  :config
-  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-  )
-#+END_SRC
-
-*** Enable =anaconda=
-Set iPython as the default interpreter
-#+BEGIN_SRC emacs-lisp
-(use-package anaconda-mode
-  :config
-  (setq python-shell-interpreter "~/anaconda/bin/ipython")
-  (add-hook 'python-mode-hook 'anaconda-mode))
-#+END_SRC
-
-*** Enable =go-mode=
-Absolutely necessary if working in Go
-#+BEGIN_SRC emacs-lisp
-(use-package go-mode
-  :config (add-hook 'before-save-hook #'gofmt-before-save))
-#+END_SRC
-
-*** Enable =php-mode=
-And a bunch of hooks with it
-#+BEGIN_SRC emacs-lisp
-(use-package php-mode
-  :config
-  (add-hook 'php-mode-hook 'flyspell-prog-mode)
-  (add-hook 'php-mode-hook 'electric-operator-mode))
-#+END_SRC
-*** Enable =php-eldoc=
-#+BEGIN_SRC emacs-lisp
-(use-package php-eldoc
-  :config (add-hook 'php-mode-hook 'php-eldoc-enable))
-#+END_SRC
-*** Enable =company-php=
-#+BEGIN_SRC emacs-lisp
-(use-package company-php
-  :config
-  (add-hook 'php-mode-hook
-            '(lambda ()
-               (company-mode t)
-               (add-to-list 'company-backends 'company-ac-php-backend ))))
-#+END_SRC
-*** Enable =rainbow-delimiters=
-But only for emacs-lisp
-#+BEGIN_SRC emacs-lisp
-(use-package rainbow-delimiters
-  :config
-  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
-#+END_SRC
-*** Enable =electric-operator=
+** Enable =electric-operator=
 And add a rule for PHP
 #+BEGIN_SRC emacs-lisp
 (use-package electric-operator
@@ -686,14 +630,84 @@ And add a rule for PHP
                                         (cons " < ?" "<?")))
 #+END_SRC
 
-*** Enable =web-mode=
+* Emacs Lisp
+** Enable =rainbow-delimiters=
+But only for emacs-lisp
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
+#+END_SRC
+* PHP
+** Enable =php-mode=
+And a bunch of hooks with it
+#+BEGIN_SRC emacs-lisp
+(use-package php-mode
+  :config
+  (add-hook 'php-mode-hook 'flyspell-prog-mode)
+  (add-hook 'php-mode-hook 'electric-operator-mode))
+#+END_SRC
+** Enable =php-eldoc=
+#+BEGIN_SRC emacs-lisp
+(use-package php-eldoc
+  :config (add-hook 'php-mode-hook 'php-eldoc-enable))
+#+END_SRC
+** Enable =company-php=
+#+BEGIN_SRC emacs-lisp
+(use-package company-php
+  :config
+  (add-hook 'php-mode-hook
+            '(lambda ()
+               (company-mode t)
+               (add-to-list 'company-backends 'company-ac-php-backend ))))
+#+END_SRC
+* Web
+** Enable =web-mode=
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :mode "\\.phtml\\'"
   :mode "\\.volt\\'")
 #+END_SRC
 
-** Extra
+** Enable =emmet-mode=
+Adding the necessary hooks
+#+BEGIN_SRC emacs-lisp
+(use-package emmet-mode
+  :config
+  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+  )
+#+END_SRC
+
+* Go
+** Enable =go-mode=
+Absolutely necessary if working in Go
+#+BEGIN_SRC emacs-lisp
+(use-package go-mode
+  :config (add-hook 'before-save-hook #'gofmt-before-save))
+#+END_SRC
+
+** Enable =company-go=
+#+BEGIN_SRC emacs-lisp
+(use-package company-go
+  :config
+  (add-hook 'go-mode-hook
+            '(lambda ()
+               (company-mode t)
+               (add-to-list 'company-backends 'company-go))))
+#+END_SRC
+* Python
+** Enable =anaconda=
+Set iPython as the default interpreter
+#+BEGIN_SRC emacs-lisp
+(use-package anaconda-mode
+  :config
+  (setq python-shell-interpreter "~/anaconda/bin/ipython")
+  (add-hook 'python-mode-hook 'anaconda-mode))
+#+END_SRC
+
+
+* Extra Packages
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
 (require 'dired-x)
@@ -704,6 +718,7 @@ No need to configure, just handy to have.
 (use-package refine)
 (use-package request)
 #+END_SRC
+
 * Extra file loading
 If I am working on a separate library, I like to have it loaded on start.
 Just need to place it in the extra folder.
