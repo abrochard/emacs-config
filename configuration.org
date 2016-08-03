@@ -599,8 +599,6 @@ With a twist of helm
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 (use-package company-go)
-(use-package company-php)
-
 #+END_SRC
 *** Enable =flycheck=
 #+BEGIN_SRC emacs-lisp
@@ -656,6 +654,15 @@ And a bunch of hooks with it
 #+BEGIN_SRC emacs-lisp
 (use-package php-eldoc
   :config (add-hook 'php-mode-hook 'php-eldoc-enable))
+#+END_SRC
+*** Enable =company-php=
+#+BEGIN_SRC emacs-lisp
+(use-package company-php
+  :config
+  (add-hook 'php-mode-hook
+            '(lambda ()
+               (company-mode t)
+               (add-to-list 'company-backends 'company-ac-php-backend ))))
 #+END_SRC
 *** Enable =rainbow-delimiters=
 But only for emacs-lisp
