@@ -118,16 +118,6 @@ Useful if file changed on disk
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 #+END_SRC
-* Custom hooks
-Add hooks for particular modes and languages
-** Org
-#+BEGIN_SRC emacs-lisp
-(add-hook 'org-mode-hook 'flyspell-mode)
-#+END_SRC
-** Python
-#+BEGIN_SRC emacs-lisp
-(add-hook 'python-mode-hook 'eldoc-mode)
-#+END_SRC
 
 * Utility functions
 ** Generate scratch buffer
@@ -263,7 +253,10 @@ I put a double space in between what I want to align and call this:
 (setq org-todo-keywords
        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
 #+END_SRC
-
+** Enable =flyspell=
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook 'flyspell-mode)
+#+END_SRC
 
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
@@ -661,6 +654,16 @@ And a bunch of hooks with it
                (company-mode t)
                (add-to-list 'company-backends 'company-ac-php-backend ))))
 #+END_SRC
+* MySQL
+** Always make MySQL the default product
+#+BEGIN_SRC emacs-lisp
+(sql-set-product "mysql")
+#+END_SRC
+** Enable =sqlup-mode=
+#+BEGIN_SRC emacs-lisp
+(use-package sqlup-mode
+  :config (add-hook 'sql-mode-hook 'sqlup-mode))
+#+END_SRC
 * Web
 ** Enable =web-mode=
 #+BEGIN_SRC emacs-lisp
@@ -697,6 +700,10 @@ Absolutely necessary if working in Go
                (add-to-list 'company-backends 'company-go))))
 #+END_SRC
 * Python
+** Enable =eldoc=
+#+BEGIN_SRC emacs-lisp
+(add-hook 'python-mode-hook 'eldoc-mode)
+#+END_SRC
 ** Enable =anaconda=
 Set iPython as the default interpreter
 #+BEGIN_SRC emacs-lisp
