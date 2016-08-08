@@ -634,6 +634,17 @@ But only for emacs-lisp
   :config
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
+* MySQL
+** Always make MySQL the default product
+#+BEGIN_SRC emacs-lisp
+(require 'sql)
+(sql-set-product "mysql")
+#+END_SRC
+** Enable =sqlup-mode=
+#+BEGIN_SRC emacs-lisp
+(use-package sqlup-mode
+  :config (add-hook 'sql-mode-hook 'sqlup-mode))
+#+END_SRC
 * PHP
 ** Enable =php-mode=
 And a bunch of hooks with it
@@ -641,7 +652,8 @@ And a bunch of hooks with it
 (use-package php-mode
   :config
   (add-hook 'php-mode-hook 'flyspell-prog-mode)
-  (add-hook 'php-mode-hook 'electric-operator-mode))
+  (add-hook 'php-mode-hook 'electric-operator-mode)
+  (add-hook 'php-mode-hook 'sqlup-mode))
 #+END_SRC
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
@@ -656,17 +668,6 @@ And a bunch of hooks with it
             '(lambda ()
                (company-mode t)
                (add-to-list 'company-backends 'company-ac-php-backend ))))
-#+END_SRC
-* MySQL
-** Always make MySQL the default product
-#+BEGIN_SRC emacs-lisp
-(require 'sql)
-(sql-set-product "mysql")
-#+END_SRC
-** Enable =sqlup-mode=
-#+BEGIN_SRC emacs-lisp
-(use-package sqlup-mode
-  :config (add-hook 'sql-mode-hook 'sqlup-mode))
 #+END_SRC
 * Web
 ** Enable =web-mode=
