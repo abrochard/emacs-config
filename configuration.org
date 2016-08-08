@@ -63,7 +63,10 @@ Make everything fuzzy and also rebind functions.
          ("C-x b" . helm-mini)
          ("C-x C-f" . helm-find-files)
          ("C-x r l" . helm-bookmarks)
-         ("C-c i" . helm-semantic-or-imenu))
+         ("C-c i" . helm-semantic-or-imenu)
+         :map helm-find-files-map ;; I like these from Ido
+         ("C-<tab>"         . helm-execute-persistent-action)
+         ("C-<backspace>" . helm-find-files-up-one-level))
   :config
   (helm-mode 1)
   (helm-flx-mode +1)
