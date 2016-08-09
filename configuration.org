@@ -652,8 +652,7 @@ And a bunch of hooks with it
 (use-package php-mode
   :config
   (add-hook 'php-mode-hook 'flyspell-prog-mode)
-  (add-hook 'php-mode-hook 'electric-operator-mode)
-  (add-hook 'php-mode-hook 'sqlup-mode))
+  (add-hook 'php-mode-hook 'electric-operator-mode))
 #+END_SRC
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
