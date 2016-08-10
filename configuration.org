@@ -645,6 +645,13 @@ But only for emacs-lisp
 (use-package sqlup-mode
   :config (add-hook 'sql-mode-hook 'sqlup-mode))
 #+END_SRC
+** Enable =mysql-to-org=
+I love this package
+#+BEGIN_SRC emacs-lisp
+(use-package mysql-to-org
+  :config
+  (add-hook 'sql-mode-hook 'mysql-to-org-mode))
+#+END_SRC
 * PHP
 ** Enable =php-mode=
 And a bunch of hooks with it
