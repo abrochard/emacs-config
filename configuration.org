@@ -626,6 +626,11 @@ And add a rule for PHP
                                         (cons " < ?" "<?")))
 #+END_SRC
 
+** Enable =dumb-jump=
+Great package to jump to definition
+#+BEGIN_SRC emacs-lisp
+(use-package dumb-jump)
+#+END_SRC
 * Emacs Lisp
 ** Enable =rainbow-delimiters=
 But only for emacs-lisp
@@ -659,7 +664,8 @@ And a bunch of hooks with it
 (use-package php-mode
   :config
   (add-hook 'php-mode-hook 'flyspell-prog-mode)
-  (add-hook 'php-mode-hook 'electric-operator-mode))
+  (add-hook 'php-mode-hook 'electric-operator-mode)
+  (add-hook 'php-mode-hook 'dumb-jump-mode))
 #+END_SRC
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
@@ -834,4 +840,28 @@ Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys 
 (cheatsheet-add :group 'Multiple-Cursors
                 :key "C-s-<mouse-1>"
                 :description "Add cursor on click")
+#+END_SRC
+** Dumb Jump
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group Dumb-Jump
+                :key "C-M-g"
+                :description "Jump to function definition")
+(cheatsheet-add :group 'Dumb-Jump
+                :key "C-M-p"
+                :description "Jump back to original location")
+(cheatsheet-add :group 'Dumb-Jump
+                :key "C-M-q"
+                :description "Show tooltip")
+#+END_SRC
+** MySQL-to-Org
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'MySQL-to-Org
+                :key "C-c C-m e"
+                :description "Evaluate query in region")
+(cheatsheet-add :group 'MySQL-to-Org
+                :key "C-c C-m p"
+                :description "Evaluate the string at point")
+(cheatsheet-add :group 'MySQL-to-Org
+                :key "C-c C-m s"
+                :description "Open scratch buffer")
 #+END_SRC
