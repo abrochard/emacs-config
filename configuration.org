@@ -843,7 +843,7 @@ Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys 
 #+END_SRC
 ** Dumb Jump
 #+BEGIN_SRC emacs-lisp
-(cheatsheet-add :group Dumb-Jump
+(cheatsheet-add :group 'Dumb-Jump
                 :key "C-M-g"
                 :description "Jump to function definition")
 (cheatsheet-add :group 'Dumb-Jump
