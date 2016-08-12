@@ -63,7 +63,7 @@ Make everything fuzzy and also rebind functions.
          ("C-x b" . helm-mini)
          ("C-x C-f" . helm-find-files)
          ("C-x r l" . helm-bookmarks)
-         ("C-c i" . helm-semantic-or-imenu)
+         ("C-c C-i" . helm-semantic-or-imenu)
          :map helm-find-files-map ;; I like these from Ido
          ("C-<tab>"         . helm-execute-persistent-action)
          ("C-<backspace>" . helm-find-files-up-one-level))
@@ -553,6 +553,13 @@ Sweet minor mode for providing visual feedback
   (vhl/install-extension 'undo-tree)
   (volatile-highlights-mode t))
 #+END_SRC
+
+** Enable =ciel=
+#+BEGIN_SRC emacs-lisp
+(use-package ciel
+  :bind (("C-c i" . ciel-ci)
+         ("C-c o" . ciel-co)))
+#+END_SRC
 * General Code
 ** Enable =yasnippet=
 Enable everywhere
@@ -789,6 +796,12 @@ Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys 
 (cheatsheet-add :group 'Common
                 :key "C-c C-d"
                 :description "Hungry delete")
+(cheatsheet-add :group 'Common
+                :key "C-c i"
+                :description "Ciel kill")
+(cheatsheet-add :group 'Common
+                :key "C-c o"
+                :description "Ciel copy")
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
@@ -820,7 +833,7 @@ Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys 
 ** Code
 #+BEGIN_SRC emacs-lisp
 (cheatsheet-add :group 'Code
-                :key "C-c i"
+                :key "C-c C-i"
                 :description "List classes and functions in buffer via imenu")
 (cheatsheet-add :group 'Code
                 :key "C-x g"
