@@ -260,6 +260,20 @@ I put a double space in between what I want to align and call this:
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook 'flyspell-mode)
 #+END_SRC
+** Setup =org-babel=
+#+BEGIN_SRC emacs-lisp
+(org-babel-do-load-languages
+ (quote org-babel-load-languages)
+ (quote ((emacs-lisp . t)
+         (dot . t)
+         (R . t)
+         (python . t)
+         (gnuplot . t)
+         (sh . t)
+         (ledger . t)
+         (org . t)
+         (latex . t))))
+#+END_SRC
 
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
