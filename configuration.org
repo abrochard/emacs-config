@@ -161,7 +161,7 @@ This is regexp based
   (interactive "sEnter the new token: ")
   (goto-char (point-min))
   (while (re-search-forward "Bearer .*\"" nil t)
-    (replace-match (concat "Bearer " token "\""))))
+    (replace-match (concat "Bearer " token "\"")))
 #+END_SRC
 
 ** Open all marked files in Dired
@@ -622,7 +622,7 @@ With a twist of helm
   :diminish flycheck-mode
   :config (flycheck-mode 1)
   (add-hook 'python-mode-hook 'flycheck-mode)
-  (add-hook 'php-mode-hook 'flycheck-mode))
+  (add-hook 'emacs-lisp-mode-hook 'flycheck-mode))
 
 #+END_SRC
 
@@ -685,6 +685,7 @@ And a bunch of hooks with it
 (use-package php-mode
   :config
   (add-hook 'php-mode-hook 'flyspell-prog-mode)
+  (add-hook 'php-mode-hook 'flycheck-mode)
   (add-hook 'php-mode-hook 'electric-operator-mode)
   (add-hook 'php-mode-hook 'dumb-jump-mode))
 #+END_SRC
