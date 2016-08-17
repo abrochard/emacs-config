@@ -161,7 +161,7 @@ This is regexp based
   (interactive "sEnter the new token: ")
   (goto-char (point-min))
   (while (re-search-forward "Bearer .*\"" nil t)
-    (replace-match (concat "Bearer " token "\"")))
+    (replace-match (concat "Bearer " token "\""))))
 #+END_SRC
 
 ** Open all marked files in Dired
