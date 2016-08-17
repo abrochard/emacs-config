@@ -653,12 +653,22 @@ Great package to jump to definition
 (use-package dumb-jump)
 #+END_SRC
 * Emacs Lisp
+** Enable =eldoc=
+#+BEGIN_SRC emacs-lisp
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+#+END_SRC
 ** Enable =rainbow-delimiters=
 But only for emacs-lisp
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
   :config
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
+#+END_SRC
+** Enable =paredit=
+#+BEGIN_SRC emacs-lisp
+(use-package paredit
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
 #+END_SRC
 * MySQL
 ** Always make MySQL the default product
@@ -895,4 +905,28 @@ Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys 
 (cheatsheet-add :group 'MySQL-to-Org
                 :key "C-c C-m s"
                 :description "Open scratch buffer")
+#+END_SRC
+** Paredit
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Paredit
+                :key "C-("
+                :description "Slurp left")
+(cheatsheet-add :group 'Paredit
+                :key "C-("
+                :description "Slurp right")
+(cheatsheet-add :group 'Paredit
+                :key "C-{"
+                :description "Barf left")
+(cheatsheet-add :group 'Paredit
+                :key "C-}"
+                :description "Barf right")
+(cheatsheet-add :group 'Paredit
+                :key "M-("
+                :description "Wrap sexp in ()")
+(cheatsheet-add :group 'Paredit
+                :key "M-("
+                :description "Wrap sexp in ()")
+(cheatsheet-add :group 'Paredit
+                :key "M-s"
+                :description "Splice sexp out of ()")
 #+END_SRC
