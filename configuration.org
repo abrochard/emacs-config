@@ -5,12 +5,14 @@
 The =.emacs= file in home directory should only contain
 #+BEGIN_SRC emacs-lisp :tangle no
 (setq config-load-path "~/emacs-config/")
+
+(shell-command (concat "cd " config-load-path " && git pull"))
 (package-initialize)
 (require 'org)
 (org-babel-load-file (concat config-load-path "configuration.org"))
 #+END_SRC
 where config-load-path is adjusted to wherever this file is.
-
+This will also automatically pull the latest version of the config on startup.
 
 * Add Package Repositories
 #+BEGIN_SRC emacs-lisp

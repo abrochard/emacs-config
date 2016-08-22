@@ -8,11 +8,14 @@ Written in Org mode
 Git clone this repo wherever you want, and just insert the following at the top of your init file
 ```
 (setq config-load-path "~/emacs-config/")
+
+(shell-command (concat "cd " config-load-path " && git pull"))
 (package-initialize)
 (require 'org)
 (org-babel-load-file (concat config-load-path "configuration.org"))
 ```
 And adjust config-load-path to the location of where you git cloned.
+This will also automatically pull the latest version of the config on startup.
 
 ### For Windows Users
 I tried to make this config also work on Windows. Obviously it won't be as good.
