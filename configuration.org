@@ -161,9 +161,10 @@ This is regexp based
 (defun replace-token (token)
   "Replace JSON web token for requests"
   (interactive "sEnter the new token: ")
-  (goto-char (point-min))
-  (while (re-search-forward "Bearer .*\"" nil t)
-    (replace-match (concat "Bearer " token "\""))))
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward "Bearer .*\"" nil t)
+      (replace-match (concat "Bearer " token "\"")))))
 #+END_SRC
 
 ** Open all marked files in Dired
@@ -700,7 +701,6 @@ And a bunch of hooks with it
 #+BEGIN_SRC emacs-lisp
 (use-package php-mode
   :config
-  (add-hook 'php-mode-hook 'flyspell-prog-mode)
   (add-hook 'php-mode-hook 'flycheck-mode)
   (add-hook 'php-mode-hook 'electric-operator-mode)
   (add-hook 'php-mode-hook 'dumb-jump-mode))
@@ -708,6 +708,7 @@ And a bunch of hooks with it
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
 (use-package php-eldoc
+  :diminish eldoc-mode
   :config (add-hook 'php-mode-hook 'php-eldoc-enable))
 #+END_SRC
 ** Enable =company-php=
