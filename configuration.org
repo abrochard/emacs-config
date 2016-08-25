@@ -124,6 +124,10 @@ Useful if file changed on disk
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 #+END_SRC
 
+** Hungry delete forward available everywhere
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c C-d") 'c-hungry-delete-forward)
+#+END_SRC
 * Utility functions
 ** Generate scratch buffer
 #+BEGIN_SRC emacs-lisp
