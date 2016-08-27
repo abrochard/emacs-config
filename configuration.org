@@ -781,6 +781,7 @@ No need to configure, just handy to have.
 (use-package 2048-game)
 (use-package isend-mode)
 (use-package lorem-ipsum)
+(use-package markdown-mode)
 (use-package pdf-tools)
 (use-package refine)
 (use-package request)

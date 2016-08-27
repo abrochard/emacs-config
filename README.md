@@ -53,6 +53,7 @@ extra | Folder to place any extra .el files to be loaded on startup
 
 ## TODO:
 - shave time off org babel with http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
+- auto upgrade packages?
 
 ## Other repos to check out:
 - https://github.com/magnars/.emacs.d
