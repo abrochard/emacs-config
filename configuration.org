@@ -516,6 +516,12 @@ Not all the time, but handy.
 #+BEGIN_SRC emacs-lisp
 (use-package rotate)
 #+END_SRC
+** Enable =anzu=
+#+BEGIN_SRC emacs-lisp
+(use-package anzu
+  :config (global-anzu-mode +1)
+          (setq anzu-mode-lighter t))
+#+END_SRC
 * Edition
 ** Enable =multiple-cursors=
 Useful to edit multiple similar lines
