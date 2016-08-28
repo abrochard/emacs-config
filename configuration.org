@@ -240,6 +240,15 @@ I put a double space in between what I want to align and call this:
   (interactive)
   (align-regexp (region-beginning) (region-end) "\\(\\s-*\\)  " 1 1 t))
 #+END_SRC
+
+** Rename local variable
+#+BEGIN_SRC emacs-lisp
+(defun rename-local-var (name)
+  (interactive "sEnter new name: ")
+  (let ((var (word-at-point)))
+    (mark-defun)
+    (replace-string var name nil (region-beginning) (region-end))))
+#+END_SRC
 * Publishing and task management with Org-mode
 ** Set environment
 #+BEGIN_SRC emacs-lisp
@@ -520,7 +529,7 @@ Not all the time, but handy.
 #+BEGIN_SRC emacs-lisp
 (use-package anzu
   :config (global-anzu-mode +1)
-          (setq anzu-mode-lighter t))
+          (setq anzu-mode-lighter ""))
 #+END_SRC
 * Edition
 ** Enable =multiple-cursors=
@@ -845,6 +854,15 @@ Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys 
 (cheatsheet-add :group 'Common
                 :key "C-c o"
                 :description "Ciel copy")
+(cheatsheet-add :group 'Common
+                :key "C-M-h"
+                :description "Select region")
+(cheatsheet-add :group 'Common
+                :key "C-x n n"
+                :description "Narrow to region")
+(cheatsheet-add :group 'Common
+                :key "C-x n w"
+                :description "Widen to entire buffer")
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
