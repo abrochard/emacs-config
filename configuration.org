@@ -864,6 +864,18 @@ Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys 
                 :key "C-x n w"
                 :description "Widen to entire buffer")
 #+END_SRC
+** Org
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Org
+                :key "C-c c"
+                :description "Org Capture")
+(cheatsheet-add :group 'Org
+                :key "C-c ^"
+                :description "Org sort")
+(cheatsheet-add :group 'Org
+                :key "C-c C-t"
+                :description "Org cycle todo")
+#+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
 (cheatsheet-add :group 'Projectile
