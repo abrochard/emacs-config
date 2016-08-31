@@ -7,3 +7,4 @@ configuration.el~
 *.el~
 /extra/
 !/extra/README.md
+/cheatsheet.el

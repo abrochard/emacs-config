@@ -9,10 +9,13 @@ Git clone this repo wherever you want, and just insert the following at the top 
 ```
 (setq config-load-path "~/emacs-config/")
 
+(defvar my-start-time (current-time) "Time when Emacs was started")
 (shell-command (concat "cd " config-load-path " && git pull"))
 (package-initialize)
 (require 'org)
 (org-babel-load-file (concat config-load-path "configuration.org"))
+(org-babel-load-file (concat config-load-path "cheatsheet.org"))
+(message "Start up time %.2fs" (float-time (time-subtract (current-time) my-start-time)))
 ```
 And adjust config-load-path to the location of where you git cloned.
 This will also automatically pull the latest version of the config on startup.

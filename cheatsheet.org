@@ -1,0 +1,168 @@
+* Setup
+#+BEGIN_SRC emacs-lisp
+  (use-package cheatsheet
+    :config
+    (setq cheatsheet--group-face '(:foreground "spring green"))
+    (setq cheatsheet--key-face '(:foreground "orchid")))
+#+END_SRC
+
+* Common
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Common
+                :key "C-c r"
+                :description "Revert buffer")
+(cheatsheet-add :group 'Common
+                :key "C-c q"
+                :description "Turn on/off autofill mode")
+(cheatsheet-add :group 'Common
+                :key "C-x u"
+                :description "Show the undo-tree")
+(cheatsheet-add :group 'Common
+                :key "M-y"
+                :description "Show the kill-ring")
+(cheatsheet-add :group 'Common
+                :key "C-x r l"
+                :description "Show the bookmarks")
+(cheatsheet-add :group 'Common
+                :key "C-c s"
+                :description "Swoop search through buffer")
+(cheatsheet-add :group 'Common
+                :key "C-x w"
+                :description "Read news and RSS feeds")
+(cheatsheet-add :group 'Common
+                :key "C-c SPC"
+                :description "Jump to char")
+(cheatsheet-add :group 'Common
+                :key "C-c C-d"
+                :description "Hungry delete")
+(cheatsheet-add :group 'Common
+                :key "C-c i"
+                :description "Ciel kill")
+(cheatsheet-add :group 'Common
+                :key "C-M-h"
+                :description "Select region")
+#+END_SRC
+
+* Org
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Org
+                :key "C-c c"
+                :description "Org Capture")
+(cheatsheet-add :group 'Org
+                :key "C-c ^"
+                :description "Org sort")
+(cheatsheet-add :group 'Org
+                :key "C-c C-t"
+                :description "Org cycle todo")
+(cheatsheet-add :group 'Org
+                :key "C-c '"
+                :description "Edit code block")
+(cheatsheet-add :group 'Org
+                :key "C-c C-c"
+                :description "Evaluate source block")
+(cheatsheet-add :group 'Org
+                :key "C-c C-o"
+                :description "Show source block eval result")
+#+END_SRC
+* Projectile
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Projectile
+                :key "C-c v"
+                :description "Find file in project")
+(cheatsheet-add :group 'Projectile
+                :key "C-c C-v"
+                :description "Find word in project")
+(cheatsheet-add :group 'Projectile
+                :key "C-c C-v C-w"
+                :description "Find word under cursor in project")
+(cheatsheet-add :group 'Projectile
+                :key "C-c w"
+                :description "Switch project")
+#+END_SRC
+* Emacs Lisp
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Emacs-Lisp
+                :key "C-x C-e"
+                :description "Evaluate sexp")
+(cheatsheet-add :group 'Emacs-Lisp
+                :key "C-c x"
+                :description "Evaluate buffer")
+(cheatsheet-add :group 'Emacs-Lisp
+                :key "C-c X"
+                :description "Evaluate region")
+#+END_SRC
+* Code
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Code
+                :key "C-c C-i"
+                :description "List classes and functions in buffer via imenu")
+(cheatsheet-add :group 'Code
+                :key "C-x g"
+                :description "Summon Magit")
+(cheatsheet-add :group 'Code
+                :key "C-c f"
+                :description "Flycheck the buffer")
+#+END_SRC
+* Multiple cursors
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Multiple-Cursors
+                :key "C->"
+                :description "Mark next like this")
+(cheatsheet-add :group 'Multiple-Cursors
+                :key "C-<"
+                :description "Mark previous like this")
+(cheatsheet-add :group 'Multiple-Cursors
+                :key "C-c C-<"
+                :description "Mark all like this")
+(cheatsheet-add :group 'Multiple-Cursors
+                :key "C-S-<mouse-1>"
+                :description "Add cursor on click")
+#+END_SRC
+* Dumb Jump
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Dumb-Jump
+                :key "C-M-g"
+                :description "Jump to function definition")
+(cheatsheet-add :group 'Dumb-Jump
+                :key "C-M-p"
+                :description "Jump back to original location")
+(cheatsheet-add :group 'Dumb-Jump
+                :key "C-M-q"
+                :description "Show tooltip")
+#+END_SRC
+* MySQL-to-Org
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'MySQL-to-Org
+                :key "C-c C-m e"
+                :description "Evaluate query in region")
+(cheatsheet-add :group 'MySQL-to-Org
+                :key "C-c C-m p"
+                :description "Evaluate the string at point")
+(cheatsheet-add :group 'MySQL-to-Org
+                :key "C-c C-m s"
+                :description "Open scratch buffer")
+#+END_SRC
+* Paredit
+#+BEGIN_SRC emacs-lisp
+(cheatsheet-add :group 'Paredit
+                :key "C-("
+                :description "Slurp left")
+(cheatsheet-add :group 'Paredit
+                :key "C-)"
+                :description "Slurp right")
+(cheatsheet-add :group 'Paredit
+                :key "C-{"
+                :description "Barf left")
+(cheatsheet-add :group 'Paredit
+                :key "C-}"
+                :description "Barf right")
+(cheatsheet-add :group 'Paredit
+                :key "M-("
+                :description "Wrap sexp in ()")
+(cheatsheet-add :group 'Paredit
+                :key "M-("
+                :description "Wrap sexp in ()")
+(cheatsheet-add :group 'Paredit
+                :key "M-s"
+                :description "Splice sexp out of ()")
+#+END_SRC
