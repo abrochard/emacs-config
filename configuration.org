@@ -4,18 +4,13 @@
 * How to use
 The =.emacs= file in home directory should only contain
 #+BEGIN_SRC emacs-lisp :tangle no
-(setq config-load-path "~/emacs-config/")
-
-(defvar my-start-time (current-time) "Time when Emacs was started")
-(shell-command (concat "cd " config-load-path " && git pull"))
-(package-initialize)
-(require 'org)
-(org-babel-load-file (concat config-load-path "configuration.org"))
-(org-babel-load-file (concat config-load-path "cheatsheet.org"))
-(message "Start up time %.2fs" (float-time (time-subtract (current-time) my-start-time)))
+(load-file "~/emacs-config/bootstrap.el")
 #+END_SRC
-where config-load-path is adjusted to wherever this file is.
-This will also automatically pull the latest version of the config on startup.
+where the path to bootstrap.el is adjusted to wherever you cloned this repo.
+This will also automatically pull the latest version of the config on startup, unless you forbid it with
+#+BEGIN_SRC emacs-lisp :tangle no
+(setq config-no-auto-update t)
+#+END_SRC
 
 * Add Package Repositories
 #+BEGIN_SRC emacs-lisp

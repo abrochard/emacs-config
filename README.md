@@ -6,19 +6,14 @@ Written in Org mode
 
 ## How to setup
 Git clone this repo wherever you want, and just insert the following at the top of your init file
+```lisp
+(load-file "~/emacs-config/bootstrap.el")
 ```
-(setq config-load-path "~/emacs-config/")
-
-(defvar my-start-time (current-time) "Time when Emacs was started")
-(shell-command (concat "cd " config-load-path " && git pull"))
-(package-initialize)
-(require 'org)
-(org-babel-load-file (concat config-load-path "configuration.org"))
-(org-babel-load-file (concat config-load-path "cheatsheet.org"))
-(message "Start up time %.2fs" (float-time (time-subtract (current-time) my-start-time)))
+where the path to bootstrap.el is adjusted to wherever you cloned this repo.
+This will also automatically pull the latest version of the config on startup, unless you forbid it with
+```lisp
+(setq config-no-auto-update t)
 ```
-And adjust config-load-path to the location of where you git cloned.
-This will also automatically pull the latest version of the config on startup.
 
 ### For Windows Users
 I tried to make this config also work on Windows. Obviously it won't be as good.
@@ -28,7 +23,7 @@ You will need to do some extra things:
 
 ## How to use
 Most of the useful key bindings linked to this config are recorded in a cheat sheet that you can summon via
-```
+```lisp
 M-x cheatsheet-show
 ```
 
@@ -44,6 +39,7 @@ M-x cheatsheet-show
 File | Purpose
 ------------ | -------------
 README.md | This file
+bootstrap.el | Kickstart the config load process
 configuration.org | Main org file with all the configuration in elisp blocks
 elfeed.org | Separate list of blogs and RSS feeds for elfeed to grab
 cheatsheet.org | Dedicated to loading the cheatsheet extension
