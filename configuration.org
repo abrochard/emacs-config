@@ -875,6 +875,15 @@ Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys 
 (cheatsheet-add :group 'Org
                 :key "C-c C-t"
                 :description "Org cycle todo")
+(cheatsheet-add :group 'Org
+                :key "C-c '"
+                :description "Edit code block")
+(cheatsheet-add :group 'Org
+                :key "C-c C-c"
+                :description "Evaluate source block")
+(cheatsheet-add :group 'Org
+                :key "C-c C-o"
+                :description "Show source block eval result")
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
