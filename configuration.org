@@ -327,8 +327,9 @@ And set it in emacs-lisp mode
 (setq initial-scratch-message nil)
 #+END_SRC
 ** Show xkcd comic of the day on start
-Only on mac or Linux as windows support isn't there yet
-#+BEGIN_SRC emacs-lisp
+Only on mac or Linux as windows support isn't there yet.
+Disabled for now because too slow on start.
+#+BEGIN_SRC emacs-lisp :tangle no
 (cond
  ((string-equal system-type "darwin") ; Mac OS X
   (progn

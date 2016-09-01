@@ -50,9 +50,9 @@ extra | Folder to place any extra .el files to be loaded on startup
 * https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org
 * https://github.com/purcell/emacs.d
 * https://github.com/jwiegley/use-package
+* http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
 
 ## TODO:
-- shave time off org babel with http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
 - auto upgrade packages?
 
 ## Other repos to check out:
