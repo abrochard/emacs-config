@@ -267,8 +267,11 @@ I put a double space in between what I want to align and call this:
 #+END_SRC
 ** Add more states
 #+BEGIN_SRC emacs-lisp
-(setq org-todo-keywords
-       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+  (setq org-todo-keyword-faces
+             '(("WAIT" . "yellow")
+               ("CANCELED" . (:foreground "blue" :weight bold))))
 #+END_SRC
 ** Enable =flyspell=
 #+BEGIN_SRC emacs-lisp
