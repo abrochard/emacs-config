@@ -90,6 +90,12 @@
 (cheatsheet-add :group 'Emacs-Lisp
                 :key "C-c X"
                 :description "Evaluate region")
+(cheatsheet-add :group 'Emacs-Lisp
+                :key "C-h f"
+                :description "Describe function")
+(cheatsheet-add :group 'Emacs-Lisp
+                :key "C-h v"
+                :description "Describe variable")
 #+END_SRC
 * Code
 #+BEGIN_SRC emacs-lisp
