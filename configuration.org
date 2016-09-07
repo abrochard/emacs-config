@@ -26,18 +26,13 @@ This will also automatically pull the latest version of the config on startup, u
 ** Install =use-package=
 And its dependencies if needed.
 #+BEGIN_SRC emacs-lisp
-(if (not (package-installed-p 'use-package))
-    (progn
-      (package-refresh-contents)
-      (package-install 'use-package)))
-(if (not (package-installed-p 'diminish))
-    (progn
-      (package-refresh-contents)
-      (package-install 'use-package)))
-(if (not (package-installed-p 'bind-key))
-    (progn
-      (package-refresh-contents)
-      (package-install 'use-package)))
+(mapc
+ (lambda (package)
+   (if (not (package-installed-p package))
+       (progn
+         (package-refresh-contents)
+         (package-install package))))
+ '(use-package diminish bind-key))
 #+END_SRC
 ** Trigger =use-package=
 And force the install of missing packages.
