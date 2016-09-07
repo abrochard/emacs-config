@@ -65,3 +65,4 @@ extra | Folder to place any extra .el files to be loaded on startup
 - https://github.com/xiaohanyu/oh-my-emacs
 - https://github.com/rdallasgray/graphene
 - https://github.com/sachac/.emacs.d
+- https://github.com/hlissner/.emacs.d
