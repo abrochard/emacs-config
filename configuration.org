@@ -80,12 +80,16 @@ Make everything fuzzy and also rebind functions.
 
 
 * Version Control
-For now it's just magit, but can add more systems as necessary.
+For now it's just git, but can add more systems as necessary.
 ** Enable magit
 Best git client
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :bind ("C-x g" . magit-status))
+#+END_SRC
+** Add =git-timemachine=
+#+BEGIN_SRC emacs-lisp
+  (use-package git-timemachine)
 #+END_SRC
 
 
