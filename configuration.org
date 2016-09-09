@@ -558,21 +558,25 @@ Useful to edit multiple similar lines
 ** Enable =viking-mode=
 And add my personal twist to it.
 #+BEGIN_SRC emacs-lisp
-(use-package viking-mode
-  :diminish viking-mode
-  :config
-  (viking-global-mode)
-  (setq viking-enable-region-kill t)
-  (setq viking-kill-functions (list '(lambda() (delete-char 1 t))
-                                    '(lambda()
-                                       (insert (pop kill-ring)) ;; insert the char back
-                                       (kill-new "") ;; start a new entry in the kill-ring
-                                       (viking-kill-word)
-                                       (kill-append " " nil)) ;; append the extra space
-                                    'viking-kill-line-from-point
-                                    'viking-kill-line
-                                    'viking-kill-paragraph
-                                    'viking-kill-buffer)))
+  (use-package viking-mode
+    :diminish viking-mode
+    :config
+    (viking-global-mode)
+    (setq viking-greedy-kill nil)
+    (setq viking-enable-region-kill t)
+    (setq viking-kill-functions (list '(lambda()
+                                         (if (region-active-p)
+                                             (kill-region (region-beginning) (region-end))
+                                         (delete-char 1 t)))
+                                      '(lambda()
+                                         (insert (pop kill-ring)) ;; insert the char back
+                                         (kill-new "") ;; start a new entry in the kill-ring
+                                         (viking-kill-word)
+                                         (kill-append " " nil)) ;; append the extra space
+                                      'viking-kill-line-from-point
+                                      'viking-kill-line
+                                      'viking-kill-paragraph
+                                      'viking-kill-buffer)))
 #+END_SRC
 
 ** Enable =undo-tree=
