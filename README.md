@@ -66,3 +66,8 @@ extra | Folder to place any extra .el files to be loaded on startup
 - https://github.com/rdallasgray/graphene
 - https://github.com/sachac/.emacs.d
 - https://github.com/hlissner/.emacs.d
+- https://github.com/angrybacon/dotemacs
+
+## Resources for more:
+- [Reddit #1](https://www.reddit.com/r/emacs/comments/2edbau/what_are_some_great_emacsd_examples/)
+- [Reddit #2](https://www.reddit.com/r/emacs/comments/4kv163/i_wanna_see_your_init_files_share_em/)
