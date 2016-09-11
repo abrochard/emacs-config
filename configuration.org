@@ -97,34 +97,6 @@ Best git client
 #+END_SRC
 
 
-* Custom key bindings
-** Quickly revert a buffer
-Useful if file changed on disk
-#+BEGIN_SRC emacs-lisp
-(define-key global-map (kbd "C-c r") 'revert-buffer)
-#+END_SRC
-
-** Quickly evaluate a buffer or a region
-#+BEGIN_SRC emacs-lisp
-(define-key global-map (kbd "C-c x") 'eval-buffer)
-(define-key global-map (kbd "C-c X") 'eval-region)
-#+END_SRC
-
-** Use the Mac Style Home/End keys
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "<home>") 'beginning-of-buffer)
-(global-set-key (kbd "<end>") 'end-of-buffer)
-#+END_SRC
-
-** Quickly turn on auto-fill
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-c q") 'auto-fill-mode)
-#+END_SRC
-
-** Hungry delete forward available everywhere
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-c C-d") 'c-hungry-delete-forward)
-#+END_SRC
 * Utility functions
 ** Generate scratch buffer
 #+BEGIN_SRC emacs-lisp
@@ -246,6 +218,61 @@ I put a double space in between what I want to align and call this:
     (mark-defun)
     (replace-string var name nil (region-beginning) (region-end))))
 #+END_SRC
+
+** Increment/decrement number at point
+I miss that from Vim
+#+BEGIN_SRC emacs-lisp
+  (defun increment-number-at-point ()
+    (interactive)
+    (skip-chars-backward "0-9")
+    (or (looking-at "[0-9]+")
+        (error "No number at point"))
+    (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+
+  (defun decrement-number-at-point ()
+    (interactive)
+    (skip-chars-backward "0-9")
+    (or (looking-at "[0-9]+")
+        (error "No number at point"))
+    (replace-match (number-to-string (- (string-to-number (match-string 0)) 1))))
+#+END_SRC
+
+* Custom key bindings
+** Quickly revert a buffer
+Useful if file changed on disk
+#+BEGIN_SRC emacs-lisp
+(define-key global-map (kbd "C-c r") 'revert-buffer)
+#+END_SRC
+
+** Quickly evaluate a buffer or a region
+#+BEGIN_SRC emacs-lisp
+(define-key global-map (kbd "C-c x") 'eval-buffer)
+(define-key global-map (kbd "C-c X") 'eval-region)
+#+END_SRC
+
+** Use the Mac Style Home/End keys
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<home>") 'beginning-of-buffer)
+(global-set-key (kbd "<end>") 'end-of-buffer)
+#+END_SRC
+
+** Quickly turn on auto-fill
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c q") 'auto-fill-mode)
+#+END_SRC
+
+** Hungry delete forward available everywhere
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c C-d") 'c-hungry-delete-forward)
+#+END_SRC
+
+** Increment number easily
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c +") 'increment-number-at-point)
+  (global-set-key (kbd "C-c -") decrement-number-at-point)
+#+END_SRC
+
+
 * Publishing and task management with Org-mode
 ** Set environment
 #+BEGIN_SRC emacs-lisp

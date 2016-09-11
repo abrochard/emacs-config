@@ -41,6 +41,12 @@
 (cheatsheet-add :group 'Common
                 :key "C-M-h"
                 :description "Select region")
+(cheatsheet-add :group 'Common
+                :key "C-c +"
+                :description "Increment number at point")
+(cheatsheet-add :group 'Common
+                :key "C-c -"
+                :description "Decrement number at point")
 #+END_SRC
 
 * Org
