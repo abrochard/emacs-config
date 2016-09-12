@@ -749,12 +749,14 @@ I love this package
 * PHP
 ** Enable =php-mode=
 And a bunch of hooks with it
+And set PSR-2 as coding style
 #+BEGIN_SRC emacs-lisp
-(use-package php-mode
-  :config
-  (add-hook 'php-mode-hook 'flycheck-mode)
-  (add-hook 'php-mode-hook 'electric-operator-mode)
-  (add-hook 'php-mode-hook 'dumb-jump-mode))
+  (use-package php-mode
+    :config
+    (add-hook 'php-mode-hook 'flycheck-mode)
+    (add-hook 'php-mode-hook 'electric-operator-mode)
+    (add-hook 'php-mode-hook 'dumb-jump-mode)
+    (php-enable-psr2-coding-style))
 #+END_SRC
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
