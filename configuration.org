@@ -269,7 +269,7 @@ Useful if file changed on disk
 ** Increment number easily
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c +") 'increment-number-at-point)
-  (global-set-key (kbd "C-c -") decrement-number-at-point)
+  (global-set-key (kbd "C-c -") 'decrement-number-at-point)
 #+END_SRC
 
 
