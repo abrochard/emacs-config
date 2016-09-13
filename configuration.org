@@ -756,7 +756,7 @@ And set PSR-2 as coding style
     (add-hook 'php-mode-hook 'flycheck-mode)
     (add-hook 'php-mode-hook 'electric-operator-mode)
     (add-hook 'php-mode-hook 'dumb-jump-mode)
-    (php-enable-psr2-coding-style))
+    (add-hook 'php-mode-hook 'php-enable-psr2-coding-style))
 #+END_SRC
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
