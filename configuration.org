@@ -48,29 +48,30 @@ And force the install of missing packages.
 * Configure Helm
 Make everything fuzzy and also rebind functions.
 #+BEGIN_SRC emacs-lisp
-(use-package flx)
-(use-package helm-flx)
-(use-package helm
-  :demand
-  :diminish helm-mode
-  :bind (("M-x" . helm-M-x)
-         ("M-y" . helm-show-kill-ring)
-         ("C-x b" . helm-mini)
-         ("C-x C-f" . helm-find-files)
-         ("C-x r l" . helm-bookmarks)
-         ("C-c C-i" . helm-semantic-or-imenu)
-         :map helm-find-files-map ;; I like these from Ido
-         ("C-<tab>"         . helm-execute-persistent-action)
-         ("C-<backspace>" . helm-find-files-up-one-level))
-  :config
-  (helm-mode 1)
-  (helm-flx-mode +1)
-  (setq helm-M-x-fuzzy-match t)
-  (setq helm-locate-fuzzy-match t)
-  (setq helm-lisp-fuzzy-completion t)
-  (setq helm-bookmark-show-location t))
-(use-package helm-swoop
-  :bind ("C-c s" . helm-swoop))
+  (use-package flx)
+  (use-package helm-flx)
+  (use-package helm
+    :demand
+    :diminish helm-mode
+    :bind (("M-x" . helm-M-x)
+           ("M-y" . helm-show-kill-ring)
+           ("C-x b" . helm-mini)
+           ("C-x C-f" . helm-find-files)
+           ("C-x r l" . helm-bookmarks)
+           ("C-c C-i" . helm-semantic-or-imenu)
+           :map helm-find-files-map ;; I like these from Ido
+           ("C-<tab>"         . helm-execute-persistent-action)
+           ("C-<backspace>" . helm-find-files-up-one-level))
+    :config
+    (helm-mode 1)
+    (helm-flx-mode +1)
+    (setq helm-M-x-fuzzy-match t)
+    (setq helm-locate-fuzzy-match t)
+    (setq helm-lisp-fuzzy-completion t)
+    (setq helm-bookmark-show-location t))
+  (use-package helm-swoop
+    :bind ("C-c s" . helm-swoop)
+    :config (setq helm-swoop-speed-or-color t))
 #+END_SRC
 
 
