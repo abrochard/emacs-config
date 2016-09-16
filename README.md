@@ -2,7 +2,9 @@
 
 ![Screenshot](/screenshot.JPG)
 
-Written in Org mode
+Written in Org mode.
+
+This will always be work in progress.
 
 ## How to setup
 Git clone this repo wherever you want, and just insert the following at the top of your init file
@@ -34,6 +36,8 @@ M-x cheatsheet-show
 - Magit. Best git client for Emacs out there.
 - Flycheck. Checks syntax everywhere.
 - use-package. Amazing for a clean config file.
+- Projectile. For all the projects.
+- Multiple-cursors. Also underrated.
 
 ## File Overview
 File | Purpose
