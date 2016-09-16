@@ -846,6 +846,14 @@ Just need to place it in the extra folder.
 #+END_SRC
 
 
+* Key Frequency
+Trying the =keyfreq= package to monitor my command usage
+#+BEGIN_SRC emacs-lisp
+  (use-package keyfreq
+    :config
+    (keyfreq-mode 1)
+    (keyfreq-autosave-mode 1))
+#+END_SRC
 * Cheat Sheet
 Thanks to the =cheatsheet= package, I can quickly see what are my favorite keys bindings
 #+INCLUDE: "./cheatsheet.org"
