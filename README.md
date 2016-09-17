@@ -57,8 +57,6 @@ extra | Folder to place any extra .el files to be loaded on startup
 * http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
 
 ## TODO:
-- auto upgrade packages?
-- keyfreq
 
 ## Other repos to check out:
 - https://github.com/magnars/.emacs.d
