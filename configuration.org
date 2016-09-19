@@ -170,7 +170,7 @@ Thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-utils.el#L7
 ** XML Format function
 This works well on short text, too much and it can block the system
 #+BEGIN_SRC emacs-lisp
-(require 'sgml-mode)
+(use-package sgml-mode)
 
 (defun reformat-xml ()
   (interactive)
@@ -238,6 +238,17 @@ I miss that from Vim
     (replace-match (number-to-string (- (string-to-number (match-string 0)) 1))))
 #+END_SRC
 
+** Comment a line
+Before Emacs 25.1
+#+BEGIN_SRC emacs-lisp
+  (defun comment-line ()
+    (interactive)
+    (save-excursion
+      (end-of-line)
+      (set-mark (point))
+      (beginning-of-line)
+      (comment-region (region-beginning) (region-end))))
+#+END_SRC
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
@@ -271,6 +282,11 @@ Useful if file changed on disk
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c +") 'increment-number-at-point)
   (global-set-key (kbd "C-c -") 'decrement-number-at-point)
+#+END_SRC
+
+** Comment the current line
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-;") 'comment-line)
 #+END_SRC
 
 

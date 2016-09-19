@@ -114,6 +114,9 @@
 (cheatsheet-add :group 'Code
                 :key "C-c f"
                 :description "Flycheck the buffer")
+(cheatsheet-add :group 'Code
+                :key "C-x C-;"
+                :description "Comment out current line")
 #+END_SRC
 * Multiple cursors
 #+BEGIN_SRC emacs-lisp
