@@ -247,7 +247,9 @@ Before Emacs 25.1
       (end-of-line)
       (set-mark (point))
       (beginning-of-line)
-      (comment-region (region-beginning) (region-end))))
+      (if (comment-only-p (region-beginning) (region-end))
+          (uncomment-region (region-beginning) (region-end))
+        (comment-region (region-beginning) (region-end)))))
 #+END_SRC
 * Custom key bindings
 ** Quickly revert a buffer
