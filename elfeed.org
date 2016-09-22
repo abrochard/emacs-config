@@ -18,6 +18,7 @@
 *** http://www.terminally-incoherent.com/blog/feed/
 *** http://nullprogram.com/feed/
 *** https://www.reddit.com/r/emacs.rss                             :mustread:
+*** https://nathanleclaire.com/index.xml
 ** Comics                                                            :comics:
 *** http://xkcd.com/rss.xml
 *** http://feeds.feedburner.com/blogspot/ltkqIZ
