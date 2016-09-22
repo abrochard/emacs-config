@@ -328,7 +328,6 @@ Useful if file changed on disk
  (quote org-babel-load-languages)
  (quote ((emacs-lisp . t)
          (dot . t)
-         (R . t)
          (python . t)
          (gnuplot . t)
          (sh . t)
