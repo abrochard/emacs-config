@@ -814,8 +814,10 @@ Adding the necessary hooks
 ** Enable =go-mode=
 Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
-(use-package go-mode
-  :config (add-hook 'before-save-hook #'gofmt-before-save))
+  (use-package go-mode
+    :config
+    (add-hook 'before-save-hook #'gofmt-before-save)
+    (add-hook 'go-mode-hook 'flycheck-mode))
 #+END_SRC
 
 ** Enable =company-go=
