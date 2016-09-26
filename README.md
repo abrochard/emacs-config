@@ -57,6 +57,7 @@ extra | Folder to place any extra .el files to be loaded on startup
 * http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
 
 ## TODO:
+  * Figure out why php-eldoc clashes with auto-complete
 
 ## Other repos to check out:
 - https://github.com/magnars/.emacs.d

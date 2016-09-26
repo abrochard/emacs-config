@@ -790,21 +790,22 @@ And set PSR-2 as coding style
     (add-hook 'php-mode-hook 'dumb-jump-mode)
     (add-hook 'php-mode-hook 'php-enable-psr2-coding-style))
 #+END_SRC
-** Enable =php-eldoc=
-#+BEGIN_SRC emacs-lisp
-(use-package php-eldoc
-  :diminish eldoc-mode
-  :config (add-hook 'php-mode-hook 'php-eldoc-enable))
-#+END_SRC
 ** Enable =company-php=
 #+BEGIN_SRC emacs-lisp
-(use-package company-php
-  :config
-  (add-hook 'php-mode-hook
-            '(lambda ()
-               (company-mode t)
-               (add-to-list 'company-backends 'company-ac-php-backend ))))
+  (use-package company-php
+    :config
+    (add-hook 'php-mode-hook
+              '(lambda ()
+                 (company-mode t)
+                 (add-to-list 'company-backends 'company-ac-php-backend))))
+#+end_SRC
+** Enable =php-eldoc=
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package php-eldoc
+  ;;   :diminish eldoc-mode
+  ;;   :config (add-hook 'php-mode-hook 'php-eldoc-enable))
 #+END_SRC
+
 * Web
 ** Enable =web-mode=
 #+BEGIN_SRC emacs-lisp
