@@ -801,9 +801,9 @@ And set PSR-2 as coding style
 #+end_SRC
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package php-eldoc
-  ;;   :diminish eldoc-mode
-  ;;   :config (add-hook 'php-mode-hook 'php-eldoc-enable))
+  (use-package php-eldoc
+    :diminish eldoc-mode
+    :config (add-hook 'php-mode-hook 'php-eldoc-enable))
 #+END_SRC
 
 * Web
