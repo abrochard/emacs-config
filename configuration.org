@@ -251,6 +251,13 @@ Before Emacs 25.1
           (uncomment-region (region-beginning) (region-end))
         (comment-region (region-beginning) (region-end)))))
 #+END_SRC
+
+** Quickly edit this config file
+#+BEGIN_SRC emacs-lisp
+  (defun edit-config-file ()
+    (interactive)
+    (find-file (concat config-load-path "configuration.org")))
+#+END_SRC
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
@@ -295,11 +302,18 @@ Useful if file changed on disk
 * Publishing and task management with Org-mode
 ** Set environment
 #+BEGIN_SRC emacs-lisp
-(setq org-directory "~/org")
+  (setq org-directory "~/org/")
 
-(defun org-file-path (filename)
-  "Return the absolute address of an org file, given its relative name."
-  (concat (file-name-as-directory org-directory) filename))
+  (defun org-file-path (filename)
+    "Return the absolute address of an org file, given its relative name."
+    (concat (file-name-as-directory org-directory) filename))
+
+  (defun org-find-file ()
+    "Leverage Helm to quickly open any org files."
+    (interactive)
+    (find-file (concat org-directory
+                       (helm-comp-read "Select your org file: "
+                                       (directory-files org-directory nil "\.org$")))))
 #+END_SRC
 ** Use syntax highlighting in source blocks while editing
 #+BEGIN_SRC emacs-lisp
