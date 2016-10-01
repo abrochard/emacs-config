@@ -456,6 +456,7 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 (setq tags-revert-without-query 1)
 #+END_SRC
 
+
 * Load Cool Theme
 #+BEGIN_SRC emacs-lisp
 (use-package dracula-theme
@@ -509,6 +510,13 @@ Because Windows sucks I have to do this to use =flyspell=
 ** Delete trailing white spaces on save
 #+BEGIN_SRC emacs-lisp
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+** Set Unix file coding system
+#+BEGIN_SRC emacs-lisp
+  (setq-default buffer-file-coding-system 'utf-8-unix)
+  (setq-default default-buffer-file-coding-system 'utf-8-unix)
+  (set-default-coding-systems 'utf-8-unix)
+  (prefer-coding-system 'utf-8-unix)
 #+END_SRC
 * Parenthesis Support
 #+BEGIN_SRC emacs-lisp
@@ -822,6 +830,21 @@ Adding the necessary hooks
   (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
   (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
   )
+#+END_SRC
+
+* Javascript
+** Enable =js2-mode=
+#+BEGIN_SRC emacs-lisp
+  (use-package js2-mode
+    :mode "\\.js\\'"
+    :config (add-hook 'js2-mode-hook 'electric-operator-mode))
+#+END_SRC
+** Enable =js2-refactor=
+#+BEGIN_SRC emacs-lisp
+  (use-package js2-refactor
+    :config
+    (add-hook 'js2-mode-hook #'js2-refactor-mode)
+    (js2r-add-keybindings-with-prefix "C-c C-m"))
 #+END_SRC
 
 * Go
