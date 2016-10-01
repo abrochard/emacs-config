@@ -844,6 +844,7 @@ Adding the necessary hooks
 ** Enable =js2-refactor=
 #+BEGIN_SRC emacs-lisp
   (use-package js2-refactor
+    :diminish js2-refactor-mode
     :config
     (add-hook 'js2-mode-hook #'js2-refactor-mode)
     (js2r-add-keybindings-with-prefix "C-c C-m"))
