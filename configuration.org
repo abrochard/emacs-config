@@ -862,12 +862,22 @@ Absolutely necessary if working in Go
 
 ** Enable =company-go=
 #+BEGIN_SRC emacs-lisp
-(use-package company-go
-  :config
-  (add-hook 'go-mode-hook
-            '(lambda ()
-               (company-mode t)
-               (add-to-list 'company-backends 'company-go))))
+  (use-package company-go
+    :config
+    (add-hook 'go-mode-hook
+              '(lambda ()
+                 (company-mode t)
+                 (add-to-list 'company-backends 'company-go))))
+#+END_SRC
+
+** Enable =go-stackstracer=
+#+BEGIN_SRC emacs-lisp
+  (use-package go-stacktracer)
+#+END_SRC
+
+** Enable =go-add-tags=
+#+BEGIN_SRC emacs-lisp
+  (use-package go-add-tags)
 #+END_SRC
 * Python
 ** Enable =eldoc=
