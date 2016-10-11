@@ -883,6 +883,8 @@ Adding the necessary hooks
 #+END_SRC
 
 * Go
+A lot of the config is based on gocode, godef, goimports and gotags
+packages that you should install separately.
 ** Enable =go-mode=
 Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
@@ -911,6 +913,23 @@ Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
   (use-package go-add-tags)
 #+END_SRC
+
+** Enable =go-eldoc=
+#+BEGIN_SRC emacs-lisp
+  (use-package go-eldoc
+    :config (add-hook 'go-mode-hook 'go-eldoc-setup))
+#+END_SRC
+
+** Enable =go-gopath=
+#+BEGIN_SRC emacs-lisp
+  (use-package go-gopath)
+#+END_SRC
+
+** Enable =go-direx=
+   #+BEGIN_SRC emacs-lisp
+   (use-package go-direx)
+   #+END_SRC
+
 * Python
 ** Enable =eldoc=
 #+BEGIN_SRC emacs-lisp
