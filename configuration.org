@@ -459,10 +459,10 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 
 * Load Cool Theme
 #+BEGIN_SRC emacs-lisp
-(use-package dracula-theme
-  :config (load-theme 'dracula t))
-(set-face-background 'mode-line "#510370")
-(set-face-background 'mode-line-inactive "black")
+  (use-package dracula-theme
+    :config (load-theme 'dracula t)
+    (set-face-background 'mode-line "#510370")
+    (set-face-background 'mode-line-inactive "black"))
 #+END_SRC
 
 * Terminal Configuration
