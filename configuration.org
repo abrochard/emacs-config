@@ -944,6 +944,23 @@ Set iPython as the default interpreter
   (add-hook 'python-mode-hook 'anaconda-mode))
 #+END_SRC
 
+* Logs
+** Enable =syslog-mode=
+#+BEGIN_SRC emacs-lisp
+  (use-package syslog-mode)
+#+END_SRC
+** Turn on =auto-revert-tail-mode= for log files
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-revert-tail-mode '("\\.log\\'" . auto-revert-tail-mode))
+#+END_SRC
+** Quickly check syslog
+#+BEGIN_SRC emacs-lisp
+    (defun open-syslog ()
+      (interactive)
+      (find-file "/var/log/syslog")
+      (syslog-mode)
+      (goto-char (point-max)))
+#+END_SRC
 
 * Extra Packages
 No need to configure, just handy to have.
