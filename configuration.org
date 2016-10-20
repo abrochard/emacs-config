@@ -951,7 +951,7 @@ Set iPython as the default interpreter
 #+END_SRC
 ** Turn on =auto-revert-tail-mode= for log files
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-revert-tail-mode '("\\.log\\'" . auto-revert-tail-mode))
+  (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-tail-mode))
 #+END_SRC
 ** Quickly check syslog
 #+BEGIN_SRC emacs-lisp
