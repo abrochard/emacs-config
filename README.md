@@ -56,8 +56,6 @@ extra | Folder to place any extra .el files to be loaded on startup
 * https://github.com/jwiegley/use-package
 * http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
 
-## TODO:
-
 ## Other repos to check out:
 - https://github.com/magnars/.emacs.d
 - https://github.com/bbatsov/prelude
