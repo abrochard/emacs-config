@@ -633,6 +633,17 @@ Not all the time, but handy.
   :config (global-anzu-mode +1)
           (setq anzu-mode-lighter ""))
 #+END_SRC
+** Enable =schrute=
+Could be used for more than just plain navigation
+#+BEGIN_SRC emacs-lisp
+  (use-package schrute
+    :config
+    (setq schrute-command-repetitions 2)
+    (setf schrute-shortcuts-commands
+          '((avy-goto-line   . (next-line previous-line))
+            (avy-goto-word-1 . (left-char right-char forward-char backward-char))))
+    (schrute-mode))
+#+END_SRC
 * Edition
 ** Enable =multiple-cursors=
 Useful to edit multiple similar lines
