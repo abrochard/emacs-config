@@ -560,8 +560,10 @@ Thanks to [[https://github.com/magnars/.emacs.d/blob/master/defuns/editing-defun
 * Navigation
 ** Enable =avy=
 #+BEGIN_SRC emacs-lisp
-(use-package avy
-  :bind ("C-c SPC" . avy-goto-char))
+  (use-package avy
+    :bind (("C-c SPC" . avy-goto-char-2)
+           ("M-g f" . avy-goto-line)
+           ("M-g w" . avy-goto-word-1)))
 #+END_SRC
 
 ** Enable =win-switch=
