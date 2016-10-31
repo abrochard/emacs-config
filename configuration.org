@@ -967,14 +967,14 @@ Set iPython as the default interpreter
 * Extra Packages
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
-(require 'dired-x)
-(use-package 2048-game)
-(use-package isend-mode)
-(use-package lorem-ipsum)
-(use-package markdown-mode)
-(use-package pdf-tools)
-(use-package refine)
-(use-package request)
+  (require 'dired-x)
+  (use-package 2048-game)
+  (use-package isend-mode)
+  (use-package lorem-ipsum)
+  (use-package markdown-mode)
+  (use-package pdf-tools)
+  (use-package refine)
+  (use-package request)
 #+END_SRC
 
 * Extra file loading
