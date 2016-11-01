@@ -637,6 +637,7 @@ Not all the time, but handy.
 Could be used for more than just plain navigation
 #+BEGIN_SRC emacs-lisp
   (use-package schrute
+    :diminish schrute-mode
     :config
     (setq schrute-command-repetitions 2)
     (setf schrute-shortcuts-commands
