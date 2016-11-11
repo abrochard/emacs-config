@@ -258,6 +258,24 @@ Before Emacs 25.1
     (interactive)
     (find-file (concat config-load-path "configuration.org")))
 #+END_SRC
+
+** Send the current selection in an email
+This uses mutt.
+#+BEGIN_SRC emacs-lisp
+  (defun email-selection ()
+    (interactive)
+    (copy-region-as-kill (region-beginning) (region-end))
+    (let ((tmp-file (concat "/tmp/" (buffer-name (current-buffer))))
+          (recipient (read-string "Enter a recipient: "))
+          (subject (read-string "Enter a subject: ")))
+      (find-file tmp-file)
+      (yank)
+      (save-buffer)
+      (kill-buffer (current-buffer))
+      (shell-command (concat "mutt -s \"" subject "\" " recipient " < " tmp-file))
+      (shell-command (concat "rm -f " tmp-file)))
+    (message "Sent!"))
+#+END_SRC
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
@@ -633,18 +651,7 @@ Not all the time, but handy.
   :config (global-anzu-mode +1)
           (setq anzu-mode-lighter ""))
 #+END_SRC
-** Enable =schrute=
-Could be used for more than just plain navigation
-#+BEGIN_SRC emacs-lisp
-  (use-package schrute
-    :diminish schrute-mode
-    :config
-    (setq schrute-command-repetitions 2)
-    (setf schrute-shortcuts-commands
-          '((avy-goto-line   . (next-line previous-line))
-            (avy-goto-word-1 . (left-char right-char forward-char backward-char))))
-    (schrute-mode))
-#+END_SRC
+
 * Edition
 ** Enable =multiple-cursors=
 Useful to edit multiple similar lines
