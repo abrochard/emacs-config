@@ -19,6 +19,7 @@
 *** http://nullprogram.com/feed/
 *** https://www.reddit.com/r/emacs.rss                             :mustread:
 *** https://nathanleclaire.com/index.xml
+*** http://sachachua.com/blog/category/emacs-news/feed/            :mustread:
 ** Comics                                                            :comics:
 *** http://xkcd.com/rss.xml
 *** http://feeds.feedburner.com/blogspot/ltkqIZ
