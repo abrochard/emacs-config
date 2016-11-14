@@ -866,6 +866,11 @@ And set PSR-2 as coding style
     :diminish eldoc-mode
     :config (add-hook 'php-mode-hook 'php-eldoc-enable))
 #+END_SRC
+** Enable =phpcbf=
+#+BEGIN_SRC emacs-lisp
+  (use-package phpcbf
+    :config (setq phpcbf-standard "PSR2"))
+#+END_SRC
 
 * Web
 ** Enable =web-mode=
