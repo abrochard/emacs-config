@@ -772,6 +772,7 @@ With a twist of helm
 (use-package flycheck
   :diminish flycheck-mode
   :config (flycheck-mode 1)
+  (setq flycheck-phpcs-standard "PSR2")
   (add-hook 'python-mode-hook 'flycheck-mode)
   (add-hook 'emacs-lisp-mode-hook 'flycheck-mode))
 
@@ -897,7 +898,8 @@ Adding the necessary hooks
 #+BEGIN_SRC emacs-lisp
   (use-package js2-mode
     :mode "\\.js\\'"
-    :config (add-hook 'js2-mode-hook 'electric-operator-mode))
+    :config (add-hook 'js2-mode-hook 'electric-operator-mode)
+    (setq js2-basic-offset 2))
 #+END_SRC
 ** Enable =js2-refactor=
 #+BEGIN_SRC emacs-lisp
