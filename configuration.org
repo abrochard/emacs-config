@@ -276,6 +276,17 @@ This uses mutt.
       (shell-command (concat "rm -f " tmp-file)))
     (message "Sent!"))
 #+END_SRC
+
+** Move files more intuitively
+#+BEGIN_SRC emacs-lisp
+  (defun move-file ()
+    "Write this file to a new location, and delete the old one."
+    (interactive)
+    (let ((old-location (buffer-file-name)))
+      (call-interactively #'write-file)
+      (when old-location
+        (delete-file old-location))))
+#+END_SRC
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
