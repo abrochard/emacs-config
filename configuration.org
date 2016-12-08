@@ -920,6 +920,10 @@ Adding the necessary hooks
     (add-hook 'js2-mode-hook #'js2-refactor-mode)
     (js2r-add-keybindings-with-prefix "C-c C-m"))
 #+END_SRC
+** Enable =js-doc=
+#+BEGIN_SRC emacs-lisp
+  (use-package js-doc)
+#+END_SRC
 * Go
 A lot of the config is based on gocode, godef, goimports and gotags
 packages that you should install separately.
