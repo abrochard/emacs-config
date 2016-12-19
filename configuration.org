@@ -915,7 +915,9 @@ Adding the necessary hooks
 #+BEGIN_SRC emacs-lisp
   (use-package js2-mode
     :mode "\\.js\\'"
-    :config (add-hook 'js2-mode-hook 'electric-operator-mode)
+    :config
+    (add-hook 'js2-mode-hook 'electric-operator-mode)
+    (add-hook 'js2-mode-hook 'flycheck-mode)
     (setq js2-basic-offset 2))
 #+END_SRC
 ** Enable =js2-refactor=
