@@ -397,9 +397,10 @@ The last line uses the [[file:elfeed.org][elfeed.org]] file to register the feed
 #+BEGIN_SRC emacs-lisp
 (toggle-frame-maximized)
 #+END_SRC
-** Disable the big fat toolbar
+** Disable the big fat toolbars
 #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 #+END_SRC
 ** Disable the scroll bar
 #+BEGIN_SRC emacs-lisp
@@ -660,6 +661,11 @@ Not all the time, but handy.
 (use-package anzu
   :config (global-anzu-mode +1)
           (setq anzu-mode-lighter ""))
+#+END_SRC
+** Enable =hamburger-menu=
+#+BEGIN_SRC emacs-lisp
+  (use-package hamburger-menu
+    :config (setq mode-line-front-space 'hamburger-menu-mode-line))
 #+END_SRC
 
 * Edition
