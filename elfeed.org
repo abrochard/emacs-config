@@ -13,6 +13,8 @@
 *** http://www.jeuxvideo.com/rss/itunes-chroniques.xml
 *** http://feeds.gawker.com/kotaku/vip
 *** http://www.polygon.com/rss/index.xml
+*** http://gamestudies.org/rss.php
+*** http://www.gamasutra.com/blogs/rss/
 ** Dev                                                                  :dev:
 *** http://korben.info/feed/                                       :mustread:
 *** http://www.terminally-incoherent.com/blog/feed/
