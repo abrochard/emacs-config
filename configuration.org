@@ -458,7 +458,9 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 
 ** Replace dabbrev with hippie-expand
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-/") 'hippie-expand)
+  (use-package dabbrev
+    :diminish abbrev-mode)
+  (global-set-key (kbd "M-/") 'hippie-expand)
 #+END_SRC
 
 ** Replace isearch with regexp search
@@ -823,7 +825,10 @@ Great package to jump to definition
 * Emacs Lisp
 ** Enable =eldoc=
 #+BEGIN_SRC emacs-lisp
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+  (use-package eldoc
+    :diminish eldoc-mode
+    :config (add-hook 'emacs-lisp-mode-hook 'eldoc-mode))
+
 #+END_SRC
 ** Enable =rainbow-delimiters=
 But only for emacs-lisp
@@ -902,11 +907,11 @@ So much better than =html-mode=
 ** Enable =emmet-mode=
 Adding the necessary hooks
 #+BEGIN_SRC emacs-lisp
-(use-package emmet-mode
-  :config
-  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-  )
+  (use-package emmet-mode
+    :config
+    (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+    (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+    )
 #+END_SRC
 
 * Javascript
@@ -966,6 +971,7 @@ Absolutely necessary if working in Go
 ** Enable =go-eldoc=
 #+BEGIN_SRC emacs-lisp
   (use-package go-eldoc
+    :diminish eldoc-mode
     :config (add-hook 'go-mode-hook 'go-eldoc-setup))
 #+END_SRC
 
