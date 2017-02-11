@@ -939,6 +939,13 @@ Adding the necessary hooks
 * Go
 A lot of the config is based on gocode, godef, goimports and gotags
 packages that you should install separately.
+#+BEGIN_SRC bash :tangle no
+  go get -u github.com/nsf/gocode
+  go get -u github.com/rogpeppe/godef
+  go get -u golang.org/x/tools/cmd/goimports
+  go get -u github.com/jstemmer/gotags
+#+END_SRC
+
 ** Enable =go-mode=
 Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
@@ -981,9 +988,9 @@ Absolutely necessary if working in Go
 #+END_SRC
 
 ** Enable =go-direx=
-   #+BEGIN_SRC emacs-lisp
-   (use-package go-direx)
-   #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package go-direx)
+#+END_SRC
 
 * Python
 ** Enable =eldoc=
