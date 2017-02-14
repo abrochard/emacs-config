@@ -499,7 +499,9 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 Use the Hack font from [[https://github.com/chrissimpkins/Hack][chrissimpkins]]
 #+BEGIN_SRC emacs-lisp
   (if (x-list-fonts "Hack")
-      (set-face-attribute 'default nil :font "Hack-10"))
+      (progn
+        (add-to-list 'default-frame-alist '(font . "Hack-10"))
+        (set-face-attribute 'default nil :font "Hack-10")))
 #+END_SRC
 
 * Terminal Configuration
