@@ -495,6 +495,12 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
     (set-face-background 'mode-line "#510370")
     (set-face-background 'mode-line-inactive "black"))
 #+END_SRC
+* Fonts
+Use the Hack font from [[https://github.com/chrissimpkins/Hack][chrissimpkins]]
+#+BEGIN_SRC emacs-lisp
+  (if (x-list-fonts "Hack")
+      (set-face-attribute 'default nil :font "Hack-10"))
+#+END_SRC
 
 * Terminal Configuration
 Trying to make it adapt to the OS.
