@@ -830,6 +830,13 @@ Great package to jump to definition
 #+BEGIN_SRC emacs-lisp
 (use-package dumb-jump)
 #+END_SRC
+
+** Enable =highlight-numbers=
+Make numbers in source code more noticeable
+#+BEGIN_SRC emacs-lisp
+  (use-package highlight-numbers
+    :config (add-hook 'prog-mode-hook 'highlight-numbers-mode))
+#+END_SRC
 * Emacs Lisp
 ** Enable =eldoc=
 #+BEGIN_SRC emacs-lisp
