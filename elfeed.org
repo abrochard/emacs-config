@@ -23,6 +23,7 @@
 *** https://nathanleclaire.com/index.xml
 *** http://sachachua.com/blog/category/emacs-news/feed/            :mustread:
 *** http://pragmaticemacs.com/feed/                                :mustread:
+*** http://blog.zikes.me/index.xml
 ** Comics                                                            :comics:
 *** http://xkcd.com/rss.xml
 *** http://feeds.feedburner.com/blogspot/ltkqIZ
