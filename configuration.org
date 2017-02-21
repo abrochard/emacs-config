@@ -751,6 +751,14 @@ Sweet minor mode for providing visual feedback
   :bind (("C-c i" . ciel-ci)
          ("C-c o" . ciel-co)))
 #+END_SRC
+
+** Enable =fancy-narrow=
+And use it to replace normal narrowing functions
+#+BEGIN_SRC emacs-lisp
+  (use-package fancy-narrow
+    :diminish fancy-narrow-mode
+    :config (fancy-narrow-mode))
+#+END_SRC
 * General Code
 ** Enable =yasnippet=
 Enable everywhere
