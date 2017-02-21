@@ -377,6 +377,12 @@ Useful if file changed on disk
          (org . t)
          (latex . t))))
 #+END_SRC
+** Enable =org-bullets=
+Make org files a bit more readable
+#+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+    :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+END_SRC
 
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
