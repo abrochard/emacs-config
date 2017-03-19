@@ -372,7 +372,7 @@ Useful if file changed on disk
          (dot . t)
          (python . t)
          (gnuplot . t)
-         (sh . t)
+         (shell . t)
          (ledger . t)
          (org . t)
          (latex . t))))
