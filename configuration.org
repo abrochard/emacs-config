@@ -286,6 +286,13 @@ This uses mutt.
       (when old-location
         (delete-file old-location))))
 #+END_SRC
+
+** Insert a filename at point
+#+BEGIN_SRC emacs-lisp
+  (defun insert-filename ()
+    (interactive)
+    (insert (read-file-name "File:")))
+#+END_SRC
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
