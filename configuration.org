@@ -919,6 +919,7 @@ And set PSR-2 as coding style
 #+end_SRC
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
+  (setq auto-complete-mode nil) ;; Hack while my PR is pending
   (use-package php-eldoc
     :diminish eldoc-mode
     :config (add-hook 'php-mode-hook 'php-eldoc-enable))
