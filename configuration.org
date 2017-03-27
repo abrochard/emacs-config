@@ -547,6 +547,20 @@ Because Windows sucks I have to do this to use =flyspell=
   )
 #+END_SRC
 
+* Snippets
+I use =yasnippet= a lot.
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :diminish yas-minor-mode
+    :config (yas-global-mode 1))
+#+END_SRC
+And also my package =org-sync-snippets= to keep my snippets into a single file under version control
+#+BEGIN_SRC emacs-lisp
+  (use-package org-sync-snippets
+    :config (setq org-sync-snippets-org-snippets-file
+                  (concat (file-name-as-directory config-load-path) "snippets.org")))
+#+END_SRC
+
 
 * Code Format
 ** Default tab and indetation
@@ -772,14 +786,6 @@ And use it to replace normal narrowing functions
     :diminish fancy-narrow-mode)
 #+END_SRC
 * General Code
-** Enable =yasnippet=
-Enable everywhere
-#+BEGIN_SRC emacs-lisp
-(use-package yasnippet
-  :diminish yas-minor-mode
-  :config (yas-global-mode 1))
-#+END_SRC
-
 ** Enable =projectile=
 And get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-projectile.el#L10]]
 #+BEGIN_SRC emacs-lisp
