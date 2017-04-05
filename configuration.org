@@ -854,7 +854,8 @@ And add a rule for PHP
 ** Enable =dumb-jump=
 Great package to jump to definition
 #+BEGIN_SRC emacs-lisp
-(use-package dumb-jump)
+  (use-package dumb-jump
+    :config (setq dumb-jump-aggressive nil))
 #+END_SRC
 
 ** Enable =highlight-numbers=
