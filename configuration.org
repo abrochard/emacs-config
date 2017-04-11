@@ -1080,6 +1080,7 @@ No need to configure, just handy to have.
   (use-package request)
   (use-package csv-mode)
   (use-package csharp-mode)
+  (use-package keychain-environment)
 #+END_SRC
 
 * Extra file loading
