@@ -372,17 +372,23 @@ Useful if file changed on disk
 (add-hook 'org-mode-hook 'flyspell-mode)
 #+END_SRC
 ** Setup =org-babel=
+   Get additional languages
 #+BEGIN_SRC emacs-lisp
-(org-babel-do-load-languages
- (quote org-babel-load-languages)
- (quote ((emacs-lisp . t)
-         (dot . t)
-         (python . t)
-         (gnuplot . t)
-         (shell . t)
-         (ledger . t)
-         (org . t)
-         (latex . t))))
+  (use-package ob-php)
+#+END_SRC
+   Load them all
+#+BEGIN_SRC emacs-lisp
+  (org-babel-do-load-languages
+   (quote org-babel-load-languages)
+   (quote ((emacs-lisp . t)
+           (dot . t)
+           (python . t)
+           (gnuplot . t)
+           (shell . t)
+           (ledger . t)
+           (org . t)
+           (latex . t)
+           (php . t))))
 #+END_SRC
 ** Enable =org-bullets=
 Make org files a bit more readable
