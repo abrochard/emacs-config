@@ -9,6 +9,7 @@
   # key: arg
   # --
   ("$1" . "$2")
+  
 #+END_SRC
 ** message
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/message
@@ -17,6 +18,7 @@
   # key: msg
   # --
   (message "%s" $1)
+  
 #+END_SRC
 ** request
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/request
@@ -35,6 +37,16 @@
                   (princ data)
                   (switch-to-buffer "*request*")
                   (json-pretty-print-buffer)))))
+  
+#+END_SRC
+* js2-mode
+** console
+#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/js2-mode/console.log
+  # -*- mode: snippet -*-
+  # name: console.log
+  # key: log
+  # --
+  console.log($1);
 #+END_SRC
 * org-mode
 ** use-package
@@ -46,8 +58,7 @@
   ** Enable =$1=
   #+BEGIN_SRC emacs-lisp
     (use-package $1)
-  #+END_SRC
-
+  
 #+END_SRC
 * php-mode
 ** dictionary entry
@@ -57,6 +68,7 @@
   # key: dic
   # --
   '$1' => '$2',
+  
 #+END_SRC
 ** do while
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/do while
@@ -67,6 +79,7 @@
   do {
      $1
   } while ($2);
+  
 #+END_SRC
 ** for loop
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/for loop
@@ -77,6 +90,7 @@
   for ($1 = 0; $1 < $2; $1++) {
       $3
   }
+  
 #+END_SRC
 ** foreach
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/foreach
@@ -87,6 +101,7 @@
   foreach ($1 as $2 => $3) {
           $4
   }
+  
 #+END_SRC
 ** function
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/function
@@ -104,6 +119,7 @@
   {
       $6
   }
+  
 #+END_SRC
 ** header
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/header
@@ -116,6 +132,7 @@
   * $0
   * @return $2
   */
+  
 #+END_SRC
 ** implode
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/implode
@@ -124,6 +141,7 @@
   # key: implode
   # --
   implode($1, $2)
+  
 #+END_SRC
 ** namespace
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/namespace
@@ -132,6 +150,7 @@
   # --
   namespace `(replace-regexp-in-string ".$" ";" (replace-regexp-in-string "^." "" (replace-regexp-in-string "/" "\\" (file-name-directory (buffer-file-name)) t t)))`
   $1
+  
 #+END_SRC
 ** return
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/return
@@ -140,6 +159,7 @@
   # key: ret
   # --
   return $1;
+  
 #+END_SRC
 ** try catch
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/try catch
@@ -152,6 +172,7 @@
   } catch ($2 $e) {
       $3
   }
+  
 #+END_SRC
 ** var dump
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/var dump
@@ -160,6 +181,7 @@
   # key: dump
   # --
   var_dump($1); exit;
+  
 #+END_SRC
 ** while
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/while
@@ -170,4 +192,24 @@
   while ($1) {
         $2
   }
+  
+#+END_SRC
+* python-mode
+** for
+#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/python-mode/for
+  # -*- mode: snippet -*-
+  # name: for
+  # key: for
+  # --
+  for $1 in $2:
+      $0
+#+END_SRC
+** if
+#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/python-mode/if
+  # -*- mode: snippet -*-
+  # name: if
+  # key: if
+  # --
+  if $1:
+      $0
 #+END_SRC
