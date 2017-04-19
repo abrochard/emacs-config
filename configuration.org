@@ -1044,7 +1044,8 @@ Absolutely necessary if working in Go
 * Python
 ** Enable =eldoc=
 #+BEGIN_SRC emacs-lisp
-(add-hook 'python-mode-hook 'eldoc-mode)
+  (add-hook 'python-mode-hook 'eldoc-mode)
+  (add-hook 'python-mode-hook 'electric-operator-mode)
 #+END_SRC
 ** Enable =anaconda=
 Set iPython as the default interpreter
