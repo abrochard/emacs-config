@@ -45,6 +45,7 @@ File | Purpose
 README.md | This file
 bootstrap.el | Kickstart the config load process
 configuration.org | Main org file with all the configuration in elisp blocks
+snippets.org | Snippets collection compiled via `org-sync-snippets`
 elfeed.org | Separate list of blogs and RSS feeds for elfeed to grab
 cheatsheet.org | Dedicated to loading the cheatsheet extension
 sreenshot.JPG | Just a screenshot of the beast
