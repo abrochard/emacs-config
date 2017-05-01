@@ -70,6 +70,7 @@ extra | Folder to place any extra .el files to be loaded on startup
 - https://github.com/hlissner/.emacs.d
 - https://github.com/angrybacon/dotemacs
 - https://github.com/howardabrams/dot-files
+- https://github.com/caisah/emacs.dz
 
 ## Resources for more:
 - [Reddit #1](https://www.reddit.com/r/emacs/comments/2edbau/what_are_some_great_emacsd_examples/)

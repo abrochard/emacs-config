@@ -15,11 +15,19 @@ This will also automatically pull the latest version of the config on startup, u
 * Add Package Repositories
 #+BEGIN_SRC emacs-lisp
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 #+END_SRC
 
+* Security
+Inspired by [[https://ogbe.net/emacsconfig.html][ogbe.net]] and [[https://glyph.twistedmatrix.com/2015/11/editor-malware.html][Your Text Editor Is Malware]].
+** Check TLS
+#+BEGIN_SRC emacs-lisp
+  (setq tls-checktrust t)
+  (setq gnutls-verify-error t)
+#+END_SRC
+** TODO Do more with local certs and check bad ssl
 
 
 * Automatic package installation
