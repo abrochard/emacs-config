@@ -522,6 +522,24 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
     (set-face-background 'mode-line "#510370")
     (set-face-background 'mode-line-inactive "black"))
 #+END_SRC
+
+* Customize the mode-line
+A small trim of the original
+#+BEGIN_SRC emacs-lisp
+  (setq-default mode-line-format '("%e"
+                                   mode-line-front-space
+                                   " "
+                                   mode-line-modified
+                                   " "
+                                   "%[" mode-line-buffer-identification "%]"
+                                   "   "
+                                   "L%l"
+                                   "  "
+                                   mode-line-modes
+                                   mode-line-misc-info
+                                   (vc-mode vc-mode)
+                                   mode-line-end-spaces))
+#+END_SRC
 * Fonts
 Use the Hack font from [[https://github.com/chrissimpkins/Hack][chrissimpkins]]
 #+BEGIN_SRC emacs-lisp
