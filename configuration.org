@@ -480,6 +480,12 @@ Aweful atrocious noise on Windows
   (global-hl-line-mode))
 #+END_SRC
 
+** Use the back/forward mouse keys
+#+BEGIN_SRC emacs-lisp
+  (global-set-key [mouse-8] 'switch-to-prev-buffer)
+  (global-set-key [mouse-9] 'switch-to-next-buffer)
+#+END_SRC
+
 * Better defaults
 Inspired from [[https://github.com/technomancy/better-defaults]]
 
