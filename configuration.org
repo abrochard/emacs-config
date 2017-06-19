@@ -957,10 +957,7 @@ And set PSR-2 as coding style
 #+BEGIN_SRC emacs-lisp
   (use-package company-php
     :config
-    (add-hook 'php-mode-hook
-              '(lambda ()
-                 (company-mode t)
-                 (add-to-list 'company-backends 'company-ac-php-backend))))
+    (add-hook 'php-mode-hook 'company-mode))
 #+end_SRC
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp

@@ -2,7 +2,9 @@
 #+AUTHOR: org-sync-snippets
 
 * emacs-lisp-mode
+
 ** data argument
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/data argument
   # -*- mode: snippet -*-
   # name: data argument
@@ -11,7 +13,9 @@
   ("$1" . "$2")
   
 #+END_SRC
+
 ** message
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/message
   # -*- mode: snippet -*-
   # name: message
@@ -20,7 +24,28 @@
   (message "%s" $1)
   
 #+END_SRC
+
+** package
+
+#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/package
+  # -*- mode: snippet -*-
+  # name: package
+  # key: pack
+  # --
+  ;;; package --- Summary
+  
+  ;;; Commentary:
+  
+  ;;; Code:
+  
+  $0
+  
+  (provide '`(file-name-sans-extension (f-filename (buffer-file-name)))`)
+  ;;; `(f-filename (buffer-file-name))` ends here
+#+END_SRC
+
 ** request
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/request
   # -*- mode: snippet -*-
   # name: request
@@ -39,17 +64,24 @@
                   (json-pretty-print-buffer)))))
   
 #+END_SRC
+
 * js2-mode
+
 ** console
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/js2-mode/console.log
   # -*- mode: snippet -*-
   # name: console.log
   # key: log
   # --
   console.log($1);
+  
 #+END_SRC
+
 * org-mode
+
 ** use-package
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/org-mode/use-package
   # -*- mode: snippet -*-
   # name: use-package
@@ -60,8 +92,11 @@
     (use-package $1)
   
 #+END_SRC
+
 * php-mode
+
 ** dictionary entry
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/dictionary entry
   # -*- mode: snippet -*-
   # name: dictionary entry
@@ -70,7 +105,9 @@
   '$1' => '$2',
   
 #+END_SRC
+
 ** do while
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/do while
   # -*- mode: snippet -*-
   # name: do while
@@ -81,7 +118,9 @@
   } while ($2);
   
 #+END_SRC
+
 ** for loop
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/for loop
   # -*- mode: snippet -*-
   # name: for loop
@@ -92,7 +131,9 @@
   }
   
 #+END_SRC
+
 ** foreach
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/foreach
   # -*- mode: snippet -*-
   # name: foreach
@@ -103,7 +144,9 @@
   }
   
 #+END_SRC
+
 ** function
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/function
   # -*- mode: snippet -*-
   # name: function
@@ -121,7 +164,9 @@
   }
   
 #+END_SRC
+
 ** header
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/header
   # -*- mode: snippet -*-
   # name: header
@@ -134,7 +179,9 @@
   */
   
 #+END_SRC
+
 ** implode
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/implode
   # -*- mode: snippet -*-
   # name: implode
@@ -143,7 +190,9 @@
   implode($1, $2)
   
 #+END_SRC
+
 ** namespace
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/namespace
   # key: namespace
   # name: namespace
@@ -152,7 +201,9 @@
   $1
   
 #+END_SRC
+
 ** return
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/return
   # -*- mode: snippet -*-
   # name: return
@@ -161,7 +212,9 @@
   return $1;
   
 #+END_SRC
+
 ** try catch
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/try catch
   # -*- mode: snippet -*-
   # name: try catch
@@ -174,7 +227,9 @@
   }
   
 #+END_SRC
+
 ** var dump
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/var dump
   # -*- mode: snippet -*-
   # name: var dump
@@ -183,7 +238,9 @@
   var_dump($1); exit;
   
 #+END_SRC
+
 ** while
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/while
   # -*- mode: snippet -*-
   # name: while
@@ -194,8 +251,11 @@
   }
   
 #+END_SRC
+
 * python-mode
+
 ** for
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/python-mode/for
   # -*- mode: snippet -*-
   # name: for
@@ -203,8 +263,11 @@
   # --
   for $1 in $2:
       $0
+  
 #+END_SRC
+
 ** if
+
 #+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/python-mode/if
   # -*- mode: snippet -*-
   # name: if
@@ -212,4 +275,6 @@
   # --
   if $1:
       $0
+  
 #+END_SRC
+
