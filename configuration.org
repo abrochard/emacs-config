@@ -868,11 +868,12 @@ With a twist of helm
 
 ** Enable =company=
 #+BEGIN_SRC emacs-lisp
-(use-package company
-  :diminish company-mode
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
-(use-package company-go)
+  (use-package company
+    :diminish company-mode
+    :config
+    (add-hook 'after-init-hook 'global-company-mode)
+    (setq company-minimum-prefix-length 2))
+  (use-package company-go)
 #+END_SRC
 ** Enable =flycheck=
 #+BEGIN_SRC emacs-lisp
