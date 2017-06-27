@@ -976,7 +976,9 @@ And set PSR-2 as coding style
   (use-package company-php
     :config
     (add-hook 'php-mode-hook 'company-mode)
-    (add-to-list 'company-dabbrev-code-modes 'php-mode))
+    (add-hook 'php-mode-hook '(lambda ()
+                                (if (not (member 'php-mode company-dabbrev-code-modes))
+                                    (add-to-list 'company-dabbrev-code-modes 'php-mode)))))
 #+end_SRC
 ** Enable =php-eldoc=
 #+BEGIN_SRC emacs-lisp
@@ -1056,10 +1058,8 @@ Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
   (use-package company-go
     :config
-    (add-hook 'go-mode-hook
-              '(lambda ()
-                 (company-mode t)
-                 (add-to-list 'company-backends 'company-go))))
+    (add-hook 'go-mode-hook 'company-mode)
+    (add-to-list 'company-backends 'company-go))
 #+END_SRC
 
 ** Enable =go-stackstracer=
