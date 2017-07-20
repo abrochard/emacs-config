@@ -1121,6 +1121,43 @@ Set iPython as the default interpreter
       (syslog-mode)
       (goto-char (point-max)))
 #+END_SRC
+* Eshell
+** Fancy prompt
+Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_prompt/
+#+BEGIN_SRC emacs-lisp
+  (setq eshell-prompt-function
+        (lambda ()
+          (concat
+           (propertize "┌─[" 'face `(:foreground "green"))
+           (propertize (user-login-name) 'face `(:foreground "red"))
+           (propertize "@" 'face `(:foreground "green"))
+           (propertize (system-name) 'face `(:foreground "lightblue"))
+           (propertize "]──[" 'face `(:foreground "green"))
+           (propertize (format-time-string "%H:%M" (current-time)) 'face `(:foreground "yellow"))
+           (propertize "]──[" 'face `(:foreground "green"))
+           (propertize (concat (eshell/pwd)) 'face `(:foreground "white"))
+           (propertize "]\n" 'face `(:foreground "green"))
+           (propertize "└─>" 'face `(:foreground "green"))
+           (propertize (if (= (user-uid) 0) " # " " $ ") 'face `(:foreground "green"))
+           )))
+#+END_SRC
+** Define visual commands and subcommands
+#+BEGIN_SRC emacs-lisp
+  (setq eshell-visual-commands '("htop" "vi" "screen" "top" "less"
+                                 "more" "lynx" "ncftp" "pine" "tin" "trn" "elm"
+                                 "vim"))
+
+  (setq eshell-visual-subcommands '("git" "log" "diff" "show" "ssh"))
+#+END_SRC
+** Enable autojump
+#+BEGIN_SRC emacs-lisp
+  (require 'eshell-autojump)
+#+END_SRC
+** Aliases
+#+BEGIN_SRC emacs-lisp
+  (defalias 'ff 'find-file)
+  (defalias 'd 'dired)
+#+END_SRC
 
 * Extra Packages
 No need to configure, just handy to have.
