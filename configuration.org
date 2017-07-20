@@ -1151,7 +1151,7 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
 #+END_SRC
 ** Enable autojump
 #+BEGIN_SRC emacs-lisp
-  (require 'eshell-autojump)
+  (use-package eshell-autojump)
 #+END_SRC
 ** Aliases
 #+BEGIN_SRC emacs-lisp
