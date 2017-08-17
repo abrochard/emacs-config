@@ -302,6 +302,13 @@ This uses mutt.
     (insert (read-file-name "File:")))
 #+END_SRC
 
+** Insert a relative filename at point
+#+BEGIN_SRC emacs-lisp
+  (defun insert-relative-filename ()
+    (interactive)
+    (insert (file-relative-name (read-file-name "File: "))))
+#+END_SRC
+
 ** Format long function parameter list into multiline
 #+BEGIN_SRC emacs-lisp
   (defun format-function-parameters ()
@@ -413,6 +420,7 @@ Useful if file changed on disk
            (ledger . t)
            (org . t)
            (latex . t)
+           (haskell . t)
            (php . t))))
 #+END_SRC
 ** Enable =org-bullets=
@@ -779,9 +787,9 @@ Useful to edit multiple similar lines
 #+END_SRC
 ** Enable =whole-line-or-region=
 #+BEGIN_SRC emacs-lisp
-(use-package whole-line-or-region
-  :diminish whole-line-or-region-mode
-  :config (whole-line-or-region-mode))
+  (use-package whole-line-or-region
+    :diminish whole-line-or-region-mode
+    :config (whole-line-or-region-mode))
 #+END_SRC
 ** Enable =viking-mode=
 And add my personal twist to it.
