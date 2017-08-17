@@ -880,7 +880,8 @@ With a twist of helm
     :diminish company-mode
     :config
     (add-hook 'after-init-hook 'global-company-mode)
-    (setq company-minimum-prefix-length 2))
+    (setq company-minimum-prefix-length 2)
+    (setq company-dabbrev-downcase nil))
   (use-package company-go)
 #+END_SRC
 ** Enable =flycheck=
