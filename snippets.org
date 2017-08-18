@@ -11,7 +11,6 @@
   # key: arg
   # --
   ("$1" . "$2")
-  
 #+END_SRC
 
 ** message
@@ -22,7 +21,7 @@
   # key: msg
   # --
   (message "%s" $1)
-  
+
 #+END_SRC
 
 ** package
@@ -33,13 +32,13 @@
   # key: pack
   # --
   ;;; package --- Summary
-  
+
   ;;; Commentary:
-  
+
   ;;; Code:
-  
+
   $0
-  
+
   (provide '`(file-name-sans-extension (f-filename (buffer-file-name)))`)
   ;;; `(f-filename (buffer-file-name))` ends here
 #+END_SRC
@@ -62,7 +61,7 @@
                   (princ data)
                   (switch-to-buffer "*request*")
                   (json-pretty-print-buffer)))))
-  
+
 #+END_SRC
 
 * js2-mode
@@ -75,7 +74,7 @@
   # key: log
   # --
   console.log($1);
-  
+
 #+END_SRC
 
 * org-mode
@@ -90,7 +89,7 @@
   ** Enable =$1=
   #+BEGIN_SRC emacs-lisp
     (use-package $1)
-  
+
 #+END_SRC
 
 * php-mode
@@ -103,7 +102,7 @@
   # key: dic
   # --
   '$1' => '$2',
-  
+
 #+END_SRC
 
 ** do while
@@ -116,7 +115,17 @@
   do {
      $1
   } while ($2);
-  
+
+#+END_SRC
+
+** export
+
+#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/export
+  # -*- mode: snippet -*-
+  # name: export
+  # key: export
+  # --
+  echo '<pre>' . var_export($1, true) . '</pre>';
 #+END_SRC
 
 ** for loop
@@ -129,7 +138,7 @@
   for ($1 = 0; $1 < $2; $1++) {
       $3
   }
-  
+
 #+END_SRC
 
 ** foreach
@@ -142,7 +151,7 @@
   foreach ($1 as $2 => $3) {
           $4
   }
-  
+
 #+END_SRC
 
 ** function
@@ -162,7 +171,7 @@
   {
       $6
   }
-  
+
 #+END_SRC
 
 ** header
@@ -177,7 +186,7 @@
   * $0
   * @return $2
   */
-  
+
 #+END_SRC
 
 ** implode
@@ -188,7 +197,7 @@
   # key: implode
   # --
   implode($1, $2)
-  
+
 #+END_SRC
 
 ** namespace
@@ -199,7 +208,7 @@
   # --
   namespace `(replace-regexp-in-string ".$" ";" (replace-regexp-in-string "^." "" (replace-regexp-in-string "/" "\\" (file-name-directory (buffer-file-name)) t t)))`
   $1
-  
+
 #+END_SRC
 
 ** return
@@ -210,7 +219,7 @@
   # key: ret
   # --
   return $1;
-  
+
 #+END_SRC
 
 ** try catch
@@ -225,7 +234,7 @@
   } catch ($2 $e) {
       $3
   }
-  
+
 #+END_SRC
 
 ** var dump
@@ -236,7 +245,7 @@
   # key: dump
   # --
   var_dump($1); exit;
-  
+
 #+END_SRC
 
 ** while
@@ -249,7 +258,7 @@
   while ($1) {
         $2
   }
-  
+
 #+END_SRC
 
 * python-mode
@@ -263,7 +272,7 @@
   # --
   for $1 in $2:
       $0
-  
+
 #+END_SRC
 
 ** if
@@ -275,6 +284,5 @@
   # --
   if $1:
       $0
-  
-#+END_SRC
 
+#+END_SRC
