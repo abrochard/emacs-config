@@ -950,6 +950,19 @@ But only for emacs-lisp
   :config
   (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
 #+END_SRC
+** Enable =eros=
+#+BEGIN_SRC emacs-lisp
+  (use-package eros
+    :config (add-hook 'emacs-lisp-mode-hook 'eros-mode))
+#+END_SRC
+** Enable =simple-call-tree=
+#+BEGIN_SRC emacs-lisp
+  (use-package simple-call-tree)
+#+END_SRC
+** Enable =suggest=
+#+BEGIN_SRC emacs-lisp
+  (use-package suggest)
+#+END_SRC
 * MySQL
 ** Always make MySQL the default product
 #+BEGIN_SRC emacs-lisp
