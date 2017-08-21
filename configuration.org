@@ -1203,6 +1203,13 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck-yamllint)
 #+END_SRC
+** Enable indentation highlight
+#+BEGIN_SRC emacs-lisp
+  (use-package highlight-indentation
+    :config
+    (set-face-background 'highlight-indentation-face "#8B6090")
+    (add-hook 'yaml-mode-hook 'highlight-indentation-mode))
+#+END_SRC
 * Extra Packages
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
