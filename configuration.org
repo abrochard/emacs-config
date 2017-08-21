@@ -1180,7 +1180,18 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
   (defalias 'ff 'find-file)
   (defalias 'd 'dired)
 #+END_SRC
-
+* YAML
+** Enable =yaml-mode=
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :config
+    (add-hook 'yaml-mode-hook 'flycheck-mode)
+    (add-hook 'yaml-mode-hook 'flyspell-mode))
+#+END_SRC
+** Enable =flycheck-yamllint=
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck-yamllint)
+#+END_SRC
 * Extra Packages
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
