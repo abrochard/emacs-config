@@ -181,3 +181,24 @@
                 :key "M-s"
                 :description "Splice sexp out of ()")
 #+END_SRC
+* Origami
+#+BEGIN_SRC emacs-lisp
+  (cheatsheet-add :group 'Origami
+                  :key "C-c n o"
+                  :description "Open node")
+  (cheatsheet-add :group 'Origami
+                  :key "C-c n c"
+                  :description "Close node")
+  (cheatsheet-add :group 'Origami
+                  :key "C-c n a"
+                  :description "Open all nodes")
+  (cheatsheet-add :group 'Origami
+                  :key "C-c n u"
+                  :description "Undo folding")
+  (cheatsheet-add :group 'Origami
+                  :key "C-c n n"
+                  :description "Fold all nodes but current one")
+  (cheatsheet-add :group 'Origami
+                  :key "C-c n TAB"
+                  :description "Toggle node")
+#+END_SRC
