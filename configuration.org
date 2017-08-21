@@ -767,7 +767,18 @@ Not all the time, but handy.
   (use-package hamburger-menu
     :config (setq mode-line-front-space 'hamburger-menu-mode-line))
 #+END_SRC
-
+** Enable =origiami=
+Great to fold text
+#+BEGIN_SRC emacs-lisp
+  (use-package origami
+    :config
+    (global-set-key (kbd "C-c n o") 'origami-open-node)
+    (global-set-key (kbd "C-c n c") 'origami-close-node)
+    (global-set-key (kbd "C-c n a") 'origami-open-all-nodes)
+    (global-set-key (kbd "C-c n u") 'origami-undo)
+    (global-set-key (kbd "C-c n n") 'origami-show-only-node)
+    (global-set-key (kbd "C-c n TAB") 'origami-recursively-toggle-node))
+#+END_SRC
 * Edition
 ** Enable =multiple-cursors=
 Useful to edit multiple similar lines
