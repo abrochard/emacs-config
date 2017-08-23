@@ -545,6 +545,11 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 (setq tags-revert-without-query 1)
 #+END_SRC
 
+** Disable warning for =narrow-to=region=
+#+BEGIN_SRC emacs-lisp
+  (put 'narrow-to-region 'disabled nil)
+#+END_SRC
+
 
 * Load Cool Theme
 #+BEGIN_SRC emacs-lisp
