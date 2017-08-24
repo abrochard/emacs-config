@@ -5,7 +5,7 @@
 
 ** data argument
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/data argument
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/emacs-lisp-mode/data argument
   # -*- mode: snippet -*-
   # name: data argument
   # key: arg
@@ -15,7 +15,7 @@
 
 ** message
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/message
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/emacs-lisp-mode/message
   # -*- mode: snippet -*-
   # name: message
   # key: msg
@@ -25,26 +25,27 @@
 
 ** package
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/package
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/emacs-lisp-mode/package
   # -*- mode: snippet -*-
   # name: package
   # key: pack
   # --
   ;;; package --- Summary
-
+  
   ;;; Commentary:
-
+  
   ;;; Code:
-
+  
   $0
-
+  
   (provide '`(file-name-sans-extension (f-filename (buffer-file-name)))`)
   ;;; `(f-filename (buffer-file-name))` ends here
+  
 #+END_SRC
 
 ** request
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/emacs-lisp-mode/request
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/emacs-lisp-mode/request
   # -*- mode: snippet -*-
   # name: request
   # key: req
@@ -66,7 +67,7 @@
 
 ** iferr
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/go-mode/iferr
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/iferr
   # -*- mode: snippet -*-
   # name: iferr
   # key: iferr
@@ -80,7 +81,7 @@
 
 ** console
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/js2-mode/console.log
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/js2-mode/console.log
   # -*- mode: snippet -*-
   # name: console.log
   # key: log
@@ -94,7 +95,7 @@
 
 ** use-package
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/org-mode/use-package
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/org-mode/use-package
   # -*- mode: snippet -*-
   # name: use-package
   # key: use
@@ -109,7 +110,7 @@
 
 ** dictionary entry
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/dictionary entry
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/dictionary entry
   # -*- mode: snippet -*-
   # name: dictionary entry
   # key: dic
@@ -119,7 +120,7 @@
 
 ** do while
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/do while
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/do while
   # -*- mode: snippet -*-
   # name: do while
   # key: do
@@ -131,7 +132,7 @@
 
 ** export
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/export
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/export
   # -*- mode: snippet -*-
   # name: export
   # key: export
@@ -141,7 +142,7 @@
 
 ** for loop
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/for loop
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/for loop
   # -*- mode: snippet -*-
   # name: for loop
   # key: for
@@ -153,7 +154,7 @@
 
 ** foreach
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/foreach
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/foreach
   # -*- mode: snippet -*-
   # name: foreach
   # key: foreach
@@ -165,7 +166,7 @@
 
 ** function
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/function
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/function
   # -*- mode: snippet -*-
   # name: function
   # key: fct
@@ -184,7 +185,7 @@
 
 ** header
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/header
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/header
   # -*- mode: snippet -*-
   # name: header
   # key: header
@@ -198,7 +199,7 @@
 
 ** implode
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/implode
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/implode
   # -*- mode: snippet -*-
   # name: implode
   # key: implode
@@ -208,7 +209,7 @@
 
 ** namespace
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/namespace
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/namespace
   # key: namespace
   # name: namespace
   # --
@@ -217,7 +218,7 @@
 
 ** return
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/return
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/return
   # -*- mode: snippet -*-
   # name: return
   # key: ret
@@ -227,7 +228,7 @@
 
 ** try catch
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/try catch
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/try catch
   # -*- mode: snippet -*-
   # name: try catch
   # key: try
@@ -241,7 +242,7 @@
 
 ** var dump
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/var dump
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/var dump
   # -*- mode: snippet -*-
   # name: var dump
   # key: dump
@@ -251,7 +252,7 @@
 
 ** while
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/php-mode/while
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/php-mode/while
   # -*- mode: snippet -*-
   # name: while
   # key: w
@@ -265,7 +266,7 @@
 
 ** for
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/python-mode/for
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/for
   # -*- mode: snippet -*-
   # name: for
   # key: for
@@ -276,7 +277,7 @@
 
 ** if
 
-#+BEGIN_SRC snippet :tangle /home/abrochard/.emacs.d/snippets/python-mode/if
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/if
   # -*- mode: snippet -*-
   # name: if
   # key: if
@@ -284,3 +285,4 @@
   if $1:
       $0
 #+END_SRC
+
