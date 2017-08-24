@@ -31,13 +31,13 @@
   # key: pack
   # --
   ;;; package --- Summary
-  
+
   ;;; Commentary:
-  
+
   ;;; Code:
-  
+
   $0
-  
+
   (provide '`(file-name-sans-extension (f-filename (buffer-file-name)))`)
   ;;; `(f-filename (buffer-file-name))` ends here
 #+END_SRC
@@ -284,4 +284,3 @@
   if $1:
       $0
 #+END_SRC
-
