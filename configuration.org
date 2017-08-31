@@ -1196,6 +1196,15 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
   (defalias 'ff 'find-file)
   (defalias 'd 'dired)
 #+END_SRC
+* Dired
+** Enable =dired-x=
+#+BEGIN_SRC emacs-lisp
+  (require 'dired-x)
+#+END_SRC
+** Use human-readable sizes
+#+BEGIN_SRC emacs-lisp
+  (setq dired-listing-switches "-alh")
+#+END_SRC
 * YAML
 ** Enable =yaml-mode=
 #+BEGIN_SRC emacs-lisp
@@ -1218,7 +1227,6 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
 * Extra Packages
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
-  (require 'dired-x)
   (use-package 2048-game)
   (use-package isend-mode)
   (use-package lorem-ipsum)
