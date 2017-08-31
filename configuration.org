@@ -1128,20 +1128,26 @@ Absolutely necessary if working in Go
 #+END_SRC
 
 * Python
-** Enable =eldoc=
+** Setup =python-mode=
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'python-mode-hook 'eldoc-mode)
   (add-hook 'python-mode-hook 'electric-operator-mode)
+  (setq python-shell-interpreter "/usr/bin/ipython") ;; much nicer than plain python
 #+END_SRC
-** Enable =anaconda=
-Set iPython as the default interpreter
+** Enable =company-jedi=
 #+BEGIN_SRC emacs-lisp
-(use-package anaconda-mode
-  :config
-  (setq python-shell-interpreter "~/anaconda/bin/ipython")
-  (add-hook 'python-mode-hook 'anaconda-mode))
+  (use-package company-jedi
+    :config (add-to-list 'company-backends 'company-jedi))
 #+END_SRC
+** Custom functions for pipenv
+#+BEGIN_SRC emacs-lisp
+  (defun pipenv-activate ()
+    (interactive)
+    (pythonic-activate (shell-command-to-string "pipenv --venv")))
 
+  (defun pipenv-deactivate ()
+    (interactive)
+    (pythonic-deactivate))
+#+END_SRC
 * Logs
 ** Enable =syslog-mode=
 #+BEGIN_SRC emacs-lisp
