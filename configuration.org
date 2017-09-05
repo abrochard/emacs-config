@@ -1202,6 +1202,12 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
   (defalias 'ff 'find-file)
   (defalias 'd 'dired)
 #+END_SRC
+** Clear function
+#+BEGIN_SRC emacs-lisp
+  (defun eshell/clear ()
+    (let ((inhibit-read-only t))
+      (erase-buffer)))
+#+END_SRC
 * Dired
 ** Enable =dired-x=
 #+BEGIN_SRC emacs-lisp
