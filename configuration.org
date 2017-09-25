@@ -1240,6 +1240,23 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
     (set-face-background 'highlight-indentation-face "#8B6090")
     (add-hook 'yaml-mode-hook 'highlight-indentation-mode))
 #+END_SRC
+* PlantUML
+** Enable =plantuml-mode=
+#+BEGIN_SRC emacs-lisp
+  (use-package plantuml-mode)
+#+END_SRC
+** Download and hook up plantuml.jar
+#+BEGIN_SRC emacs-lisp
+  (let ((plantuml-directory (concat config-load-path "extra/"))
+        (plantuml-link "https://superb-dca2.dl.sourceforge.net/project/plantuml/plantuml.jar"))
+    (let ((plantuml-target (concat plantuml-directory "plantuml.jar")))
+      (if (not (f-exists? plantuml-target))
+          (progn (message "Downloading plantuml.jar")
+                 (shell-command
+                  (mapconcat 'identity (list "wget" plantuml-jar-download-link "-O" plantuml-target) " "))
+                 (kill-buffer "*Shell Command Output*")))
+      (setq plantuml-jar-path plantuml-target)))
+#+END_SRC
 * Extra Packages
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
@@ -1254,7 +1271,6 @@ No need to configure, just handy to have.
   (use-package csharp-mode)
   (use-package keychain-environment)
   (use-package prodigy)
-  (use-package plantuml-mode)
 #+END_SRC
 
 * Extra file loading
