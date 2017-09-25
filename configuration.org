@@ -1253,7 +1253,7 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
       (if (not (f-exists? plantuml-target))
           (progn (message "Downloading plantuml.jar")
                  (shell-command
-                  (mapconcat 'identity (list "wget" plantuml-jar-download-link "-O" plantuml-target) " "))
+                  (mapconcat 'identity (list "wget" plantuml-link "-O" plantuml-target) " "))
                  (kill-buffer "*Shell Command Output*")))
       (setq plantuml-jar-path plantuml-target)))
 #+END_SRC
