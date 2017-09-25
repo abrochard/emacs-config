@@ -414,6 +414,7 @@ Useful if file changed on disk
    (quote org-babel-load-languages)
    (quote ((emacs-lisp . t)
            (dot . t)
+           (plantuml . t)
            (python . t)
            (gnuplot . t)
            (shell . t)
@@ -429,7 +430,10 @@ Make org files a bit more readable
   (use-package org-bullets
     :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
-
+** Display images inline
+#+BEGIN_SRC emacs-lisp
+  (setq org-startup-with-inline-images t)
+#+END_SRC
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
 #+BEGIN_SRC emacs-lisp
@@ -1250,6 +1254,7 @@ No need to configure, just handy to have.
   (use-package csharp-mode)
   (use-package keychain-environment)
   (use-package prodigy)
+  (use-package plantuml-mode)
 #+END_SRC
 
 * Extra file loading
