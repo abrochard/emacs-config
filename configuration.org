@@ -688,6 +688,10 @@ Thanks to [[https://github.com/magnars/.emacs.d/blob/master/defuns/editing-defun
     (interactive)
     (yank 1))
 #+END_SRC
+** Define comment syntax
+#+BEGIN_SRC emacs-lisp
+  (setq comment-start "#")
+#+END_SRC
 * Parenthesis Support
 #+BEGIN_SRC emacs-lisp
 (show-paren-mode 1)
