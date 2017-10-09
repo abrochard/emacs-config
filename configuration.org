@@ -1275,6 +1275,7 @@ No need to configure, just handy to have.
   (use-package csharp-mode)
   (use-package keychain-environment)
   (use-package prodigy)
+  (use-package vlf)
 #+END_SRC
 
 * Extra file loading
