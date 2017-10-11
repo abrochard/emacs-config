@@ -926,18 +926,24 @@ Add a little helm twist to it
 #+END_SRC
 
 ** Enable =electric-operator=
-And add a rule for PHP
+And add a couple of rules for PHP and JS
 #+BEGIN_SRC emacs-lisp
-(use-package electric-operator
-  :config
-  (electric-operator-add-rules-for-mode 'php-mode
-                                        (cons " - >" "->"))
-  (electric-operator-add-rules-for-mode 'php-mode
-                                        (cons " / /" "// "))
-  (electric-operator-add-rules-for-mode 'php-mode
-                                        (cons " = > " " => "))
-  (electric-operator-add-rules-for-mode 'php-mode
-                                        (cons " < ?" "<?")))
+  (use-package electric-operator
+    :config
+    (electric-operator-add-rules-for-mode 'php-mode
+                                          (cons " - >" "->"))
+    (electric-operator-add-rules-for-mode 'php-mode
+                                          (cons " / /" "// "))
+    (electric-operator-add-rules-for-mode 'php-mode
+                                          (cons " = > " " => "))
+    (electric-operator-add-rules-for-mode 'php-mode
+                                          (cons " < ?" "<?"))
+    (electric-operator-add-rules-for-mode 'js2-mode
+                                          (cons " = > " " => "))
+    (electric-operator-add-rules-for-mode 'js2-jsx-mode
+                                          (cons " = > " " => "))
+    (electric-operator-add-rules-for-mode 'rjsx-mode
+                                          (cons " = > " " => ")))
 #+END_SRC
 
 ** Enable =dumb-jump=
