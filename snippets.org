@@ -264,6 +264,16 @@
 
 * python-mode
 
+** dic
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/dic
+  # -*- mode: snippet -*-
+  # name: dic
+  # key: dic
+  # --
+  '$1': '$2',
+#+END_SRC
+
 ** for
 
 #+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/for

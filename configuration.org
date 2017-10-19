@@ -1145,7 +1145,7 @@ Absolutely necessary if working in Go
 ** Setup =python-mode=
 #+BEGIN_SRC emacs-lisp
   (add-hook 'python-mode-hook 'electric-operator-mode)
-  (setq python-shell-interpreter "/usr/bin/ipython") ;; much nicer than plain python
+  (setq python-shell-interpreter "/usr/bin/ipython3") ;; much nicer than plain python
 #+END_SRC
 ** Enable =company-jedi=
 #+BEGIN_SRC emacs-lisp
