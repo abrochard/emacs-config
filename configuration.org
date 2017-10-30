@@ -434,6 +434,10 @@ Make org files a bit more readable
 #+BEGIN_SRC emacs-lisp
   (setq org-startup-with-inline-images t)
 #+END_SRC
+** Register more exports
+#+BEGIN_SRC emacs-lisp
+  (require 'ox-md)
+#+END_SRC
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
 #+BEGIN_SRC emacs-lisp
