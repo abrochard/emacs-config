@@ -876,18 +876,18 @@ And use it to replace normal narrowing functions
 ** Enable =projectile=
 And get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-projectile.el#L10]]
 #+BEGIN_SRC emacs-lisp
-(use-package ag)
-(use-package helm-ag)
-(setq projectile-go-function nil) ;; temporary workaround
-(use-package projectile
-  :config
-  (projectile-global-mode)
-  (setq-default
-   projectile-mode-line
-   '(:eval
-     (if (file-remote-p default-directory)
-         " Proj"
-       (format " Proj[%s]" (projectile-project-name))))))
+  (use-package ag)
+  (use-package helm-ag)
+  (setq projectile-go-function nil) ;; temporary workaround
+  (use-package projectile
+    :config
+    (projectile-global-mode)
+    (setq-default projectile-mode-line
+     '(:eval
+       (if (file-remote-p default-directory)
+           " Proj"
+         (format " Proj[%s]" (projectile-project-name)))))
+    (add-to-list 'projectile-globally-ignored-directories "node_modules"))
 #+END_SRC
 
 With a twist of helm
