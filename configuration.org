@@ -325,6 +325,24 @@ This uses mutt.
     (search-backward ")")
     (newline-and-indent))
 #+END_SRC
+
+** Eshell here
+Thanks to Howard https://github.com/howardabrams/dot-files/blob/master/emacs-eshell.org
+#+BEGIN_SRC emacs-lisp
+  (defun eshell-here ()
+    "Opens up a new shell in the directory associated with the
+      current buffer's file. The eshell is renamed to match that
+      directory to make multiple eshell windows easier."
+    (interactive)
+    (let* ((height (/ (window-total-height) 3)))
+      (split-window-vertically (- height))
+      (other-window 1)
+      (eshell "new")
+      (insert (concat "ls"))
+      (eshell-send-input)))
+
+  (bind-key "C-!" 'eshell-here)
+#+END_SRC
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
@@ -1184,6 +1202,17 @@ Absolutely necessary if working in Go
       (goto-char (point-max)))
 #+END_SRC
 * Eshell
+** Configuration
+#+BEGIN_SRC emacs-lisp
+  (use-package eshell
+    :init
+    (setq eshell-scroll-to-bottom-on-input 'all
+          eshell-error-if-no-glob t
+          eshell-hist-ignoredups t
+          eshell-save-history-on-exit t
+          eshell-prefer-lisp-functions nil
+          eshell-destroy-buffer-when-process-dies t))
+#+END_SRC
 ** Fancy prompt
 Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_prompt/
 #+BEGIN_SRC emacs-lisp
@@ -1211,6 +1240,10 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
 
   (setq eshell-visual-subcommands '("git" "log" "diff" "show" "ssh"))
 #+END_SRC
+** Pager setup
+#+BEGIN_SRC emacs-lisp
+  (setenv "PAGER" "cat")
+#+END_SRC
 ** Enable autojump
 #+BEGIN_SRC emacs-lisp
   (use-package eshell-autojump)
@@ -1220,11 +1253,60 @@ Modified from https://www.reddit.com/r/emacs/comments/6f0rkz/my_fancy_eshell_pro
   (defalias 'ff 'find-file)
   (defalias 'd 'dired)
 #+END_SRC
-** Clear function
+** Extra shell functions
+*** Clear function
 #+BEGIN_SRC emacs-lisp
   (defun eshell/clear ()
     (let ((inhibit-read-only t))
       (erase-buffer)))
+#+END_SRC
+*** Git
+#+BEGIN_SRC emacs-lisp
+  (defun eshell/gst (&rest args)
+      (magit-status (pop args) nil)
+      (eshell/echo))   ;; The echo command suppresses output
+#+END_SRC
+*** Bargs and Sargs
+Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
+#+BEGIN_SRC emacs-lisp
+  (defun eshell/-buffer-as-args (buffer separator command)
+    "Takes the contents of BUFFER, and splits it on SEPARATOR, and
+  runs the COMMAND with the contents as arguments. Use an argument
+  `%' to substitute the contents at a particular point, otherwise,
+  they are appended."
+    (let* ((lines (with-current-buffer buffer
+                    (split-string
+                     (buffer-substring-no-properties (point-min) (point-max))
+                     separator)))
+           (subcmd (if (-contains? command "%")
+                       (-flatten (-replace "%" lines command))
+                     (-concat command lines)))
+           (cmd-str  (string-join subcmd " ")))
+      (message cmd-str)
+      (eshell-command-result cmd-str)))
+
+  (defun eshell/bargs (buffer &rest command)
+    "Passes the lines from BUFFER as arguments to COMMAND."
+    (eshell/-buffer-as-args buffer "\n" command))
+
+  (defun eshell/sargs (buffer &rest command)
+    "Passes the words from BUFFER as arguments to COMMAND."
+    (eshell/-buffer-as-args buffer nil command))
+#+END_SRC
+*** Exit
+#+BEGIN_SRC emacs-lisp
+  ;; (defun eshell/exit ()
+  ;;   (eshell-life-is-too-much)
+  ;;   (ignore-errors
+  ;;     (delete-window)))
+#+END_SRC
+** Smoother bindings
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'eshell-mode-hook
+            (lambda ()
+              (define-key eshell-mode-map (kbd "C-M-a") 'eshell-previous-prompt)
+              (define-key eshell-mode-map (kbd "C-M-e") 'eshell-next-prompt)
+              (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
 #+END_SRC
 * Dired
 ** Enable =dired-x=
