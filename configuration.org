@@ -388,6 +388,7 @@ Useful if file changed on disk
 ** Set environment
 #+BEGIN_SRC emacs-lisp
   (setq org-directory "~/org/")
+  (setq org-agendafiles '("~/org"))
 
   (defun org-file-path (filename)
     "Return the absolute address of an org file, given its relative name."
@@ -411,6 +412,10 @@ Useful if file changed on disk
                       (color-darken-name
                        (face-attribute 'default :background) 3))
 
+#+END_SRC
+** Setup Org Agenda
+#+BEGIN_SRC emacs-lisp
+  (define-key org-mode-map (kbd "C-c a") 'org-agenda)
 #+END_SRC
 ** Setup Org Capture
 #+BEGIN_SRC emacs-lisp
