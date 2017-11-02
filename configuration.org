@@ -404,6 +404,14 @@ Useful if file changed on disk
 #+BEGIN_SRC emacs-lisp
   (setq org-src-fontify-natively t)
 #+END_SRC
+** Set a dark background for source blocks
+#+BEGIN_SRC emacs-lisp
+  (require 'color)
+  (set-face-attribute 'org-block nil :background
+                      (color-darken-name
+                       (face-attribute 'default :background) 3))
+
+#+END_SRC
 ** Setup Org Capture
 #+BEGIN_SRC emacs-lisp
 (setq org-default-notes-file (concat org-directory "/notes.org"))
