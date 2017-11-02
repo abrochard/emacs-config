@@ -1293,12 +1293,10 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
     "Passes the words from BUFFER as arguments to COMMAND."
     (eshell/-buffer-as-args buffer nil command))
 #+END_SRC
-*** Exit
+*** Close
 #+BEGIN_SRC emacs-lisp
-  ;; (defun eshell/exit ()
-  ;;   (eshell-life-is-too-much)
-  ;;   (ignore-errors
-  ;;     (delete-window)))
+  (defun eshell/close ()
+    (delete-window))
 #+END_SRC
 ** Smoother bindings
 #+BEGIN_SRC emacs-lisp
