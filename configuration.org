@@ -387,6 +387,7 @@ Useful if file changed on disk
 * Publishing and task management with Org-mode
 ** Set environment
 #+BEGIN_SRC emacs-lisp
+  (use-package org)
   (setq org-directory "~/org/")
   (setq org-agendafiles '("~/org"))
 
