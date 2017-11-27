@@ -1320,6 +1320,14 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
               (define-key eshell-mode-map (kbd "C-M-e") 'eshell-next-prompt)
               (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
 #+END_SRC
+** Close window on exit
+#+BEGIN_SRC emacs-lisp
+  (defun eshell-pop--kill-and-delete-window ()
+    (unless (one-window-p)
+      (delete-window)))
+
+  (add-hook 'eshell-exit-hook 'eshell-pop--kill-and-delete-window)
+#+END_SRC
 * Dired
 ** Enable =dired-x=
 #+BEGIN_SRC emacs-lisp
