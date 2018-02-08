@@ -53,7 +53,7 @@ And force the install of missing packages.
 #+END_SRC
 
 * Configure Helm
-Make everything fuzzy and also rebind functions.
+** Make everything fuzzy and also rebind functions.
 #+BEGIN_SRC emacs-lisp
   (use-package flx)
   (use-package helm-flx)
@@ -76,9 +76,16 @@ Make everything fuzzy and also rebind functions.
     (setq helm-locate-fuzzy-match t)
     (setq helm-lisp-fuzzy-completion t)
     (setq helm-bookmark-show-location t))
+#+END_SRC
+** Enable =helm-swoop=
+#+BEGIN_SRC emacs-lisp
   (use-package helm-swoop
     :bind ("C-c s" . helm-swoop)
     :config (setq helm-swoop-speed-or-color t))
+#+END_SRC
+** Install =helm-system-packages=
+#+BEGIN_SRC emacs-lisp
+  (use-package helm-system-packages)
 #+END_SRC
 
 
@@ -619,7 +626,9 @@ A small trim of the original
 * Fonts
 Use the Hack font from [[https://github.com/chrissimpkins/Hack][chrissimpkins]]
 #+BEGIN_SRC emacs-lisp
-  (if (x-list-fonts "Hack")
+  (if (condition-case nil
+          (x-list-fonts "Hack")
+        (error nil))
       (progn
         (add-to-list 'default-frame-alist '(font . "Hack-10"))
         (set-face-attribute 'default nil :font "Hack-10")))
@@ -727,6 +736,11 @@ Thanks to [[https://github.com/magnars/.emacs.d/blob/master/defuns/editing-defun
 ** Define comment syntax
 #+BEGIN_SRC emacs-lisp
   (setq comment-start "#")
+#+END_SRC
+** Enable =prog-fill=
+#+BEGIN_SRC emacs-lisp
+  (use-package prog-fill
+    :bind (("M-q" . prog-fill)))
 #+END_SRC
 * Parenthesis Support
 #+BEGIN_SRC emacs-lisp
