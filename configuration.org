@@ -66,6 +66,7 @@ And force the install of missing packages.
            ("C-x C-f" . helm-find-files)
            ("C-x r l" . helm-bookmarks)
            ("C-c C-i" . helm-semantic-or-imenu)
+           ("C-c s" . helm-occur)
            :map helm-find-files-map ;; I like these from Ido
            ("C-<tab>"         . helm-execute-persistent-action)
            ("C-<backspace>" . helm-find-files-up-one-level))
@@ -76,12 +77,6 @@ And force the install of missing packages.
     (setq helm-locate-fuzzy-match t)
     (setq helm-lisp-fuzzy-completion t)
     (setq helm-bookmark-show-location t))
-#+END_SRC
-** Enable =helm-swoop=
-#+BEGIN_SRC emacs-lisp
-  (use-package helm-swoop
-    :bind ("C-c s" . helm-swoop)
-    :config (setq helm-swoop-speed-or-color t))
 #+END_SRC
 ** Install =helm-system-packages=
 #+BEGIN_SRC emacs-lisp
