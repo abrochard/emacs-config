@@ -1133,6 +1133,11 @@ Adding the necessary hooks
 #+BEGIN_SRC emacs-lisp
   (use-package js-doc)
 #+END_SRC
+** Enable =rjsx-mode=
+Useful for React
+#+BEGIN_SRC emacs-lisp
+  (use-package rjsx-mode)
+#+END_SRC
 * Go
 A lot of the config is based on gocode, godef, goimports and gotags
 packages that you should install separately.
