@@ -443,10 +443,7 @@ Useful if file changed on disk
 (add-hook 'org-mode-hook 'flyspell-mode)
 #+END_SRC
 ** Setup =org-babel=
-   Get additional languages
-#+BEGIN_SRC emacs-lisp
-  (use-package ob-php)
-#+END_SRC
+   Get additional languages?
    Load them all
 #+BEGIN_SRC emacs-lisp
   (org-babel-do-load-languages
@@ -460,8 +457,7 @@ Useful if file changed on disk
            (ledger . t)
            (org . t)
            (latex . t)
-           (haskell . t)
-           (php . t))))
+           (haskell . t))))
 #+END_SRC
 ** Enable =org-bullets=
 Make org files a bit more readable
