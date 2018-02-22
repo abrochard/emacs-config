@@ -78,9 +78,15 @@ And force the install of missing packages.
     (setq helm-bookmark-show-location t))
 #+END_SRC
 ** Imenu + Helm with =imenu-anywhere=
+But I find pulling from other buffer confusing so I limit to current buffer
 #+BEGIN_SRC emacs-lisp
+  (defun imenu-anywhere-same-buffer-p (current other)
+    (eq current other))
+
   (use-package imenu-anywhere
-    :bind (("C-c C-i" . helm-imenu-anywhere)))
+    :bind (("C-c C-i" . helm-imenu-anywhere))
+    :config (setq imenu-anywhere-buffer-filter-functions
+                  '(imenu-anywhere-same-buffer-p)))
 #+END_SRC
 ** Install =helm-system-packages=
 #+BEGIN_SRC emacs-lisp
