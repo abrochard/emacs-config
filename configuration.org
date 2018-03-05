@@ -612,19 +612,34 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 * Customize the mode-line
 A small trim of the original
 #+BEGIN_SRC emacs-lisp
-  (setq-default mode-line-format '("%e"
-                                   mode-line-front-space
-                                   " "
-                                   mode-line-modified
-                                   " "
-                                   "%[" mode-line-buffer-identification "%]"
-                                   "   "
-                                   "L%l"
-                                   "  "
-                                   mode-line-modes
-                                   mode-line-misc-info
-                                   (vc-mode vc-mode)
-                                   mode-line-end-spaces))
+    (setq-default mode-line-format '("%e"
+                                     mode-line-front-space
+                                     " "
+                                     mode-line-modified
+                                     " "
+                                     "%[" mode-line-buffer-identification "%]"
+                                     "   "
+                                     "L%l"
+                                     "  "
+                                     mode-line-modes
+                                     mode-line-misc-info
+                                     projectile-mode-line
+                                     " "
+                                     (vc-mode vc-mode)
+                                     mode-line-end-spaces))
+#+END_SRC
+Load Tarsius' minions
+#+BEGIN_SRC emacs-lisp
+  (require 'f)
+  (let ((minions-directory (concat (file-name-as-directory config-load-path) "extra/minions/")))
+    (if (not (f-exists? minions-directory))
+	(progn
+	  (shell-command
+	   (mapconcat 'identity (list "git" "clone" "https://github.com/tarsius/minions.git" minions-directory) " "))
+	  (kill-buffer "*Shell Command Output*")))
+    (load-file (concat minions-directory "minions.el"))
+    (minions-mode 1))
+
 #+END_SRC
 * Fonts
 Use the Hack font from [[https://github.com/chrissimpkins/Hack][chrissimpkins]]
