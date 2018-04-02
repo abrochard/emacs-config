@@ -982,13 +982,13 @@ With a twist of helm
 #+END_SRC
 ** Enable =flycheck=
 #+BEGIN_SRC emacs-lisp
-(use-package flycheck
-  :diminish flycheck-mode
-  :config (flycheck-mode 1)
-  (setq flycheck-phpcs-standard "PSR2")
-  (add-hook 'python-mode-hook 'flycheck-mode)
-  (add-hook 'emacs-lisp-mode-hook 'flycheck-mode))
-
+  (use-package flycheck
+    :diminish flycheck-mode
+    :config (flycheck-mode 1)
+    (setq flycheck-phpcs-standard "PSR2")
+    (add-hook 'python-mode-hook 'flycheck-mode)
+    (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
+    (add-hook 'json-mode-hook 'flycheck-mode))
 #+END_SRC
 
 Add a little helm twist to it
