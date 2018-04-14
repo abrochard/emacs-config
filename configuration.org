@@ -399,6 +399,7 @@ Useful if file changed on disk
 * Publishing and task management with Org-mode
 ** Set environment
 #+BEGIN_SRC emacs-lisp
+  (use-package f)
   (use-package org)
   (setq org-directory "~/org/")
   (setq org-agendafiles '("~/org"))
@@ -459,7 +460,7 @@ Useful if file changed on disk
            (plantuml . t)
            (python . t)
            (gnuplot . t)
-           (shell . t)
+           (sh . t)
            (ledger . t)
            (org . t)
            (latex . t)
