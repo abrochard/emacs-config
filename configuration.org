@@ -1441,18 +1441,19 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
 * Extra Packages
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
-  (use-package 2048-game)
-  (use-package isend-mode)
-  (use-package lorem-ipsum)
-  (use-package markdown-mode)
-  (use-package pdf-tools)
-  (use-package refine)
-  (use-package request)
-  (use-package csv-mode)
-  ;; (use-package csharp-mode)
-  (use-package keychain-environment)
-  (use-package prodigy)
-  (use-package vlf)
+    (use-package 2048-game)
+    (use-package isend-mode)
+    (use-package lorem-ipsum)
+    (use-package markdown-mode)
+    (use-package pdf-tools
+      :defer t)
+    (use-package refine)
+    (use-package request)
+    (use-package csv-mode)
+    ;; (use-package csharp-mode)
+    (use-package keychain-environment)
+    (use-package prodigy)
+    (use-package vlf)
 #+END_SRC
 
 * Extra file loading

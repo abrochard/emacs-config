@@ -65,11 +65,19 @@
 ;; Heavily inspired by the great http://www.holgerschurig.de/en/emacs-efficiently-untangling-elisp/
 ;; Thanks a lot to him
 
-(defvar my-start-time (current-time) "Time when Emacs was started")
 (defvar config-no-auto-update nil)
 (defvar config-load-path (file-name-directory (or load-file-name buffer-file-name)))
 (defvar config-org-files '("configuration.org" "cheatsheet.org"))
 (defvar config-use-fallback nil)
+
+;; Startup metrics
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time)))
+                     gcs-done)))
 
 
 (defun tangle-config-org (orgfile elfile)
@@ -127,6 +135,5 @@
 (if (not config-use-fallback)
     (bootstrap-config)
   (bootstrap-config-fallback))
-(message "Start up time %.2fs" (float-time (time-subtract (current-time) my-start-time)))
 
 ;; bootstrap.el ends here
