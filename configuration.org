@@ -1152,6 +1152,7 @@ Adding the necessary hooks
 #+BEGIN_SRC emacs-lisp
   (use-package js2-refactor
     :diminish js2-refactor-mode
+    :defer t
     :config
     (add-hook 'js2-mode-hook #'js2-refactor-mode)
     (js2r-add-keybindings-with-prefix "C-c C-m"))
@@ -1255,6 +1256,12 @@ Absolutely necessary if working in Go
   (defun pipenv-deactivate ()
     (interactive)
     (pythonic-deactivate))
+#+END_SRC
+* Docker
+** Setup =Dockerfile-mode=
+#+BEGIN_SRC emacs-lisp
+  (use-package dockerfile-mode
+    :mode "Dockerfile\\'")
 #+END_SRC
 * Logs
 ** Enable =syslog-mode=
