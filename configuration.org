@@ -484,6 +484,11 @@ Make org files a bit more readable
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "<f5>") 'org-find-file)
 #+END_SRC
+** Use =org-journal=
+#+BEGIN_SRC emacs-lisp
+  (use-package org-journal
+    :custom (org-journal-dir "~/org/journal"))
+#+END_SRC
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
 #+BEGIN_SRC emacs-lisp
