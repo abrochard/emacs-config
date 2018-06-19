@@ -447,7 +447,8 @@ Useful if file changed on disk
 #+END_SRC
 ** Enable =flyspell=
 #+BEGIN_SRC emacs-lisp
-(add-hook 'org-mode-hook 'flyspell-mode)
+  (add-hook 'org-mode-hook 'flyspell-mode)
+  (add-hook 'text-mode-hook 'flyspell-mode)
 #+END_SRC
 ** Setup =org-babel=
    Get additional languages?
@@ -460,7 +461,7 @@ Useful if file changed on disk
            (plantuml . t)
            (python . t)
            (gnuplot . t)
-           (sh . t)
+           ;; (sh . t)
            (ledger . t)
            (org . t)
            (latex . t)
@@ -487,7 +488,7 @@ Make org files a bit more readable
 ** Use =org-journal=
 #+BEGIN_SRC emacs-lisp
   (use-package org-journal
-    :custom (org-journal-dir "~/org/journal"))
+    :custom (org-journal-dir "~/org/journal" "Set journal location"))
 #+END_SRC
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
@@ -1203,7 +1204,8 @@ Absolutely necessary if working in Go
   (use-package go-mode
     :config
     (add-hook 'before-save-hook #'gofmt-before-save)
-    (add-hook 'go-mode-hook 'flycheck-mode))
+    (add-hook 'go-mode-hook 'flycheck-mode)
+    (add-hook 'go-mode-hook 'dumb-jump-mode))
 #+END_SRC
 
 ** Enable =company-go=
@@ -1465,8 +1467,8 @@ No need to configure, just handy to have.
 If I am working on a separate library, I like to have it loaded on start.
 Just need to place it in the extra folder.
 #+BEGIN_SRC emacs-lisp
-(use-package load-dir
-  :config (setq load-dirs (concat config-load-path "extra/")))
+  (use-package load-dir
+    :config (setq load-dirs (concat config-load-path "extra/")))
 #+END_SRC
 
 
