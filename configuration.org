@@ -355,6 +355,19 @@ Thanks to Howard https://github.com/howardabrams/dot-files/blob/master/emacs-esh
 
   (bind-key "C-!" 'eshell-here)
 #+END_SRC
+
+** Show pwd relative to current project
+And copy to clipboard
+#+BEGIN_SRC emacs-lisp
+  (defun relative-pwd ()
+    (interactive)
+    (let* ((prj (cdr (project-current)))
+           (current-file buffer-file-truename)
+           (prj-name (file-name-as-directory (file-name-nondirectory (directory-file-name prj))))
+           (output (concat prj-name (file-relative-name current-file prj))))
+      (kill-new output)
+      (message output)))
+#+END_SRC
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
@@ -461,7 +474,7 @@ Useful if file changed on disk
            (plantuml . t)
            (python . t)
            (gnuplot . t)
-           ;; (sh . t)
+           (shell . t)
            (ledger . t)
            (org . t)
            (latex . t)
@@ -777,6 +790,16 @@ Thanks to [[https://github.com/magnars/.emacs.d/blob/master/defuns/editing-defun
 (electric-pair-mode 1)
 #+END_SRC
 
+* Package management
+** Enable =paradox=
+#+BEGIN_SRC emacs-lisp
+  (use-package paradox
+    :custom
+    (paradox-execute-asynchronously t)
+    :config
+    (paradox-enable))
+#+END_SRC
+
 
 * Navigation
 ** Enable =avy=
@@ -960,7 +983,7 @@ And get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/
   (setq projectile-go-function nil) ;; temporary workaround
   (use-package projectile
     :config
-    (projectile-global-mode)
+    (projectile-mode)
     (setq-default projectile-mode-line
      '(:eval
        (if (file-remote-p default-directory)
@@ -995,7 +1018,8 @@ With a twist of helm
     (setq flycheck-phpcs-standard "PSR2")
     (add-hook 'python-mode-hook 'flycheck-mode)
     (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
-    (add-hook 'json-mode-hook 'flycheck-mode))
+    (add-hook 'json-mode-hook 'flycheck-mode)
+    (add-hook 'rjsx-mode-hook 'flycheck-mode))
 #+END_SRC
 
 Add a little helm twist to it
@@ -1443,7 +1467,7 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
                  (shell-command
                   (mapconcat 'identity (list "wget" plantuml-link "-O" plantuml-target) " "))
                  (kill-buffer "*Shell Command Output*")))
-      (setq plantuml-jar-path plantuml-target)))
+      (setq org-plantuml-jar-path plantuml-target)))
 #+END_SRC
 * Extra Packages
 No need to configure, just handy to have.
