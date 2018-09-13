@@ -862,7 +862,8 @@ Not all the time, but handy.
 #+END_SRC
 ** Enable =rotate=
 #+BEGIN_SRC emacs-lisp
-(use-package rotate)
+  (use-package rotate
+    :config (global-set-key (kbd "C-|") 'rotate-layout))
 #+END_SRC
 ** Enable =anzu=
 #+BEGIN_SRC emacs-lisp
@@ -1222,7 +1223,8 @@ Absolutely necessary if working in Go
     :config
     (add-hook 'before-save-hook #'gofmt-before-save)
     (add-hook 'go-mode-hook 'flycheck-mode)
-    (add-hook 'go-mode-hook 'dumb-jump-mode))
+    (add-hook 'go-mode-hook 'dumb-jump-mode)
+    (setq go-packages-function 'go-packages-go-list))
 #+END_SRC
 
 ** Enable =company-go=
@@ -1259,6 +1261,10 @@ Absolutely necessary if working in Go
 #+BEGIN_SRC emacs-lisp
   (use-package go-direx)
 #+END_SRC
+
+** Enable =gotest=
+#+BEGIN_SRC emacs-lisp
+  (use-package gotest)
 
 * Python
 ** Setup =python-mode=
@@ -1444,6 +1450,21 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
     :config
     (set-face-background 'highlight-indentation-face "#8B6090")
     (add-hook 'yaml-mode-hook 'highlight-indentation-mode))
+#+END_SRC
+* Restclient
+** Setup =restclient=
+#+BEGIN_SRC emacs-lisp
+  (use-package restclient
+    :mode ("\\.restclient\\'" . restclient-mode))
+#+END_SRC
+** Enable =company-restclient=
+#+BEGIN_SRC emacs-lisp
+  (use-package company-restclient
+    :config (add-to-list 'company-backends 'company-restclient))
+#+END_SRC
+** Integrate to =org-mode=
+#+BEGIN_SRC emacs-lisp
+  (use-package ob-restclient)
 #+END_SRC
 * PlantUML
 ** Enable =plantuml-mode=
