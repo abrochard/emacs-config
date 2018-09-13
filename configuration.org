@@ -1265,6 +1265,7 @@ Absolutely necessary if working in Go
 ** Enable =gotest=
 #+BEGIN_SRC emacs-lisp
   (use-package gotest)
+#+END_SRC
 
 * Python
 ** Setup =python-mode=
