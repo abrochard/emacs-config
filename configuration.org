@@ -368,6 +368,17 @@ And copy to clipboard
       (kill-new output)
       (message output)))
 #+END_SRC
+
+** Add JIRA ticket number to commit messages
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'git-commit-setup-hook
+      '(lambda ()
+          (let ((has-ticket-title (string-match "^[A-Z]+-[0-9]+"
+                                      (magit-get-current-branch)))
+                (words (s-split-words (magit-get-current-branch))))
+            (if has-ticket-title
+                (insert (format "[%s-%s] " (car words) (car (cdr words))))))))
+#+END_SRC
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
