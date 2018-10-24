@@ -1225,6 +1225,7 @@ packages that you should install separately.
   go get -u github.com/rogpeppe/godef
   go get -u golang.org/x/tools/cmd/goimports
   go get -u github.com/jstemmer/gotags
+  go get github.com/matryer/moq
 #+END_SRC
 
 ** Enable =go-mode=
@@ -1278,11 +1279,26 @@ Absolutely necessary if working in Go
   (use-package gotest)
 #+END_SRC
 
+** Integrate =moq=
+Quick custom function to integrate with the moq tool to generate quick mocks
+#+BEGIN_SRC emacs-lisp
+  (defun moq ()
+    (interactive)
+    (let ((interface (word-at-point))
+          (test-file (concat (downcase (word-at-point)) "_test.go")))
+      (shell-command
+       (concat "moq -out " test-file " . " interface))
+      (find-file test-file)))
+#+END_SRC
+
 * Python
 ** Setup =python-mode=
+Need to install IPython first with =pip install ipython=.
+Assuming that it would be at least IPython 5 so ask for =simple-prompt=.
 #+BEGIN_SRC emacs-lisp
   (add-hook 'python-mode-hook 'electric-operator-mode)
-  (setq python-shell-interpreter "/usr/bin/ipython3") ;; much nicer than plain python
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args "--simple-prompt -i")
 #+END_SRC
 ** Enable =company-jedi=
 #+BEGIN_SRC emacs-lisp
