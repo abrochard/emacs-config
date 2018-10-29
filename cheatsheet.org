@@ -202,3 +202,18 @@
                   :key "C-c n TAB"
                   :description "Toggle node")
 #+END_SRC
+* Eyebrowse
+#+BEGIN_SRC emacs-lisp
+  (cheatsheet-add :group 'Eyebrowse
+                  :key "C-c C-w 1"
+                  :description "Switch to workspace 1")
+  (cheatsheet-add :group 'Eyebrowse
+                  :key "C-c C-w 2"
+                  :description "Switch to workspace 2")
+  (cheatsheet-add :group 'Eyebrowse
+                  :key "C-c C-w '"
+                  :description "Switch to previous workspace")
+  (cheatsheet-add :group 'Eyebrowse
+                  :key "C-c C-w \""
+                  :description "Close current workspace")
+#+END_SRC

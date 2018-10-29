@@ -899,6 +899,12 @@ Great to fold text
     (global-set-key (kbd "C-c n n") 'origami-show-only-node)
     (global-set-key (kbd "C-c n TAB") 'origami-recursively-toggle-node))
 #+END_SRC
+** Enable =eyebrowse=
+To manage window configuration
+#+BEGIN_SRC emacs-lisp
+  (use-package eyebrowse
+    :config (eyebrowse-mode t))
+#+END_SRC
 * Edition
 ** Enable =multiple-cursors=
 Useful to edit multiple similar lines
