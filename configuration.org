@@ -1296,6 +1296,15 @@ Quick custom function to integrate with the moq tool to generate quick mocks
        (concat "moq -out " test-file " . " interface))
       (find-file test-file)))
 #+END_SRC
+** See test coverage faster
+Simple function to see the test coverage of the current open buffer
+#+BEGIN_SRC emacs-lisp
+    (defun go-coverage-here ()
+      (interactive)
+      (shell-command "go test . -coverprofile=cover.out")
+      (go-coverage "cover.out")
+      (rotate:even-horizontal))
+#+END_SRC
 
 * Python
 ** Setup =python-mode=
