@@ -106,6 +106,12 @@ Best git client
 #+BEGIN_SRC emacs-lisp
   (use-package git-timemachine)
 #+END_SRC
+** Add =magit-gh-pull=
+Really useful to create github PRs from magit
+#+BEGIN_SRC emacs-lisp
+  (use-package magit-gh-pulls
+    :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
+#+END_SRC
 
 
 * Set personal information
