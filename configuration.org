@@ -411,7 +411,7 @@ Useful if file changed on disk
 
 ** Hungry delete forward available everywhere
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-c C-d") 'c-hungry-delete-forward)
+(global-set-key (kbd "C-c d") 'c-hungry-delete-forward)
 #+END_SRC
 
 ** Increment number easily
