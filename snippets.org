@@ -31,16 +31,16 @@
   # key: pack
   # --
   ;;; package --- Summary
-  
+
   ;;; Commentary:
-  
+
   ;;; Code:
-  
+
   $0
-  
+
   (provide '`(file-name-sans-extension (f-filename (buffer-file-name)))`)
   ;;; `(f-filename (buffer-file-name))` ends here
-  
+
 #+END_SRC
 
 ** request
@@ -65,6 +65,16 @@
 
 * go-mode
 
+** fmt
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/fmt
+  # -*- mode: snippet -*-
+  # name: fmt
+  # key: fmt
+  # --
+  fmt.Printf("\n\n[ADRIEN] $1 %+v\n\n", $1)$0
+#+END_SRC
+
 ** iferr
 
 #+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/iferr
@@ -88,8 +98,6 @@
   # --
   console.log($1);
 #+END_SRC
-
-* nxml-mode
 
 * org-mode
 
@@ -264,6 +272,32 @@
 
 * python-mode
 
+** class
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/class
+  # -*- mode: snippet -*-
+  # name: class
+  # key: class
+  # --
+  class `(s-upper-camel-case (f-filename (buffer-file-name)))`:
+      def __init__(self, $2):
+          self.$2 = $2
+
+      $0
+
+#+END_SRC
+
+** def
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/def
+  # -*- mode: snippet -*-
+  # name: def
+  # key: def
+  # --
+  def $1($2):
+      $0
+#+END_SRC
+
 ** dic
 
 #+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/dic
@@ -296,3 +330,12 @@
       $0
 #+END_SRC
 
+** print
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/print
+  # -*- mode: snippet -*-
+  # name: print
+  # key: p
+  # --
+  print('Value of $1 is "{}"'.format($1))
+#+END_SRC
