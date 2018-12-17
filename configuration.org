@@ -811,6 +811,22 @@ Thanks to [[https://github.com/magnars/.emacs.d/blob/master/defuns/editing-defun
     (paradox-enable))
 #+END_SRC
 
+* Internal Doc Enhancement
+** Setup =helpful= for prettier doc
+#+BEGIN_SRC emacs-lisp
+  (use-package helpful
+    :bind (("C-h f" . helpful-callable)
+           ("C-h v" . helpful-variable)
+           ("C-h k" . helpful-key)
+           ("C-h F" . helpful-function)
+           ("C-h C" . helpful-command)))
+#+END_SRC
+** Setup =elisp-demos= for code example
+#+BEGIN_SRC emacs-lisp
+  (use-package elisp-demos
+    :config (advice-add 'helpful-update
+                        :after #'elisp-demos-advice-helpful-update))
+#+END_SRC
 
 * Navigation
 ** Enable =avy=
