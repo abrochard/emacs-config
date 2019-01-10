@@ -426,14 +426,16 @@ Useful if file changed on disk
 #+END_SRC
 
 
-* Publishing and task management with Org-mode
+* Org-mode
 ** Set environment
 #+BEGIN_SRC emacs-lisp
   (use-package f)
   (use-package org)
   (setq org-directory "~/org/")
   (setq org-agendafiles '("~/org"))
-
+#+END_SRC
+** Utility functions
+#+begin_src emacs-lisp
   (defun org-file-path (filename)
     "Return the absolute address of an org file, given its relative name."
     (concat (file-name-as-directory org-directory) filename))
@@ -441,10 +443,8 @@ Useful if file changed on disk
   (defun org-find-file ()
     "Leverage Helm to quickly open any org files."
     (interactive)
-    (find-file (concat org-directory
-                       (helm-comp-read "Select your org file: "
-                                       (directory-files org-directory nil "\.org$")))))
-#+END_SRC
+    (find-file (org-file-path (completing-read "Select your org file: " (directory-files org-directory nil "\.org$")))))
+#+end_src
 ** Use syntax highlighting in source blocks while editing
 #+BEGIN_SRC emacs-lisp
   (setq org-src-fontify-natively t)
@@ -520,6 +520,11 @@ Make org files a bit more readable
   (use-package org-journal
     :custom (org-journal-dir "~/org/journal" "Set journal location"))
 #+END_SRC
+** Keep old org template expansions
+   at least for now
+#+begin_src emacs-lisp
+  (require 'org-tempo)
+#+end_src
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
 #+BEGIN_SRC emacs-lisp
