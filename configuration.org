@@ -520,11 +520,7 @@ Make org files a bit more readable
   (use-package org-journal
     :custom (org-journal-dir "~/org/journal" "Set journal location"))
 #+END_SRC
-** Keep old org template expansions
-   at least for now
-#+begin_src emacs-lisp
-  (require 'org-tempo)
-#+end_src
+
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
 #+BEGIN_SRC emacs-lisp
