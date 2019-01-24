@@ -385,6 +385,15 @@ And copy to clipboard
             (if has-ticket-title
                 (insert (format "[%s-%s] " (car words) (car (cdr words))))))))
 #+END_SRC
+
+** Get my public IP
+#+begin_src emacs-lisp
+  (defun what-is-my-ip ()
+    (interactive)
+    (message "IP: %s"
+             (with-current-buffer (url-retrieve-synchronously "https://api.ipify.org")
+               (buffer-substring (+ 1 url-http-end-of-headers) (point-max)))))
+#+end_src
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
