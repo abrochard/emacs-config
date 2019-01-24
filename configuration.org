@@ -1250,6 +1250,11 @@ Useful for React
     ;; install it separately via package-install
     ;; `M-x package-install [ret] company`
     (company-mode +1))
+
+  ;; formats the buffer before saving
+  (add-hook 'before-save-hook 'tide-format-before-save)
+
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
 #+END_SRC
 * Go
 A lot of the config is based on gocode, godef, goimports and gotags
