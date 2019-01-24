@@ -795,6 +795,12 @@ Thanks to [[https://github.com/magnars/.emacs.d/blob/master/defuns/editing-defun
 #+BEGIN_SRC emacs-lisp
   (setq comment-start "#")
 #+END_SRC
+** Enable =poporg=
+   So I can comment code from an org-mode buffer
+   #+begin_src emacs-lisp
+     (use-package poporg
+       :bind (("C-c \"" . poporg-dwim)))
+   #+end_src
 ** Enable =prog-fill=
 #+BEGIN_SRC emacs-lisp
   (use-package prog-fill
