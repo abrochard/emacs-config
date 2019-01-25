@@ -612,6 +612,17 @@ Aweful atrocious noise on Windows
   (global-set-key [mouse-9] 'switch-to-next-buffer)
 #+END_SRC
 
+** Always show magit on the right side
+#+begin_src emacs-lisp
+  (setq display-buffer-alist
+          ;; Magit to always show on the right side
+        '(("magit: *"
+           (display-buffer-reuse-window display-buffer-in-side-window)
+           (side . right)
+           (reusable-frames . nil)
+           (window-width . (/ (window-width) 2)))))
+#+end_src
+
 * Better defaults
 Inspired from [[https://github.com/technomancy/better-defaults]]
 

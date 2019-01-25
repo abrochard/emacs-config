@@ -112,7 +112,7 @@
 
 (defun bootstrap-config ()
   "Pull latest config and tangle if needed."
-  (if (not config-no-auto-update)
+  (unless config-no-auto-update
       (shell-command (concat "cd " config-load-path " && git pull")))
   (dolist (file config-org-files)
     (let ((orgfile (concat config-load-path file))
@@ -124,7 +124,7 @@
 
 (defun bootstrap-config-fallback ()
   "Just in case."
-  (if (not config-no-auto-update)
+  (unless config-no-auto-update
       (shell-command (concat "cd " config-load-path " && git pull")))
   (package-initialize)
   (require 'org)
