@@ -1587,6 +1587,8 @@ No need to configure, just handy to have.
   (use-package prodigy)
   (use-package vlf)
   (use-package helm-flyspell)
+  (use-package kubel)
+  (use-package kubernetes-helm)
 #+END_SRC
 
 * Extra file loading
