@@ -102,17 +102,15 @@ Best git client
 (use-package magit
   :bind ("C-x g" . magit-status))
 #+END_SRC
+** Enable =forge=
+For interactions with github.
+#+begin_src emacs-lisp
+  (use-package forge)
+#+end_src
 ** Add =git-timemachine=
 #+BEGIN_SRC emacs-lisp
   (use-package git-timemachine)
 #+END_SRC
-** Add =magit-gh-pull=
-Really useful to create github PRs from magit
-#+BEGIN_SRC emacs-lisp
-  (use-package magit-gh-pulls
-    :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
-#+END_SRC
-
 
 * Set personal information
 #+BEGIN_SRC emacs-lisp
