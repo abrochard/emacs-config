@@ -450,7 +450,7 @@ Useful if file changed on disk
   (defun org-find-file ()
     "Leverage Helm to quickly open any org files."
     (interactive)
-    (find-file (org-file-path (completing-read "Select your org file: " (directory-files org-directory nil "\.org$")))))
+    (find-file (org-file-path (helm-comp-read "Select your org file: " (directory-files org-directory nil "\.org$")))))
 #+end_src
 ** Use syntax highlighting in source blocks while editing
 #+BEGIN_SRC emacs-lisp
