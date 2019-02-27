@@ -1568,6 +1568,44 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
                  (kill-buffer "*Shell Command Output*")))
       (setq org-plantuml-jar-path plantuml-target)))
 #+END_SRC
+* Redis
+A few utility functions for my local Redis.
+#+begin_src emacs-lisp
+  (defun redis--command (cmd)
+    "Format command for the redis-cli.
+
+  CMD is the redis command."
+    (format "echo \"%s\" | redis-cli" cmd))
+
+  (defun redis--select-key ()
+    "Return all redis keys as list."
+    (let* ((command (redis--command "KEYS *"))
+           (keys (split-string (shell-command-to-string command) "\n")))
+      (completing-read "Redis key: " keys)))
+
+  (defun redis-set-key (key value)
+    "Set a key value pair in redis.
+
+  KEY is the key.
+  VALUE is the value."
+    (interactive "sKey: \nsValue: ")
+    (shell-command (redis--command (format "SET %s %s" key value))))
+
+  (defun redis-get-key ()
+    "Get the value for a key in redis."
+    (interactive)
+    (let ((key (redis--select-key)))
+      (message
+       "Value: %s"
+       (replace-regexp-in-string "\n" "" (shell-command-to-string (redis--command (format "GET %s" key)))))))
+
+  (defun redis-delete-key ()
+    "Delete a key from local redis instance."
+    (interactive)
+    (let ((key (redis--select-key)))
+      (shell-command (redis--command (format "DEL %s" key)))
+      (message "Key %s deleted." key)))
+#+end_src
 * Extra Packages
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
