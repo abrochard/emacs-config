@@ -1244,6 +1244,7 @@ Useful for React
 #+BEGIN_SRC emacs-lisp
   (use-package rjsx-mode)
 #+END_SRC
+* Typescript
 ** Enable =tide=
 #+BEGIN_SRC emacs-lisp
   (use-package tide)
@@ -1255,9 +1256,6 @@ Useful for React
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
     (eldoc-mode +1)
     (tide-hl-identifier-mode +1)
-    ;; company is an optional dependency. You have to
-    ;; install it separately via package-install
-    ;; `M-x package-install [ret] company`
     (company-mode +1))
 
   ;; formats the buffer before saving
@@ -1265,6 +1263,17 @@ Useful for React
 
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
 #+END_SRC
+** Enable =tide= for =tsx=
+#+begin_src emacs-lisp
+  (use-package web-mode)
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (setup-tide-mode))))
+  ;; enable typescript-tslint checker
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+#+end_src
 * Go
 A lot of the config is based on gocode, godef, goimports and gotags
 packages that you should install separately.
