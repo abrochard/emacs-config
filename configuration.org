@@ -655,7 +655,7 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
   (use-package dracula-theme
     :config (load-theme 'dracula t)
     (set-face-background 'mode-line "#510370")
-    (set-face-background 'mode-line-inactive "black"))
+    (set-face-background 'mode-line-inactive "#212020"))
 #+END_SRC
 
 * Customize the mode-line
