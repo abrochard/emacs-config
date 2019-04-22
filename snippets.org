@@ -87,6 +87,16 @@
   }
 #+END_SRC
 
+** return
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/return
+  # -*- mode: snippet -*-
+  # name: return
+  # key: r
+  # --
+  return $0
+#+END_SRC
+
 * js2-mode
 
 ** console
@@ -97,6 +107,16 @@
   # key: log
   # --
   console.log($1);
+#+END_SRC
+
+** fct
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/js2-mode/fct
+  # -*- mode: snippet -*-
+  # name: fct
+  # key: f
+  # --
+  ($1) => {$0}
 #+END_SRC
 
 * org-mode
@@ -279,7 +299,7 @@
   # name: class
   # key: class
   # --
-  class `(s-upper-camel-case (f-filename (buffer-file-name)))`:
+  class `(s-upper-camel-case (f-no-ext (f-filename (buffer-file-name))))`:
       def __init__(self, $2):
           self.$2 = $2
 
@@ -330,11 +350,11 @@
       $0
 #+END_SRC
 
-** print
+** p
 
-#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/print
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/p
   # -*- mode: snippet -*-
-  # name: print
+  # name: p
   # key: p
   # --
   print('Value of $1 is "{}"'.format($1))
