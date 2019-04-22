@@ -1634,6 +1634,7 @@ No need to configure, just handy to have.
   (use-package helm-flyspell)
   (use-package kubel)
   (use-package kubernetes-helm)
+  (use-package mermaid-mode)
 #+END_SRC
 
 * Extra file loading
