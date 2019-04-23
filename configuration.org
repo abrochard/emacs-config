@@ -142,16 +142,6 @@ For interactions with github.
              buffer-file-name))))
 #+END_SRC
 
-** Show xkcd on start
-#+BEGIN_SRC emacs-lisp
-(use-package xkcd)
-(defun showxkcd ()
-  "Call this to show xkcd comic of the day on start"
-  (require 'xkcd)
-  (xkcd)
-  (switch-to-buffer "*xkcd*"))
-#+END_SRC
-
 ** Replace JSON web token in buffer
 This is regexp based
 #+BEGIN_SRC emacs-lisp
@@ -566,19 +556,6 @@ And set it in emacs-lisp mode
 #+BEGIN_SRC emacs-lisp
 (setq initial-scratch-message nil)
 #+END_SRC
-** Show xkcd comic of the day on start
-Only on mac or Linux as windows support isn't there yet.
-Disabled for now because too slow on start.
-#+BEGIN_SRC emacs-lisp :tangle no
-(cond
- ((string-equal system-type "darwin") ; Mac OS X
-  (progn
-    (showxkcd)))
- ((string-equal system-type "gnu/linux") ; linux
-  (progn
-    (showxkcd))))
-#+END_SRC
-
 * Window behavior
 ** Disable the bell
 Aweful atrocious noise on Windows
@@ -716,13 +693,11 @@ There is surely a better way to do this.
 * Dictionary Configuration
 Because Windows sucks I have to do this to use =flyspell=
 #+BEGIN_SRC emacs-lisp
-(if (eq system-type 'windows-nt)
-    (progn
-      (add-to-list 'exec-path "C:/Aspell/bin/")
-      (setq ispell-program-name "aspell")
-      (require 'ispell)
-      )
-  )
+  (if (eq system-type 'windows-nt)
+      (progn
+        (add-to-list 'exec-path "C:/Aspell/bin/")
+        (setq ispell-program-name "aspell")
+        (require 'ispell)))
 #+END_SRC
 
 * Snippets
@@ -1614,6 +1589,12 @@ A few utility functions for my local Redis.
     (let ((key (redis--select-key)))
       (shell-command (redis--command (format "DEL %s" key)))
       (message "Key %s deleted." key)))
+
+  (defun redis-set-expire (ttl)
+    "Set ttl from local redis instance."
+    (interactive "nExpiry in seconds: ")
+    (let ((key (redis--select-key)))
+      (shell-command (redis--command (format "EXPIRE %s %s" key ttl)))))
 #+end_src
 * Extra Packages
 No need to configure, just handy to have.
