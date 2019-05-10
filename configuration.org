@@ -382,6 +382,18 @@ And copy to clipboard
              (with-current-buffer (url-retrieve-synchronously "https://api.ipify.org")
                (buffer-substring (+ 1 url-http-end-of-headers) (point-max)))))
 #+end_src
+
+** Insert a commit message
+Thanks to [[http://whatthecommit.com][whatthecommit.com]]
+#+begin_src emacs-lisp
+  (defun what-the-commit ()
+    (interactive)
+    (insert
+     (with-current-buffer
+         (url-retrieve-synchronously "http://whatthecommit.com")
+       (re-search-backward "<p>\\([^<]+\\)\n<\/p>")
+       (match-string 1))))
+#+end_src
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
