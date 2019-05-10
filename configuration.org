@@ -529,6 +529,10 @@ Make org files a bit more readable
   (use-package org-journal
     :custom (org-journal-dir "~/org/journal" "Set journal location"))
 #+END_SRC
+** Prevent editing invisible text
+#+BEGIN_SRC emacs-lisp
+  (setq org-catch-invisible-edits 'show-and-error)
+#+END_SRC
 
 * Register RSS feeds
 Uses =elfeed= and =elfeed-org=
