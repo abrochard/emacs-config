@@ -441,7 +441,7 @@ Useful if file changed on disk
   (use-package f)
   (use-package org)
   (setq org-directory "~/org/")
-  (setq org-agendafiles '("~/org"))
+  (setq org-agenda-files '("~/org"))
 #+END_SRC
 ** Utility functions
 #+begin_src emacs-lisp
