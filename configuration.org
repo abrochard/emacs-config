@@ -1632,6 +1632,7 @@ No need to configure, just handy to have.
   (use-package kubel)
   (use-package kubernetes-helm)
   (use-package mermaid-mode)
+  (use-package todoist)
 #+END_SRC
 
 * Extra file loading
