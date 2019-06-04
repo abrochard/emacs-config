@@ -1191,10 +1191,11 @@ And set PSR-2 as coding style
 ** Enable =web-mode=
 So much better than =html-mode=
 #+BEGIN_SRC emacs-lisp
-(use-package web-mode
-  :mode "\\.phtml\\'"
-  :mode "\\.volt\\'"
-  :mode "\\.html\\'")
+  (use-package web-mode
+    :mode "\\.phtml\\'"
+    :mode "\\.volt\\'"
+    :mode "\\.html\\'"
+    :mode "\\.svelte\\'")
 #+END_SRC
 
 ** Enable =emmet-mode=
