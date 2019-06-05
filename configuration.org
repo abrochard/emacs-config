@@ -1046,7 +1046,16 @@ With a twist of helm
     :config
     (add-hook 'after-init-hook 'global-company-mode)
     (setq company-minimum-prefix-length 2)
-    (setq company-dabbrev-downcase nil))
+    (setq company-dabbrev-downcase nil)
+    (bind-keys :map company-active-map
+               ("C-d" . company-show-doc-buffer)
+               ("C-l" . company-show-location)
+               ("C-n" . company-select-next)
+               ("C-p" . company-select-previous)
+               ("C-t" . company-select-next)
+               ("C-s" . company-select-previous)
+               ("TAB" . company-complete)))
+
   (use-package company-go)
 #+END_SRC
 ** Enable =flycheck=
