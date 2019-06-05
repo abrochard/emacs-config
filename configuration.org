@@ -1357,6 +1357,16 @@ Simple function to see the test coverage of the current open buffer
       (go-coverage "cover.out")
       (rotate:even-horizontal))
 #+END_SRC
+** Update dependency under cursor
+Not the best code but will do the trick with =dep=
+#+begin_src emacs-lisp
+  (defun go-dep-update ()
+    (interactive)
+    (beginning-of-line)
+    (re-search-forward "\\(github.com\/[^\/]+\/[^\/]+\\)")
+    (let ((repo (match-string 0)))
+      (async-shell-command (format "dep ensure -v -update %s" repo) "*dep update*")))
+#+end_src
 
 * Python
 ** Setup =python-mode=
