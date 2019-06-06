@@ -75,7 +75,8 @@ And force the install of missing packages.
     (setq helm-M-x-fuzzy-match t)
     (setq helm-locate-fuzzy-match t)
     (setq helm-lisp-fuzzy-completion t)
-    (setq helm-bookmark-show-location t))
+    (setq helm-bookmark-show-location t)
+    (setq helm-buffer-max-length 30))
 #+END_SRC
 ** Imenu + Helm with =imenu-anywhere=
 But I find pulling from other buffer confusing so I limit to current buffer
