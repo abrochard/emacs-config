@@ -1246,6 +1246,14 @@ Useful for React
 #+BEGIN_SRC emacs-lisp
   (use-package rjsx-mode)
 #+END_SRC
+** Enable =npm-mode=
+#+begin_src emacs-lisp
+  (use-package npm-mode
+    :defer t
+    :hook
+    (js2-mode-hook  . npm-mode)
+    (rjsx-mode-hook . npm-mode))
+#+end_src
 * Typescript
 ** Enable =tide=
 #+BEGIN_SRC emacs-lisp
