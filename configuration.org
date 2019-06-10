@@ -1654,6 +1654,7 @@ No need to configure, just handy to have.
   (use-package kubernetes-helm)
   (use-package mermaid-mode)
   (use-package todoist)
+  (use-package protobuf-mode)
 #+END_SRC
 
 * Extra file loading
