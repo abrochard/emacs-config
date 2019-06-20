@@ -1205,7 +1205,11 @@ So much better than =html-mode=
     :mode "\\.phtml\\'"
     :mode "\\.volt\\'"
     :mode "\\.html\\'"
-    :mode "\\.svelte\\'")
+    :mode "\\.svelte\\'"
+    :config
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-css-indent-offset 2))
 #+END_SRC
 
 ** Enable =emmet-mode=
