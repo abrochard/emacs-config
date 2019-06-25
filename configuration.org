@@ -1307,7 +1307,9 @@ Absolutely necessary if working in Go
     (add-hook 'before-save-hook #'gofmt-before-save)
     (add-hook 'go-mode-hook 'flycheck-mode)
     (add-hook 'go-mode-hook 'dumb-jump-mode)
-    (setq go-packages-function 'go-packages-go-list))
+    (setq go-packages-function 'go-packages-go-list)
+    :bind
+    (:map go-mode-map ("M-." . godef-jump)))
 #+END_SRC
 
 ** Enable =company-go=
