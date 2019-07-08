@@ -1090,12 +1090,13 @@ And add a couple of rules for PHP and JS
                                           (cons " = > " " => "))
     (electric-operator-add-rules-for-mode 'php-mode
                                           (cons " < ?" "<?"))
-    (electric-operator-add-rules-for-mode 'js2-mode
-                                          (cons " = > " " => "))
-    (electric-operator-add-rules-for-mode 'js2-jsx-mode
-                                          (cons " = > " " => "))
-    (electric-operator-add-rules-for-mode 'rjsx-mode
-                                          (cons " = > " " => ")))
+    ;; (electric-operator-add-rules-for-mode 'js2-mode
+    ;;                                       (cons " = > " " => "))
+    ;; (electric-operator-add-rules-for-mode 'js2-jsx-mode
+    ;;                                       (cons " = > " " => "))
+    ;; (electric-operator-add-rules-for-mode 'rjsx-mode
+    ;;                                       (cons " = > " " => "))
+    )
 #+END_SRC
 
 ** Enable =dumb-jump=
