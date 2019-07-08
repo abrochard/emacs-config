@@ -395,6 +395,13 @@ Thanks to [[http://whatthecommit.com][whatthecommit.com]]
        (re-search-backward "<p>\\([^<]+\\)\n<\/p>")
        (match-string 1))))
 #+end_src
+** Instant kill the current buffer
+#+begin_src emacs-lisp
+  (defun insta-kill-buffer ()
+    (interactive)
+    (kill-buffer))
+  (global-set-key (kbd "C-z") 'insta-kill-buffer)
+#+end_src
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
