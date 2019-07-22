@@ -112,6 +112,12 @@ For interactions with github.
 #+BEGIN_SRC emacs-lisp
   (use-package git-timemachine)
 #+END_SRC
+** Add =magit-circleci=
+For CircleCI integration
+#+begin_src emacs-lisp
+  (use-package magit-circleci
+    :config (magit-circleci-mode))
+#+end_src
 
 * Set personal information
 #+BEGIN_SRC emacs-lisp
