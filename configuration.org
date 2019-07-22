@@ -698,8 +698,8 @@ Use the Hack font from [[https://github.com/chrissimpkins/Hack][chrissimpkins]]
           (x-list-fonts "Hack")
         (error nil))
       (progn
-        (add-to-list 'default-frame-alist '(font . "Hack-10"))
-        (set-face-attribute 'default nil :font "Hack-10")))
+        (add-to-list 'default-frame-alist '(font . "Hack"))
+        (set-face-attribute 'default nil :font "Hack")))
 #+END_SRC
 
 * Terminal Configuration
