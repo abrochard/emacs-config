@@ -1698,8 +1698,7 @@ No need to configure, just handy to have.
 If I am working on a separate library, I like to have it loaded on start.
 Just need to place it in the extra folder.
 #+BEGIN_SRC emacs-lisp
-  (use-package load-dir
-    :config (setq load-dirs (concat config-load-path "extra/")))
+  (mapc #'load (directory-files (concat config-load-path "extra/") t "\\.el$"))
 #+END_SRC
 
 
