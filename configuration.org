@@ -1580,7 +1580,12 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
 #+END_SRC
 ** Enable =flycheck-yamllint=
 #+BEGIN_SRC emacs-lisp
-  (use-package flycheck-yamllint)
+  (use-package flycheck-yamllint
+    :defer t
+    :init
+    (progn
+      (eval-after-load 'flycheck
+        '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
 #+END_SRC
 ** Enable indentation highlight
 #+BEGIN_SRC emacs-lisp
