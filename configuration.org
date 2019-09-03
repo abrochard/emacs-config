@@ -655,6 +655,10 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 #+BEGIN_SRC emacs-lisp
   (put 'narrow-to-region 'disabled nil)
 #+END_SRC
+** Bind the mac command to control
+#+begin_src emacs-lisp
+  (setq mac-command-modifier 'control)
+#+end_src
 
 
 * Load Cool Theme
