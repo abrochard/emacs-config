@@ -1401,6 +1401,11 @@ Not the best code but will do the trick with =dep=
       (async-shell-command (format "dep ensure -v -update %s" repo) "*dep update*")))
 #+end_src
 
+** Prevent modula major mode for =go.mod= files
+#+begin_src emacs-lisp
+  (setq auto-mode-alist
+        (append '(("go.mod" . text-mode)) auto-mode-alist))
+#+end_src
 * Python
 ** Setup =python-mode=
 Need to install IPython first with =pip install ipython=.
