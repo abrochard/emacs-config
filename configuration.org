@@ -1759,6 +1759,20 @@ A few utility functions for my local Redis.
     (let ((key (redis--select-key)))
       (shell-command (redis--command (format "EXPIRE %s %s" key ttl)))))
 #+end_src
+* Prodigy
+Great package to control multiple services.
+#+begin_src emacs-lisp
+  (use-package prodigy)
+#+end_src
+** Define Redis Service
+#+begin_src emacs-lisp
+  (prodigy-define-service
+    :name "Redis"
+    :command "redis-server"
+    :port 6379
+    :stop-signal 'sigterm
+    :kill-process-buffer-on-stop t)
+#+end_src
 * Extra Packages
 No need to configure, just handy to have.
 #+BEGIN_SRC emacs-lisp
@@ -1773,7 +1787,6 @@ No need to configure, just handy to have.
   (use-package csv-mode)
   ;; (use-package csharp-mode)
   (use-package keychain-environment)
-  (use-package prodigy)
   (use-package vlf)
   (use-package helm-flyspell)
   (use-package kubel)
