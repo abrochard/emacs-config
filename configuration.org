@@ -29,6 +29,26 @@ Inspired by [[https://ogbe.net/emacsconfig.html][ogbe.net]] and [[https://glyph.
 #+END_SRC
 ** TODO Do more with local certs and check bad ssl
 
+* Garbage Collection Tuning
+#+begin_src emacs-lisp
+  (defmacro k-time (&rest body)
+    "Measure and return the time it takes evaluating BODY."
+    `(let ((time (current-time)))
+       ,@body
+       (float-time (time-since time))))
+
+  ;; When idle for 30sec run the GC no matter what.
+  (defvar k-gc-timer
+    (run-with-idle-timer 30 t
+                         (lambda ()
+                           (message "Garbage Collector has run for %.06fsec"
+                                    (k-time (garbage-collect))))))
+
+  ;; Set garbage collection threshold to 1GB.
+  (setq gc-cons-threshold #x40000000)
+  ;; Set garbage collection to 20% of heap
+  (setq gc-cons-percentage 0.2)
+#+end_src
 
 * Automatic package installation
 ** Install =use-package=
