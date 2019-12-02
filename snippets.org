@@ -65,6 +65,25 @@
 
 * go-mode
 
+** assert
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/assert
+  # -*- mode: snippet -*-
+  # name: assert
+  # key: assert
+  # --
+  "github.com/stretchr/testify/assert"
+#+END_SRC
+
+** equal
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/equal
+  # key: eq
+  # name: equal
+  # --
+  assert.Equal(t, $1, $2)$0
+#+END_SRC
+
 ** fmt
 
 #+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/fmt
@@ -87,6 +106,16 @@
   }
 #+END_SRC
 
+** package
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/package
+  # -*- mode: snippet -*-
+  # name: package
+  # key: pack
+  # --
+  package `(f-base (f-dirname (buffer-file-name)))`
+#+END_SRC
+
 ** return
 
 #+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/return
@@ -95,6 +124,19 @@
   # key: r
   # --
   return $0
+#+END_SRC
+
+** test
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/test
+  # -*- mode: snippet -*-
+  # name: test
+  # key: test
+  # --
+  func Test$1(t *testing.T) {
+  	$0
+  }
+  
 #+END_SRC
 
 * js2-mode
