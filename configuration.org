@@ -1474,17 +1474,6 @@ A few custom functions to add to go-mode. Assumes that the project structure is 
   (define-key go-mode-map (kbd "C-c t") #'go-test)
 
 #+end_src
-** Update dependency under cursor
-Not the best code but will do the trick with =dep=
-#+begin_src emacs-lisp
-  (defun go-mod-update ()
-    (interactive)
-    (beginning-of-line)
-    (re-search-forward "\\(github.com\/[^\/]+\/[^\/]+\\)")
-    (let ((repo (match-string 0)))
-      (async-shell-command (format "go get -u %s" repo) "*go mod update*")))
-#+end_src
-
 ** Prevent modula major mode for =go.mod= files
 #+begin_src emacs-lisp
   (setq auto-mode-alist
