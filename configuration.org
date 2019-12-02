@@ -1401,15 +1401,79 @@ Quick custom function to integrate with the moq tool to generate quick mocks
        (concat "moq -out " test-file " . " interface))
       (find-file test-file)))
 #+END_SRC
-** See test coverage faster
-Simple function to see the test coverage of the current open buffer
-#+BEGIN_SRC emacs-lisp
+** Custom testing and utility functions
+A few custom functions to add to go-mode. Assumes that the project structure is standard.
+#+begin_src emacs-lisp
+  (require 'go-mode)
+  (require 'transient)
+  (require 'magit)
+
+  (defun go-test-pkg ()
+    "Unit test the current package."
+    (interactive)
+    (let ((buffer-name "*go-test*"))
+      ;; (kill-buffer buffer-name)
+      (pop-to-buffer buffer-name)
+      (delete-region (point-min) (point-max))
+      (start-process buffer-name buffer-name "go" "test" ".")))
+
+  (defun go-test-repo ()
+    "Unit test all packages."
+    (interactive)
+    (let* ((repo-path (magit-toplevel))
+           (repo-name (file-name-nondirectory (directory-file-name repo-path)))
+           (buffer-name (format "*go-test-%s*" repo-name))
+           (default-directory repo-path))
+      (pop-to-buffer buffer-name)
+      (delete-region (point-min) (point-max))
+      (start-process buffer-name buffer-name "go" "test" "./..." "-cover")))
+
   (defun go-coverage-here ()
+    "Show go coverage of current file."
     (interactive)
     (shell-command "go test . -coverprofile=cover.out")
-    (go-coverage "cover.out")
-    (rotate:even-horizontal))
-#+END_SRC
+    (go-coverage "cover.out"))
+
+  (defun go-build-repo ()
+    "Build the current repo."
+    (interactive)
+    (let* ((repo-path (magit-toplevel))
+           (repo-name (file-name-nondirectory (directory-file-name repo-path)))
+           (buffer-name (format "*go-build-%s*" repo-name))
+           (default-directory (format "%s/cmd/%s" repo-path repo-name)))
+      (pop-to-buffer buffer-name)
+      (delete-region (point-min) (point-max))
+      (start-process buffer-name buffer-name "go" "build")))
+
+  (defun go-run-repo ()
+    "Run the current repo."
+    (interactive)
+    (let* ((repo-path (magit-toplevel))
+           (repo-name (file-name-nondirectory (directory-file-name repo-path)))
+           (buffer-name (format "*go-run-%s*" repo-name))
+           (default-directory (format "%s/cmd/%s" repo-path repo-name)))
+      (pop-to-buffer buffer-name)
+      (delete-region (point-min) (point-max))
+      (start-process buffer-name buffer-name "go" "run" ".")))
+
+  (defun go-mod-tidy ()
+    "Run go mod tidy."
+    (interactive)
+    (shell-command "go mod tidy"))
+
+  (define-transient-command go-test ()
+    "Go Test Suite"
+    ["Actions"
+     ("t" "Unit test current package" go-test-pkg)
+     ("a" "Unit test current repository" go-test-repo)
+     ("c" "Coverage current file" go-coverage-here)
+     ("b" "Build current repository" go-build-repo)
+     ("r" "Run current repository" go-run-repo)
+     ("m" "Run go mod tidy" go-mod-tidy)])
+
+  (define-key go-mode-map (kbd "C-c t") #'go-test)
+
+#+end_src
 ** Update dependency under cursor
 Not the best code but will do the trick with =dep=
 #+begin_src emacs-lisp
