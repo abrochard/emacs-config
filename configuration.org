@@ -428,6 +428,17 @@ Thanks to [[http://whatthecommit.com][whatthecommit.com]]
     (kill-buffer))
   (global-set-key (kbd "C-z") 'insta-kill-buffer)
 #+end_src
+** Toggle presentation setup
+#+begin_src emacs-lisp
+  (defun toggle-presentation ()
+    "Toggle presentation features, like font increase."
+    (interactive)
+    (let ((regular-fontsize 140)
+          (presentation-fontsize 240))
+      (if (equal (face-attribute 'default :height) regular-fontsize)
+          (set-face-attribute 'default nil :height presentation-fontsize)
+        (set-face-attribute 'default nil :height regular-fontsize))))
+#+end_src
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
