@@ -1466,7 +1466,8 @@ A few custom functions to add to go-mode. Assumes that the project structure is 
      ("c" "Coverage current file" go-coverage-here)
      ("b" "Build current repository" go-build-repo)
      ("r" "Run current repository" go-run-repo)
-     ("m" "Run go mod tidy" go-mod-tidy)])
+     ("m" "Run go mod tidy" go-mod-tidy)
+     ("i" "Add import" go-import-add)])
 
   (define-key go-mode-map (kbd "C-c t") #'go-test)
 
