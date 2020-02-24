@@ -1793,6 +1793,7 @@ No need to configure, just handy to have.
   (use-package mermaid-mode)
   (use-package todoist)
   (use-package protobuf-mode)
+  (use-package walkman)
 #+END_SRC
 
 * Extra file loading
