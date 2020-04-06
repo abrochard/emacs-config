@@ -503,13 +503,13 @@ Useful if file changed on disk
     "Quickly open my engineering notebook and scan the headlines."
     (interactive)
     (let ((notebook (org-file-path "eng-notebook.org"))
-          (entries '()))
-      (find-file-other-window notebook)
-      (goto-char (point-min))
-      (while (re-search-forward "^* \\(.*\\)$" (point-max) t)
-        (push (cons (match-string-no-properties 1) (point)) entries))
-      (setq entries (nreverse entries))
-      (goto-char (assoc-default (completing-read "Eng entry: " (mapcar 'car entries) nil t) entries))))
+        (entries '()))
+    (find-file-other-window notebook)
+    (setq entries (org-element-map (org-element-parse-buffer) 'headline
+                    (lambda (headline)
+                      (cons (org-element-property :raw-value headline) (org-element-property :begin headline)))))
+    (goto-char (assoc-default (completing-read "Eng entry: " entries) entries))
+    (org-show-subtree)))
 #+end_src
 ** Use syntax highlighting in source blocks while editing
 #+BEGIN_SRC emacs-lisp
