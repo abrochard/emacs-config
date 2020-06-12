@@ -515,6 +515,10 @@ Useful if file changed on disk
 #+BEGIN_SRC emacs-lisp
   (setq org-src-fontify-natively t)
 #+END_SRC
+** Change source block editing behavior
+#+begin_src emacs-lisp
+  (setq org-src-window-setup 'split-window-right)
+#+end_src
 ** Set a dark background for source blocks
 #+BEGIN_SRC emacs-lisp
   (require 'color)
@@ -522,7 +526,6 @@ Useful if file changed on disk
       (set-face-attribute 'org-block nil :background
                           (color-darken-name
                            (face-attribute 'default :background) 3)))
-
 #+END_SRC
 ** Setup Org Agenda
 #+BEGIN_SRC emacs-lisp
@@ -906,13 +909,13 @@ Thanks to [[https://github.com/magnars/.emacs.d/blob/master/defuns/editing-defun
 ** Enable =win-switch=
 Super nice to switch between frames and buffers
 #+BEGIN_SRC emacs-lisp
-(use-package win-switch
-  :bind ("C-x o" . win-switch-dispatch)
-  :config
-  (setq win-switch-provide-visual-feedback t)
-  (setq win-switch-feedback-background-color "purple")
-  (setq win-switch-feedback-foreground-color "white")
-  (win-switch-setup-keys-default))
+  (use-package win-switch
+    :bind ("C-x o" . win-switch-dispatch)
+    :config
+    (setq win-switch-provide-visual-feedback t)
+    (setq win-switch-feedback-background-color "purple")
+    (setq win-switch-feedback-foreground-color "white")
+    (win-switch-setup-keys-default))
 #+END_SRC
 
 ** Enable =which-key=
