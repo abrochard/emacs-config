@@ -1437,7 +1437,7 @@ A few custom functions to add to go-mode. Assumes that the project structure is 
   (defun go-test-pkg ()
     "Unit test the current package."
     (interactive)
-    (compile "go test ."))
+    (compile "go test -cover ."))
 
   (defun go-test-repo ()
     "Unit test all packages."
