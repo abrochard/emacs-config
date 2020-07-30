@@ -713,6 +713,13 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
     :config (load-theme 'dracula t)
     (set-face-background 'mode-line "#510370")
     (set-face-background 'mode-line-inactive "#212020"))
+
+  (custom-set-faces
+   '(mode-line ((t (:background "#510370" :foreground "white")))))
+
+  (set-face-attribute
+   'helm-selection nil
+   :background "#510370" :foreground "white")
 #+END_SRC
 
 * Customize the mode-line
