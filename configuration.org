@@ -120,8 +120,9 @@ For now it's just git, but can add more systems as necessary.
 ** Enable magit
 Best git client
 #+BEGIN_SRC emacs-lisp
-(use-package magit
-  :bind ("C-x g" . magit-status))
+  (use-package magit
+    :bind (("C-x g" . magit-status)
+           ("C-c g" . magit-file-dispatch)))
 #+END_SRC
 ** Enable =forge=
 For interactions with github.
