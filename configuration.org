@@ -1128,7 +1128,6 @@ With a twist of helm
                ("C-s" . company-select-previous)
                ("TAB" . company-complete)))
 
-  (use-package company-go)
 #+END_SRC
 ** Enable =flycheck=
 #+BEGIN_SRC emacs-lisp
@@ -1361,10 +1360,10 @@ Useful for React
   (flycheck-add-mode 'typescript-tslint 'web-mode)
 #+end_src
 * Go
-A lot of the config is based on gocode, godef, goimports and gotags
+A lot of the config is based on gopls, godef, goimports and gotags
 packages that you should install separately.
 #+BEGIN_SRC bash :tangle no
-  go get -u github.com/mdempsky/gocode
+  go get golang.org/x/tools/gopls@latest
   go get -u github.com/rogpeppe/godef
   go get -u golang.org/x/tools/cmd/goimports
   go get -u github.com/jstemmer/gotags
@@ -1372,24 +1371,16 @@ packages that you should install separately.
 #+END_SRC
 
 ** Enable =go-mode=
-Absolutely necessary if working in Go
+Absolutely necessary for working in Go
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
     :config
-    (add-hook 'before-save-hook #'gofmt-before-save)
+    ;; (add-hook 'before-save-hook #'gofmt-before-save)
     (add-hook 'go-mode-hook 'flycheck-mode)
     (add-hook 'go-mode-hook 'dumb-jump-mode)
     (setq go-packages-function 'go-packages-go-list)
     :bind
     (:map go-mode-map ("M-." . godef-jump)))
-#+END_SRC
-
-** Enable =company-go=
-#+BEGIN_SRC emacs-lisp
-  (use-package company-go
-    :config
-    (add-hook 'go-mode-hook 'company-mode)
-    (add-to-list 'company-backends 'company-go))
 #+END_SRC
 
 ** Enable =go-stackstracer=
@@ -1400,13 +1391,6 @@ Absolutely necessary if working in Go
 ** Enable =go-add-tags=
 #+BEGIN_SRC emacs-lisp
   (use-package go-add-tags)
-#+END_SRC
-
-** Enable =go-eldoc=
-#+BEGIN_SRC emacs-lisp
-  (use-package go-eldoc
-    :diminish eldoc-mode
-    :config (add-hook 'go-mode-hook 'go-eldoc-setup))
 #+END_SRC
 
 ** Enable =go-gopath=
