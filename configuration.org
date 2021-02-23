@@ -1086,6 +1086,17 @@ And use it to replace normal narrowing functions
     :diminish fancy-narrow-mode)
 #+END_SRC
 * General Code
+** Enable =lsp= and =lsp-ui=
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :commands (lsp lsp-deferred)
+    :hook (go-mode . lsp-deferred))
+
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+#+end_src
 ** Enable =projectile=
 And get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-projectile.el#L10]]
 #+BEGIN_SRC emacs-lisp
@@ -1117,7 +1128,8 @@ With a twist of helm
     :diminish company-mode
     :config
     (add-hook 'after-init-hook 'global-company-mode)
-    (setq company-minimum-prefix-length 2)
+    (setq company-minimum-prefix-length 1)
+    (setq company-idle-delay 0.3)
     (setq company-dabbrev-downcase nil)
     (bind-keys :map company-active-map
                ("C-d" . company-show-doc-buffer)
@@ -1382,6 +1394,14 @@ Absolutely necessary for working in Go
     :bind
     (:map go-mode-map ("M-." . godef-jump)))
 #+END_SRC
+
+** Add formatting hooks
+#+begin_src emacs-lisp
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+#+end_src
 
 ** Enable =go-stackstracer=
 #+BEGIN_SRC emacs-lisp
