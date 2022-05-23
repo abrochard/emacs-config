@@ -562,7 +562,6 @@ Useful if file changed on disk
            (python . t)
            (gnuplot . t)
            (shell . t)
-           (ledger . t)
            (org . t)
            (latex . t)
            (haskell . t))))
@@ -706,21 +705,54 @@ Inspired from [[https://github.com/technomancy/better-defaults]]
 #+begin_src emacs-lisp
   (setq mac-command-modifier 'control)
 #+end_src
+** Hide customize
+From https://zck.org/hide-emacs-customize
+#+begin_src emacs-lisp
+  (setq custom-file "~/.emacs.d/custom.el")
+  (when (file-exists-p custom-file)
+    (load custom-file))
+#+end_src
 
 
 * Load Cool Theme
-#+BEGIN_SRC emacs-lisp
-  (use-package dracula-theme
-    :config (load-theme 'dracula t)
+Customized light and dark themes. Load light by default.
+#+BEGIN_SRC  emacs-lisp
+  (use-package flatui-theme)
+  (use-package dracula-theme)
+
+  (defun disable-all-themes ()
+    "Disable all enabled custom themes."
+    (mapc #'disable-theme custom-enabled-themes))
+
+  (defun load-light-theme ()
+    "Load light theme."
+    (interactive)
+    (disable-all-themes)
+    (load-theme 'flatui t)
+    ;; Mode-line customization
+    (set-face-background 'mode-line "#4692d5")
+    (set-face-background 'mode-line-inactive "#212020")
+    (custom-set-faces
+     '(mode-line ((t (:background "DeepSkyBlue2" :foreground "white"))))
+     '(mode-line-buffer-id ((t (:foreground "white"))))
+     '(mode-line-inactive ((t (:background "dark grey"))))))
+
+  (defun load-dark-theme ()
+    "Load dark theme."
+    (interactive)
+    (disable-all-themes)
+    (load-theme 'dracula t)
+    ;; Mode-line Customization
     (set-face-background 'mode-line "#510370")
-    (set-face-background 'mode-line-inactive "#212020"))
+    (set-face-background 'mode-line-inactive "#212020")
+    (custom-set-faces
+     '(mode-line ((t (:background "#510370" :foreground "white")))))
+    ;; Helm customization
+    (set-face-attribute
+     'helm-selection nil
+     :background "#510370" :foreground "white"))
 
-  (custom-set-faces
-   '(mode-line ((t (:background "#510370" :foreground "white")))))
-
-  (set-face-attribute
-   'helm-selection nil
-   :background "#510370" :foreground "white")
+  (load-light-theme)
 #+END_SRC
 
 * Customize the mode-line
@@ -959,9 +991,10 @@ But with a margin of 5
 #+END_SRC
 ** Enable =yascroll=
 So much better than the default scroll bar
-#+BEGIN_SRC emacs-lisp
-(use-package yascroll
-  :config (global-yascroll-bar-mode 1))
+NB: deactivated for now as it eats CPU like crazy?
+#+BEGIN_SRC emacs-lisp :tangle no
+  ;; (use-package yascroll
+  ;;   :config (global-yascroll-bar-mode 1))
 #+END_SRC
 ** Enable =minimap=
 Not all the time, but handy.
@@ -1054,11 +1087,12 @@ And add my personal twist to it.
 
 ** Enable =undo-tree=
 #+BEGIN_SRC emacs-lisp
-(use-package undo-tree
-  :diminish undo-tree-mode
-  :config
-  (global-undo-tree-mode t)
-  (setq undo-tree-visualizer-diff t))
+  (use-package undo-tree
+    :diminish undo-tree-mode
+    :config
+    (global-undo-tree-mode t)
+    (setq undo-tree-visualizer-diff t)
+    (setq undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "undo-history")))))
 #+END_SRC
 
 ** Enable =volatile-highlights=
@@ -1091,7 +1125,10 @@ And use it to replace normal narrowing functions
   (use-package lsp-mode
     :ensure t
     :commands (lsp lsp-deferred)
-    :hook (go-mode . lsp-deferred))
+    :hook (go-mode . lsp-deferred)
+    :config (progn
+              ;; use flycheck, not flymake
+              (setq lsp-prefer-flymake nil)))
 
   (use-package lsp-ui
     :ensure t
