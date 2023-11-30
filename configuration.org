@@ -1522,7 +1522,7 @@ A few custom functions to add to go-mode. Assumes that the project structure is 
     (interactive)
     (shell-command "go mod tidy"))
 
-  (define-transient-command go-test ()
+  (transient-define-prefix go-test ()
     "Go Test Suite"
     ["Actions"
      ("t" "Unit test current package" go-test-pkg)
