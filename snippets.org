@@ -31,16 +31,16 @@
   # key: pack
   # --
   ;;; package --- Summary
-
+  
   ;;; Commentary:
-
+  
   ;;; Code:
-
+  
   $0
-
+  
   (provide '`(file-name-sans-extension (f-filename (buffer-file-name)))`)
   ;;; `(f-filename (buffer-file-name))` ends here
-
+  
 #+END_SRC
 
 ** request
@@ -75,6 +75,16 @@
   "github.com/stretchr/testify/assert"
 #+END_SRC
 
+** comment
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/comment
+  # -*- mode: snippet -*-
+  # name: comment
+  # key: TODO
+  # --
+  // TODO (`(format-time-string "%Y/%m/%d")`) [abrochard] $0
+#+END_SRC
+
 ** equal
 
 #+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/equal
@@ -94,6 +104,28 @@
   fmt.Printf("\n\n[ADRIEN] $1 %+v\n\n", $1)$0
 #+END_SRC
 
+** func
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/func
+  # -*- mode: snippet -*-
+  # name: func
+  # key: f
+  # --
+  func $1($2) $3 {
+       $0
+  }
+#+END_SRC
+
+** http
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/http
+  # -*- mode: snippet -*-
+  # name: http
+  # key: http
+  # --
+  w http.ResponseWriter, req *http.Request
+#+END_SRC
+
 ** iferr
 
 #+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/iferr
@@ -103,6 +135,18 @@
   # --
   if err != nil {
      $1
+  }
+#+END_SRC
+
+** method
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/method
+  # -*- mode: snippet -*-
+  # name: method
+  # key: f*
+  # --
+  func ($1) $2($3) $4 {
+       $0
   }
 #+END_SRC
 
@@ -116,6 +160,16 @@
   package `(f-base (f-dirname (buffer-file-name)))`
 #+END_SRC
 
+** require
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/require
+  # -*- mode: snippet -*-
+  # name: require
+  # key: req
+  # --
+  require.$1(t, $0)
+#+END_SRC
+
 ** return
 
 #+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/return
@@ -124,6 +178,18 @@
   # key: r
   # --
   return $0
+#+END_SRC
+
+** tRun
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/go-mode/tRun
+  # -*- mode: snippet -*-
+  # name: tRun
+  # key: trun
+  # --
+  t.Run("$1", func(t *testing.T) {
+     $0
+  })
 #+END_SRC
 
 ** test
@@ -161,7 +227,75 @@
   ($1) => {$0}
 #+END_SRC
 
+* jsonnet-mode
+
+** test
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/jsonnet-mode/test
+  # -*- mode: snippet -*-
+  # name: test
+  # key: test
+  # --
+  local Test$1() =
+    assert $0;
+    true;
+#+END_SRC
+
+* markdown-mode
+
+** spec
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/markdown-mode/spec
+  # -*- mode: snippet -*-
+  # name: spec
+  # key: spec
+  # --
+  <details><summary><code>$1</code></summary>
+  
+  #### Parameters
+  
+  1. $0
+  
+  #### Return
+  
+  </details>
+#+END_SRC
+
 * org-mode
+
+** collapsible-markdown-section
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/org-mode/collapsible-markdown-section
+  # -*- mode: snippet -*-
+  # name: collapsible-markdown-section
+  # key: coll
+  # --
+  #+HTML: <details> <summary> $1 </summary>
+  $0
+  #+HTML: </details>
+#+END_SRC
+
+** src
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/org-mode/src
+  # -*- mode: snippet -*-
+  # name: src
+  # key: src
+  # --
+  #+begin_src $1
+  $0
+  #+end_src
+#+END_SRC
+
+** title
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/org-mode/title
+  # -*- mode: snippet -*-
+  # name: title
+  # key: :t
+  # --
+  #+TITLE: $0
+#+END_SRC
 
 ** use-package
 
@@ -173,7 +307,6 @@
   ** Enable =$1=
   #+BEGIN_SRC emacs-lisp
     (use-package $1)
-  #+END_SRC
 #+END_SRC
 
 * php-mode
@@ -344,9 +477,9 @@
   class `(s-upper-camel-case (f-no-ext (f-filename (buffer-file-name))))`:
       def __init__(self, $2):
           self.$2 = $2
-
+  
       $0
-
+  
 #+END_SRC
 
 ** def
@@ -392,6 +525,17 @@
       $0
 #+END_SRC
 
+** main
+
+#+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/main
+  # -*- mode: snippet -*-
+  # name: main
+  # key: main
+  # --
+  if __name__ == "__main__":
+      main()
+#+END_SRC
+
 ** p
 
 #+BEGIN_SRC snippet :tangle {SNIPPETS-DIR}/python-mode/p
@@ -401,3 +545,4 @@
   # --
   print('Value of $1 is "{}"'.format($1))
 #+END_SRC
+
