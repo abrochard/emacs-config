@@ -834,6 +834,12 @@ And also my package =org-sync-snippets= to keep my snippets into a single file u
                   (concat (file-name-as-directory config-load-path) "snippets.org")))
 #+END_SRC
 
+Auto-yasnippet really comes in handy at times.
+#+begin_src emacs-lisp
+  (use-package auto-yasnippet)
+  (global-set-key (kbd "C-c e") #'aya-expand)
+#+end_src
+
 
 * Code Format
 ** Default tab and indetation
@@ -1847,6 +1853,7 @@ No need to configure, just handy to have.
   (use-package todoist)
   (use-package protobuf-mode)
   (use-package walkman)
+  (use-package jsonnet-mode)
 #+END_SRC
 
 * Extra file loading
