@@ -699,7 +699,7 @@ And set it in emacs-lisp mode
 ** Disable the bell
 Aweful atrocious noise on Windows
 #+BEGIN_SRC emacs-lisp
-(setq visible-bell 1)
+(setq visible-bell nil)
 #+END_SRC
 
 ** Adjust scrolling behavior
@@ -1489,6 +1489,11 @@ packages that you should install separately.
   go get github.com/matryer/moq
 #+END_SRC
 
+** Env setup
+#+begin_src emacs-lisp
+  (setenv "GO111MODULE" "on")
+#+end_src
+
 ** Enable =go-mode=
 Absolutely necessary for working in Go
 #+BEGIN_SRC emacs-lisp
@@ -1922,6 +1927,10 @@ No need to configure, just handy to have.
   (use-package protobuf-mode)
   (use-package walkman)
   (use-package jsonnet-mode)
+  (use-package expand-region
+    :config (global-set-key (kbd "C-=") 'er/expand-region))
+  (use-package alert
+    :config (setq alert-default-style 'notifier))
 #+END_SRC
 
 * Extra file loading
