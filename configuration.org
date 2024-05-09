@@ -1352,6 +1352,70 @@ I love this package
   :config
   (add-hook 'sql-mode-hook 'mysql-to-org-mode))
 #+END_SRC
+but sometimes it needs a little kick
+#+BEGIN_SRC emacs-lisp
+  (defun mysql-to-org--start-process ()
+    (when (not (get-process "mysql-to-org"))
+      (make-comint "mysql-to-org" "mysql" nil
+                   (concat "-u" mysql-to-org-mysql-user))
+      (mysql-to-org--load-completion-candidates)))
+
+  (defun mysql-to-org-kick ()
+    "Start the mysql to org mysql process."
+    (interactive)
+    (let ((pwd (read-passwd "mysql passwd: ")))
+      (kill-process "mysql-to-org")
+      (if (equal pwd "")
+          (make-comint "mysql-to-org" "mysql" nil
+                       (concat "-u" mysql-to-org-mysql-user))
+        (make-comint "mysql-to-org" "mysql" nil
+                     (concat "-u" mysql-to-org-mysql-user)
+                     (concat "-p" pwd)))
+      (mysql-to-org--load-completion-candidates)))
+#+END_SRC
+
+** MySQL in docker
+#+BEGIN_SRC emacs-lisp
+  (defvar docker-mysql-secret "secret")
+  (defvar docker-mysql-dbname "dbname")
+
+  (defconst docker-mysql-proc-name "*docker-mysql*")
+  (defconst docker-mysql-proc-buffer "*docker-mysql*")
+
+  (defvar docker-mysql-proc nil)
+
+  (defun docker-mysql-start ()
+    "Start mysql docker."
+    (interactive)
+    (setq docker-mysql-proc
+          (start-process docker-mysql-proc-name docker-mysql-proc-buffer
+                         "docker" "run" "-it" "--rm" "-p" "3306:3306"
+                         "-e" (concat "MYSQL_ROOT_PASSWORD=" docker-mysql-secret)
+                         "-e" (concat "MYSQL_DATABASE=" docker-mysql-dbname)
+                         "mysql:5.6"))
+    (docker-mysql-logs))
+
+  (defun docker-mysql-logs ()
+    "Switch buffer to docker logs."
+    (interactive)
+    (switch-to-buffer docker-mysql-proc-buffer)
+    (view-mode))
+
+  ;; (kill-process docker-mysql-proc)
+
+  (defun docker-mysql-stop ()
+    "Kill the docker container."
+    (interactive)
+    (let ((docker-id
+           (s-trim (shell-command-to-string "docker ps | grep mysql | awk '{ print $1 }'"))))
+      (shell-command (concat  "docker kill " docker-id))
+      (message "Docker mysql stopped")))
+
+  (defun docker-mysql-copy-connect-cmd ()
+    (interactive)
+    (kill-new (format "mysql --protocol=tcp -u root -p%s" docker-mysql-secret)))
+#+END_SRC
+
 * PHP
 ** Enable =php-mode=
 And a bunch of hooks with it
