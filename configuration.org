@@ -440,6 +440,69 @@ Thanks to [[http://whatthecommit.com][whatthecommit.com]]
           (set-face-attribute 'default nil :height presentation-fontsize)
         (set-face-attribute 'default nil :height regular-fontsize))))
 #+end_src
+** Flip table
+Taken from Jonathan Arkell
+#+begin_src emacs-lisp
+  (defun flip-table ()
+    "(╯°□°）╯︵ ┻━┻ "
+    (interactive)
+    (message "( °_°） ┬──┬ ")
+    (sleep-for 0 500)
+    (message "(╯°□°）╯︵ ┻━━┻ ")
+    (kill-new "(╯°□°）╯︵ ┻━━┻ "))
+#+end_src
+** Mac specific functions
+#+begin_src emacs-lisp
+  (defun mac-run-applescript (script)
+    "Run SCRIPT in applescript."
+    (shell-command (format "osascript -e '%s'" script)))
+
+  (defun mac-notify (body &optional title)
+    "Show notification for BODY with TITLE."
+    (mac-run-applescript (format "display notification \"%s\" with title \"%s\""
+                                 body (or title "Notification"))))
+
+  ;; (mac-notify "test body")
+
+  (defun mac-switch-theme ()
+    "Switch mac to dark/light theme on toggle."
+    (interactive)
+    (mac-run-applescript "tell application \"System Events\"
+        tell appearance preferences
+        set dark mode to not dark mode
+      end tell
+    end tell"))
+#+end_src
+** Custom table of content functions
+#+begin_src emacs-lisp
+  (defun markdown-toc ()
+    (interactive)
+    (save-excursion
+      (beginning-of-buffer)
+      (let ((output ""))
+        (while (re-search-forward "^\\(#\\{2,\\}\\) \\(.*\\)" (max-char) t)
+          (setq output
+                (concat output
+                        (format "%s- [%s](#%s)\n"
+                                (replace-regexp-in-string "#" "  " (substring (match-string 1) 2))
+                                (match-string 2)
+                                (replace-regexp-in-string "_" "-" (s-snake-case (match-string 2)))))))
+        (kill-new output))))
+
+  (defun org-toc ()
+    (interactive)
+    (save-excursion
+      (beginning-of-buffer)
+      (let ((output "")
+            (i 1))
+        (while (re-search-forward "* \\(.*\\)" (max-char) t)
+          (setq output
+                (concat output
+                        (format "%s. [[#%s][%s]]\n" i (replace-regexp-in-string " " "-" (downcase (match-string 1))) (match-string 1))))
+          (setq i (+ 1 i)))
+        (kill-new output))))
+#+end_src
+
 * Custom key bindings
 ** Quickly revert a buffer
 Useful if file changed on disk
