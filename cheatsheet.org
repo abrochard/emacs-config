@@ -133,13 +133,13 @@
                 :key "C-S-<mouse-1>"
                 :description "Add cursor on click")
 #+END_SRC
-* Dumb Jump
+* Jump to definition
 #+BEGIN_SRC emacs-lisp
 (cheatsheet-add :group 'Dumb-Jump
-                :key "C-M-g"
+                :key "M-."
                 :description "Jump to function definition")
 (cheatsheet-add :group 'Dumb-Jump
-                :key "C-M-p"
+                :key "M-,"
                 :description "Jump back to original location")
 (cheatsheet-add :group 'Dumb-Jump
                 :key "C-M-q"

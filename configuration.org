@@ -617,6 +617,8 @@ Useful if file changed on disk
    Get additional languages?
    Load them all
 #+BEGIN_SRC emacs-lisp
+  (require 'ob-js)
+
   (org-babel-do-load-languages
    (quote org-babel-load-languages)
    (quote ((emacs-lisp . t)
@@ -627,7 +629,8 @@ Useful if file changed on disk
            (shell . t)
            (org . t)
            (latex . t)
-           (haskell . t))))
+           (haskell . t)
+           (js .t))))
 #+END_SRC
 ** Enable =org-bullets=
 Make org files a bit more readable
@@ -1190,7 +1193,8 @@ And use it to replace normal narrowing functions
     :hook (go-mode . lsp-deferred)
     :config (progn
               ;; use flycheck, not flymake
-              (setq lsp-prefer-flymake nil)))
+              (setq lsp-prefer-flymake nil))
+    :bind (("C-c M-." . lsp-find-type-definition)))
 
   (use-package lsp-ui
     :ensure t
@@ -1215,10 +1219,10 @@ And get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/
 
 With a twist of helm
 #+BEGIN_SRC emacs-lisp
-(use-package helm-projectile
-  :bind (("C-c v" . helm-projectile)
-         ("C-c C-v" . helm-projectile-ag)
-         ("C-c w" . helm-projectile-switch-project)))
+  (use-package helm-projectile
+    :bind (("C-c v" . helm-projectile)
+           ("C-c C-v" . helm-projectile-ag)
+           ("C-c w" . helm-projectile-switch-project)))
 #+END_SRC
 
 ** Enable =company=
@@ -1561,19 +1565,19 @@ A few custom functions to add to go-mode. Assumes that the project structure is 
   (defun go-test-pkg ()
     "Unit test the current package."
     (interactive)
-    (compile "go test -cover ."))
+    (compile "go test -cover -race -timeout 60s ."))
 
   (defun go-test-repo ()
     "Unit test all packages."
     (interactive)
     (let* ((repo-path (magit-toplevel))
            (default-directory repo-path))
-      (compile "go test -cover ./...")))
+      (compile "go test -cover -race ./...")))
 
   (defun go-coverage-here ()
     "Show go coverage of current file."
     (interactive)
-    (shell-command "go test . -coverprofile=cover.out")
+    (shell-command "go test . -coverprofile=cover.out -race")
     (go-coverage "cover.out"))
 
   (defun go-build-repo ()
@@ -1643,6 +1647,8 @@ Assuming that it would be at least IPython 5 so ask for =simple-prompt=.
   (add-hook 'python-mode-hook 'electric-operator-mode)
   (setq python-shell-interpreter "ipython"
         python-shell-interpreter-args "--simple-prompt -i")
+
+  (define-key python-mode-map (kbd "C-c C-v") 'helm-projectile-ag)
 #+END_SRC
 
 * Docker
