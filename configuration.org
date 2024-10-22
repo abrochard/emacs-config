@@ -135,7 +135,7 @@ For interactions with github.
 #+END_SRC
 ** Add =magit-circleci=
 For CircleCI integration
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package magit-circleci
     :config (magit-circleci-mode))
 #+end_src
@@ -1058,13 +1058,6 @@ But with a margin of 5
 (use-package ibuffer-git)
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
-** Enable =yascroll=
-So much better than the default scroll bar
-NB: deactivated for now as it eats CPU like crazy?
-#+BEGIN_SRC emacs-lisp :tangle no
-  ;; (use-package yascroll
-  ;;   :config (global-yascroll-bar-mode 1))
-#+END_SRC
 ** Enable =minimap=
 Not all the time, but handy.
 #+BEGIN_SRC emacs-lisp
@@ -1252,7 +1245,6 @@ With a twist of helm
   (use-package flycheck
     :diminish flycheck-mode
     :config (flycheck-mode 1)
-    (setq flycheck-phpcs-standard "PSR2")
     (add-hook 'python-mode-hook 'flycheck-mode)
     (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
     (add-hook 'json-mode-hook 'flycheck-mode)
@@ -1266,32 +1258,17 @@ Add a little helm twist to it
 #+END_SRC
 
 ** Enable =electric-operator=
-And add a couple of rules for PHP and JS
 #+BEGIN_SRC emacs-lisp
-  (use-package electric-operator
-    :config
-    (electric-operator-add-rules-for-mode 'php-mode
-                                          (cons " - >" "->"))
-    (electric-operator-add-rules-for-mode 'php-mode
-                                          (cons " / /" "// "))
-    (electric-operator-add-rules-for-mode 'php-mode
-                                          (cons " = > " " => "))
-    (electric-operator-add-rules-for-mode 'php-mode
-                                          (cons " < ?" "<?"))
-    ;; (electric-operator-add-rules-for-mode 'js2-mode
-    ;;                                       (cons " = > " " => "))
-    ;; (electric-operator-add-rules-for-mode 'js2-jsx-mode
-    ;;                                       (cons " = > " " => "))
-    ;; (electric-operator-add-rules-for-mode 'rjsx-mode
-    ;;                                       (cons " = > " " => "))
-    )
+  (use-package electric-operator)
 #+END_SRC
 
 ** Enable =dumb-jump=
 Great package to jump to definition
 #+BEGIN_SRC emacs-lisp
   (use-package dumb-jump
-    :config (setq dumb-jump-aggressive nil))
+    :config
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+    (setq xref-show-definitions-function #'xref-show-definitions-completing-read))
 #+END_SRC
 
 ** Enable =highlight-numbers=
@@ -1416,40 +1393,6 @@ but sometimes it needs a little kick
     (kill-new (format "mysql --protocol=tcp -u root -p%s" docker-mysql-secret)))
 #+END_SRC
 
-* PHP
-** Enable =php-mode=
-And a bunch of hooks with it
-And set PSR-2 as coding style
-#+BEGIN_SRC emacs-lisp
-  (use-package php-mode
-    :config
-    (add-hook 'php-mode-hook 'flycheck-mode)
-    (add-hook 'php-mode-hook 'electric-operator-mode)
-    (add-hook 'php-mode-hook 'dumb-jump-mode)
-    (add-hook 'php-mode-hook 'php-enable-psr2-coding-style))
-#+END_SRC
-** Enable =company-php=
-#+BEGIN_SRC emacs-lisp
-  (use-package company-php
-    :config
-    (add-hook 'php-mode-hook 'company-mode)
-    (add-hook 'php-mode-hook '(lambda ()
-                                (if (not (member 'php-mode company-dabbrev-code-modes))
-                                    (add-to-list 'company-dabbrev-code-modes 'php-mode)))))
-#+end_SRC
-** Enable =php-eldoc=
-#+BEGIN_SRC emacs-lisp
-  (setq auto-complete-mode nil) ;; Hack while my PR is pending
-  (use-package php-eldoc
-    :diminish eldoc-mode
-    :config (add-hook 'php-mode-hook 'php-eldoc-enable))
-#+END_SRC
-** Enable =phpcbf=
-#+BEGIN_SRC emacs-lisp :tangle no
-  (use-package phpcbf
-    :config (setq phpcbf-standard "PSR2"))
-#+END_SRC
-
 * Web
 ** Enable =web-mode=
 So much better than =html-mode=
@@ -1546,11 +1489,11 @@ Useful for React
 A lot of the config is based on gopls, godef, goimports and gotags
 packages that you should install separately.
 #+BEGIN_SRC bash :tangle no
-  go get golang.org/x/tools/gopls@latest
-  go get -u github.com/rogpeppe/godef
-  go get -u golang.org/x/tools/cmd/goimports
-  go get -u github.com/jstemmer/gotags
-  go get github.com/matryer/moq
+  go install golang.org/x/tools/gopls@latest
+  go install github.com/rogpeppe/godef@latest
+  go install golang.org/x/tools/cmd/goimports@latest
+  go install github.com/jstemmer/gotags@latest
+  go install github.com/matryer/moq@latest
 #+END_SRC
 
 ** Env setup
@@ -1566,9 +1509,7 @@ Absolutely necessary for working in Go
     ;; (add-hook 'before-save-hook #'gofmt-before-save)
     (add-hook 'go-mode-hook 'flycheck-mode)
     (add-hook 'go-mode-hook 'dumb-jump-mode)
-    (setq go-packages-function 'go-packages-go-list)
-    :bind
-    (:map go-mode-map ("M-." . godef-jump)))
+    (setq go-packages-function 'go-packages-go-list))
 #+END_SRC
 
 ** Add formatting hooks
@@ -1592,11 +1533,6 @@ Absolutely necessary for working in Go
 ** Enable =go-gopath=
 #+BEGIN_SRC emacs-lisp
   (use-package go-gopath)
-#+END_SRC
-
-** Enable =go-direx=
-#+BEGIN_SRC emacs-lisp
-  (use-package go-direx)
 #+END_SRC
 
 ** Enable =gotest=
@@ -1878,38 +1814,6 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
     (set-face-background 'highlight-indentation-face "#8B6090")
     (add-hook 'yaml-mode-hook 'highlight-indentation-mode))
 #+END_SRC
-* Restclient
-** Setup =restclient=
-#+BEGIN_SRC emacs-lisp
-  (use-package restclient
-    :mode ("\\.restclient\\'" . restclient-mode))
-#+END_SRC
-** Enable =company-restclient=
-#+BEGIN_SRC emacs-lisp
-  (use-package company-restclient
-    :config (add-to-list 'company-backends 'company-restclient))
-#+END_SRC
-** Integrate to =org-mode=
-#+BEGIN_SRC emacs-lisp
-  (use-package ob-restclient)
-#+END_SRC
-* PlantUML
-** Enable =plantuml-mode=
-#+BEGIN_SRC emacs-lisp
-  (use-package plantuml-mode)
-#+END_SRC
-** Download and hook up plantuml.jar
-#+BEGIN_SRC emacs-lisp
-  (let ((plantuml-directory (concat config-load-path "extra/"))
-        (plantuml-link "https://superb-dca2.dl.sourceforge.net/project/plantuml/plantuml.jar"))
-    (let ((plantuml-target (concat plantuml-directory "plantuml.jar")))
-      (if (not (f-exists? plantuml-target))
-          (progn (message "Downloading plantuml.jar")
-                 (shell-command
-                  (mapconcat 'identity (list "wget" plantuml-link "-O" plantuml-target) " "))
-                 (kill-buffer "*Shell Command Output*")))
-      (setq org-plantuml-jar-path plantuml-target)))
-#+END_SRC
 * Redis
 A few utility functions for my local Redis.
 #+begin_src emacs-lisp
@@ -1984,7 +1888,7 @@ No need to configure, just handy to have.
   (use-package keychain-environment)
   (use-package vlf)
   (use-package helm-flyspell)
-  (use-package kubel)
+  ;; (use-package kubel)
   (use-package kubernetes-helm)
   (use-package mermaid-mode)
   (use-package todoist)
