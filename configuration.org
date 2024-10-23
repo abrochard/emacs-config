@@ -1254,13 +1254,46 @@ And use it to replace normal narrowing functions
     :commands lsp-ui-mode)
 #+end_src
 
+** Enable and tweak =consult-ag=
+#+begin_src emacs-lisp
+    (use-package ag)
+    (use-package consult-ag
+      :bind (("C-c C-v" . consult-ag)))
+
+    (defun ab/select-n-words-forward (n)
+      (save-excursion
+        (let ((start (point))
+              (end))
+          (forward-word n)
+          (setq end (point))
+          (buffer-substring-no-properties start end))))
+
+    (defun ab/candidates ()
+      (list (word-at-point)
+            (ab/select-n-words-forward 2)
+            (ab/select-n-words-forward 3)))
+
+    (defun consult-ag (&optional target initial)
+      "Consult ag for query in TARGET file(s) with INITIAL input."
+      (interactive)
+      (pcase-let* ((`(,prompt ,paths ,dir) (consult--directory-prompt "Consult ag: " target))
+                   (default-directory dir))
+        (consult--read (consult--async-command #'consult-ag--builder
+                         (consult--async-map #'consult-ag--format))
+                       :prompt prompt
+                       :lookup #'consult--lookup-member
+                       :state (consult-ag--grep-state)
+                       :initial (consult--async-split-initial initial)
+                       :require-match t
+                       :category 'file
+                       :add-history (ab/candidates)
+                       :sort nil)))
+#+end_src
+
 ** Enable =project=
 #+begin_src emacs-lisp
-  (use-package ag)
-  (use-package consult-ag)
   (use-package project
     :bind (("C-c v" . project-find-file)
-           ("C-c C-v" . consult-ag)
            ("C-c w" . project-switch-project)))
 #+end_src
 
@@ -1977,6 +2010,7 @@ No need to configure, just handy to have.
   (use-package keychain-environment)
   (use-package vlf)
   (use-package consult-flyspell)
+  (use-package consult-yasnippet)
   ;; (use-package kubel)
   (use-package kubernetes-helm)
   (use-package mermaid-mode)
