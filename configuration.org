@@ -72,47 +72,46 @@ And force the install of missing packages.
 (setq use-package-always-ensure t)
 #+END_SRC
 
-* Configure Helm
-** Make everything fuzzy and also rebind functions.
+* Configure Vertico + Consult + friends
+** Configure =vertico=
 #+BEGIN_SRC emacs-lisp
-  (use-package flx)
-  (use-package helm-flx)
-  (use-package helm
-    :demand
-    :diminish helm-mode
-    :bind (("M-x" . helm-M-x)
-           ("M-y" . helm-show-kill-ring)
-           ("C-x b" . helm-mini)
-           ("C-x C-f" . helm-find-files)
-           ("C-x r l" . helm-bookmarks)
-           ("C-c s" . helm-occur)
-           :map helm-find-files-map ;; I like these from Ido
-           ("C-<tab>"         . helm-execute-persistent-action)
-           ("C-<backspace>" . helm-find-files-up-one-level))
-    :config
-    (helm-mode 1)
-    (helm-flx-mode +1)
-    (setq helm-M-x-fuzzy-match t)
-    (setq helm-locate-fuzzy-match t)
-    (setq helm-lisp-fuzzy-completion t)
-    (setq helm-bookmark-show-location t)
-    (setq helm-buffer-max-length 30))
-#+END_SRC
-** Imenu + Helm with =imenu-anywhere=
-But I find pulling from other buffer confusing so I limit to current buffer
-#+BEGIN_SRC emacs-lisp
-  (defun imenu-anywhere-same-buffer-p (current other)
-    (eq current other))
+  (use-package vertico
+    :custom
+    (vertico-count 30) ;; Show more candidates
+    :init
+    (vertico-mode))
 
-  (use-package imenu-anywhere
-    :bind (("C-c C-i" . helm-imenu-anywhere))
-    :config (setq imenu-anywhere-buffer-filter-functions
-                  '(imenu-anywhere-same-buffer-p)))
+  (define-key vertico-map (kbd "C-l") 'vertico-directory-delete-word)
 #+END_SRC
-** Install =helm-system-packages=
-#+BEGIN_SRC emacs-lisp
-  (use-package helm-system-packages)
-#+END_SRC
+** Configure =recentf=
+#+begin_src emacs-lisp
+  (use-package recentf
+      :init (recentf-mode))
+#+end_src
+** Configure =orderless=
+#+begin_src emacs-lisp
+  (use-package orderless
+      :custom
+      (completion-styles '(orderless basic))
+      (completion-category-defaults nil)
+      (completion-category-overrides '((file (styles partial-completion)))))
+#+end_src
+** Configure =consult=
+#+begin_src emacs-lisp
+  (use-package consult
+    :bind (("C-x r l" . consult-bookmark)
+           ("C-c s" . consult-line)
+           ("C-x b" . consult-buffer)
+           ("C-c C-i" . consult-imenu)))
+#+end_src
+** Configure =marginalia=
+#+begin_src emacs-lisp
+  (use-package marginalia
+    :bind (:map minibuffer-local-map
+                ("M-A" . marginalia-cycle))
+    :init
+    (marginalia-mode))
+#+end_src
 
 
 * Version Control
@@ -559,9 +558,9 @@ Useful if file changed on disk
     (concat (file-name-as-directory org-directory) filename))
 
   (defun org-find-file ()
-    "Leverage Helm to quickly open any org files."
+    "Quickly open any org files."
     (interactive)
-    (find-file (org-file-path (helm-comp-read "Select your org file: " (directory-files org-directory nil "\.org$")))))
+    (find-file (org-file-path (completing-read "Select your org file: " (directory-files org-directory nil "\.org$")))))
 
   (defun org-eng-notebook ()
     "Quickly open my engineering notebook and scan the headlines."
@@ -1200,29 +1199,14 @@ And use it to replace normal narrowing functions
     :ensure t
     :commands lsp-ui-mode)
 #+end_src
-** Enable =projectile=
-And get a shorter modeline, thanks to [[https://github.com/purcell/emacs.d/blob/master/lisp/init-projectile.el#L10]]
+** Enable =project=
 #+BEGIN_SRC emacs-lisp
   (use-package ag)
-  (use-package helm-ag)
-  (setq projectile-go-function nil) ;; temporary workaround
-  (use-package projectile
-    :config
-    (projectile-mode)
-    (setq-default projectile-mode-line
-     '(:eval
-       (if (file-remote-p default-directory)
-           " Proj"
-         (format " Proj[%s]" (projectile-project-name)))))
-    (add-to-list 'projectile-globally-ignored-directories "node_modules"))
-#+END_SRC
-
-With a twist of helm
-#+BEGIN_SRC emacs-lisp
-  (use-package helm-projectile
-    :bind (("C-c v" . helm-projectile)
-           ("C-c C-v" . helm-projectile-ag)
-           ("C-c w" . helm-projectile-switch-project)))
+  (use-package consult-ag)
+  (use-package project
+    :bind (("C-c v" . project-find-file)
+           ("C-c C-v" . consult-ag)
+           ("C-c w" . project-switch-project)))
 #+END_SRC
 
 ** Enable =company=
@@ -1255,10 +1239,10 @@ With a twist of helm
     (add-hook 'rjsx-mode-hook 'flycheck-mode))
 #+END_SRC
 
-Add a little helm twist to it
+Add a little consult twist to it
 #+BEGIN_SRC emacs-lisp
-(use-package helm-flycheck
-  :bind ("C-c f" . helm-flycheck))
+(use-package consult-flycheck
+  :bind ("C-c f" . consult-flycheck))
 #+END_SRC
 
 ** Enable =electric-operator=
@@ -1648,7 +1632,7 @@ Assuming that it would be at least IPython 5 so ask for =simple-prompt=.
   (setq python-shell-interpreter "ipython"
         python-shell-interpreter-args "--simple-prompt -i")
 
-  (define-key python-mode-map (kbd "C-c C-v") 'helm-projectile-ag)
+  (define-key python-mode-map (kbd "C-c C-v") 'consult-ag)
 #+END_SRC
 
 * Docker
@@ -1777,7 +1761,7 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
             (lambda ()
               (define-key eshell-mode-map (kbd "C-M-a") 'eshell-previous-prompt)
               (define-key eshell-mode-map (kbd "C-M-e") 'eshell-next-prompt)
-              (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
+              (define-key eshell-mode-map (kbd "M-r") 'consult-history)))
 #+END_SRC
 ** Close window on exit
 #+BEGIN_SRC emacs-lisp
@@ -1893,7 +1877,7 @@ No need to configure, just handy to have.
   ;; (use-package csharp-mode)
   (use-package keychain-environment)
   (use-package vlf)
-  (use-package helm-flyspell)
+  (use-package consult-flyspell)
   ;; (use-package kubel)
   (use-package kubernetes-helm)
   (use-package mermaid-mode)
