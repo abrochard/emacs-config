@@ -795,12 +795,12 @@ Customized light and dark themes. Load light by default.
     (disable-all-themes)
     (load-theme 'flatui t)
     ;; Mode-line customization
-    (set-face-background 'mode-line "#4692d5")
+    (set-face-background 'mode-line "medium purple")
     (set-face-background 'mode-line-inactive "#212020")
     (custom-set-faces
-     '(mode-line ((t (:background "DeepSkyBlue2" :foreground "white"))))
+     '(mode-line ((t (:background "medium purple" :foreground "white"))))
      '(mode-line-buffer-id ((t (:foreground "white"))))
-     '(mode-line-inactive ((t (:background "dark grey"))))))
+     '(mode-line-inactive ((t (:background "dark grey" :foreground "medium purple"))))))
 
   (defun load-dark-theme ()
     "Load dark theme."
@@ -811,11 +811,7 @@ Customized light and dark themes. Load light by default.
     (set-face-background 'mode-line "#510370")
     (set-face-background 'mode-line-inactive "#212020")
     (custom-set-faces
-     '(mode-line ((t (:background "#510370" :foreground "white")))))
-    ;; Helm customization
-    (set-face-attribute
-     'helm-selection nil
-     :background "#510370" :foreground "white"))
+     '(mode-line ((t (:background "#510370" :foreground "white"))))))
 
   (load-light-theme)
 #+END_SRC
