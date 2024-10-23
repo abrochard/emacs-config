@@ -1,6 +1,6 @@
 # Personal Emacs Configuration
 
-![Screenshot](/screenshot.JPG)
+![Screenshot](/screenshot.png)
 
 Written in Org mode.
 
@@ -30,13 +30,13 @@ M-x cheatsheet-show
 ```
 
 ## Essential Packages
-- Helm. After a full year of playing with both, finally chose Helm over Ido.
+- Vertico + consult + friends. (Replaced Helm)
 - Company. For code completion.
 - Whole-line-or-region. Underrated IMO.
 - Magit. Best git client for Emacs out there.
 - Flycheck. Checks syntax everywhere.
 - use-package. Amazing for a clean config file.
-- Projectile. For all the projects.
+- Project. For all the projects.
 - Multiple-cursors. Also underrated.
 
 ## File Overview
