@@ -48,7 +48,7 @@ configuration.org | Main org file with all the configuration in elisp blocks
 snippets.org | Snippets collection compiled via `org-sync-snippets`
 elfeed.org | Separate list of blogs and RSS feeds for elfeed to grab
 cheatsheet.org | Dedicated to loading the cheatsheet extension
-sreenshot.JPG | Just a screenshot of the beast
+sreenshot.png | Just a screenshot of the beast
 extra | Folder to place any extra .el files to be loaded on startup
 
 ## Inspired by the superbs
