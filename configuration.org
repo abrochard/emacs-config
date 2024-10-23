@@ -103,11 +103,29 @@ And force the install of missing packages.
 
 ** Configure =consult=
 #+begin_src emacs-lisp
+  (defun ab/select-n-words-forward (n)
+    (save-excursion
+      (let ((start (point))
+            (end))
+        (forward-word n)
+        (setq end (point))
+        (buffer-substring-no-properties start end))))
+
+  (defun ab/consult-candidates ()
+    (list (word-at-point)
+          (ab/select-n-words-forward 2)
+          (ab/select-n-words-forward 3)))
+
   (use-package consult
     :bind (("C-x r l" . consult-bookmark)
            ("C-c s" . consult-line)
            ("C-x b" . consult-buffer)
-           ("C-c C-i" . consult-imenu)))
+           ("C-c C-i" . consult-imenu))
+    :config
+    (consult-customize
+     consult-line
+     :history nil
+     :add-history (ab/consult-candidates)))
 #+end_src
 
 ** Configure =marginalia=
@@ -1256,38 +1274,12 @@ And use it to replace normal narrowing functions
 
 ** Enable and tweak =consult-ag=
 #+begin_src emacs-lisp
-    (use-package ag)
-    (use-package consult-ag
-      :bind (("C-c C-v" . consult-ag)))
-
-    (defun ab/select-n-words-forward (n)
-      (save-excursion
-        (let ((start (point))
-              (end))
-          (forward-word n)
-          (setq end (point))
-          (buffer-substring-no-properties start end))))
-
-    (defun ab/candidates ()
-      (list (word-at-point)
-            (ab/select-n-words-forward 2)
-            (ab/select-n-words-forward 3)))
-
-    (defun consult-ag (&optional target initial)
-      "Consult ag for query in TARGET file(s) with INITIAL input."
-      (interactive)
-      (pcase-let* ((`(,prompt ,paths ,dir) (consult--directory-prompt "Consult ag: " target))
-                   (default-directory dir))
-        (consult--read (consult--async-command #'consult-ag--builder
-                         (consult--async-map #'consult-ag--format))
-                       :prompt prompt
-                       :lookup #'consult--lookup-member
-                       :state (consult-ag--grep-state)
-                       :initial (consult--async-split-initial initial)
-                       :require-match t
-                       :category 'file
-                       :add-history (ab/candidates)
-                       :sort nil)))
+  (use-package ag)
+  (use-package consult-ag
+    :bind (("C-c C-v" . consult-ag))
+    :config (consult-customize
+             consult-ag
+             :add-history (ab/consult-candidates)))
 #+end_src
 
 ** Enable =project=
