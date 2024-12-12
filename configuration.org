@@ -1668,6 +1668,11 @@ Quick custom function to integrate with the moq tool to generate quick mocks
       (find-file test-file)))
 #+end_src
 
+** Install =go-mod-mode=
+#+begin_src emacs-lisp
+(package-vc-install "https://github.com/abrochard/go-mod-mode")
+#+end_src
+
 ** Custom testing and utility functions
 A few custom functions to add to go-mode. Assumes that the project structure is standard.
 #+begin_src emacs-lisp
@@ -1675,22 +1680,26 @@ A few custom functions to add to go-mode. Assumes that the project structure is 
   (require 'transient)
   (require 'magit)
 
-  (defun go-test-pkg ()
+  (defun go-test-pkg (&optional args)
     "Unit test the current package."
-    (interactive)
-    (compile "go test -cover -race -timeout 60s ."))
+    (interactive
+     (list (transient-args 'go-test)))
+    (compile (format "go test %s ." (mapconcat 'identity args " "))))
 
-  (defun go-test-repo ()
+  (defun go-test-repo (&optional args)
     "Unit test all packages."
-    (interactive)
+    (interactive
+     (list (transient-args 'go-test)))
     (let* ((repo-path (magit-toplevel))
            (default-directory repo-path))
-      (compile "go test -cover -race ./...")))
+      (compile (format "go test %s ./..." (mapconcat 'identity args " ")))))
 
-  (defun go-coverage-here ()
+  (defun go-coverage-here (&optional args)
     "Show go coverage of current file."
-    (interactive)
-    (shell-command "go test . -coverprofile=cover.out -race")
+    (interactive
+     (list (transient-args 'go-test)))
+    (shell-command (format "go test . -coverprofile=cover.out %s"
+                           (mapconcat 'identity args " ")))
     (go-coverage "cover.out"))
 
   (defun go-build-repo ()
@@ -1709,24 +1718,29 @@ A few custom functions to add to go-mode. Assumes that the project structure is 
            (default-directory (format "%s/cmd/%s" repo-path repo-name)))
       (compile "go run .")))
 
-  (defun go-mod-tidy ()
-    "Run go mod tidy."
+  (defun go-mod-jump ()
+    "Jump to the go.mod file and summon the menu."
     (interactive)
-    (shell-command "go mod tidy"))
+    (find-file (format "%s/go.mod" (magit-toplevel)))
+    (go-mod-menu))
 
   (transient-define-prefix go-test ()
     "Go Test Suite"
+    :value '("-cover" "-race" "-timeout 60s") ; default values
+    ["Arguments"
+     ("-v" "Verbose" "-v")
+     ("-c" "Coverage" "-cover")
+     ("-r" "Race condition" "-race")
+     ("-t" "Timeout" "-timeout 60s")]
     ["Actions"
      ("t" "Unit test current package" go-test-pkg)
      ("a" "Unit test current repository" go-test-repo)
      ("c" "Coverage current file" go-coverage-here)
      ("b" "Build current repository" go-build-repo)
      ("r" "Run current repository" go-run-repo)
-     ("m" "Run go mod tidy" go-mod-tidy)
-     ("i" "Add import" go-import-add)])
+     ("m" "Jump to go.mod menu" go-mod-jump)])
 
   (define-key go-mode-map (kbd "C-c t") #'go-test)
-
 #+end_src
 
 ** Prevent modula major mode for =go.mod= files
