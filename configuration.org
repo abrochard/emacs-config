@@ -1670,7 +1670,9 @@ Quick custom function to integrate with the moq tool to generate quick mocks
 
 ** Install =go-mod-mode=
 #+begin_src emacs-lisp
-(package-vc-install "https://github.com/abrochard/go-mod-mode")
+  (package-vc-install "https://github.com/abrochard/go-mod-mode")
+  (require 'go-mod-mode)
+  (flycheck-go-mod-setup)
 #+end_src
 
 ** Custom testing and utility functions
