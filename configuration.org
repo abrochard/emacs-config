@@ -52,9 +52,9 @@ Inspired by [[https://ogbe.net/emacsconfig.html][ogbe.net]] and [[https://glyph.
 #+end_src
 
 * Automatic package installation
-** Install =use-package=
+** Install =use-package= [DEPRECATED]
 And its dependencies if needed.
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (mapc
  (lambda (package)
    (if (not (package-installed-p package))
@@ -62,6 +62,34 @@ And its dependencies if needed.
          (package-refresh-contents)
          (package-install package))))
  '(use-package diminish bind-key))
+#+end_src
+
+** Install =straight=
+#+begin_src emacs-lisp
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name
+          "straight/repos/straight.el/bootstrap.el"
+          (or (bound-and-true-p straight-base-dir)
+              user-emacs-directory)))
+        (bootstrap-version 7))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+#+end_src
+
+** Install =use-package=
+And it's dependencies.
+#+begin_src emacs-lisp
+  (straight-use-package 'use-package)
+  (package-refresh-contents)
+  (use-package diminish)
+  (use-package bind-key)
 #+end_src
 
 ** Trigger =use-package=
@@ -1291,7 +1319,9 @@ And use it to replace normal narrowing functions
 ** Enable and tweak =consult-ag=
 #+begin_src emacs-lisp
   (use-package ag)
+
   (use-package consult-ag
+    :straight (:host github :repo "abrochard/consult-ag")
     :bind (("C-c C-v" . consult-ag))
     :config (consult-customize
              consult-ag
@@ -1655,9 +1685,11 @@ Quick custom function to integrate with the moq tool to generate quick mocks
 
 ** Install =go-mod-mode=
 #+begin_src emacs-lisp
-  (package-vc-install "https://github.com/abrochard/go-mod-mode")
-  (require 'go-mod-mode)
-  (flycheck-go-mod-setup)
+  (use-package go-mod-mode
+    :straight (:host github :repo "abrochard/go-mod-mode")
+    :config
+    (flycheck-go-mod-setup)
+    (add-to-list 'auto-mode-alist '("\\go.mod\\'" . go-mod-mode)))
 #+end_src
 
 ** Custom testing and utility functions
