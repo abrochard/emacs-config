@@ -1062,16 +1062,6 @@ Thanks to [[https://github.com/magnars/.emacs.d/blob/master/defuns/editing-defun
 (electric-pair-mode 1)
 #+end_src
 
-* Package management
-** Enable =paradox=
-#+begin_src emacs-lisp
-  (use-package paradox
-    :custom
-    (paradox-execute-asynchronously t)
-    :config
-    (paradox-enable))
-#+end_src
-
 * Internal Doc Enhancement
 ** Setup =helpful= for prettier doc
 #+begin_src emacs-lisp
