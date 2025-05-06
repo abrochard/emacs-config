@@ -1269,15 +1269,6 @@ And use it to replace normal narrowing functions
     :diminish fancy-narrow-mode)
 #+end_src
 
-** Enable =visual-replace=
-#+begin_src emacs-lisp
-  (use-package visual-replace
-    :defer nil
-    :config
-    (visual-replace-global-mode 1)
-    (setq visual-replace-default-to-full-scope t))
-#+end_src
-
 * General Code
 ** Enable =lsp= and =lsp-ui=
 #+begin_src emacs-lisp
