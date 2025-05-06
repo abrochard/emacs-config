@@ -858,8 +858,9 @@ From https://zck.org/hide-emacs-customize
 * Load Cool Theme
 Customized light and dark themes. Load light by default.
 #+begin_src  emacs-lisp
-  (use-package flatui-theme)
+  ;; (use-package flatui-theme)
   (use-package dracula-theme)
+  (use-package solarized-theme)
 
   (defun disable-all-themes ()
     "Disable all enabled custom themes."
@@ -869,7 +870,8 @@ Customized light and dark themes. Load light by default.
     "Load light theme."
     (interactive)
     (disable-all-themes)
-    (load-theme 'flatui t)
+    ;; (load-theme 'flatui t)
+    (load-theme 'solarized-light t)
     ;; Mode-line customization
     (set-face-background 'mode-line "medium purple")
     (set-face-background 'mode-line-inactive "#212020")
