@@ -2044,13 +2044,18 @@ No need to configure, just handy to have.
   (use-package kubernetes-helm)
   (use-package mermaid-mode)
   (use-package todoist)
-  (use-package protobuf-mode)
+  (use-package protobuf-mode
+    :config (add-hook 'protobuf-mode-hook
+                      (lambda () (c-add-style "my-style" '((c-basic-offset . 4)) t))))
   (use-package walkman)
   (use-package jsonnet-mode)
+  (use-package jenkinsfile-mode)
   (use-package expand-region
     :config (global-set-key (kbd "C-=") 'er/expand-region))
   (use-package alert
     :config (setq alert-default-style 'notifier))
+  (use-package copilot)
+  (use-package browse-at-remote)
 #+end_src
 
 * Extra file loading
