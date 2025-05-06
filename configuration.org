@@ -84,6 +84,7 @@ And force the install of missing packages.
     (vertico-mode))
 
   (define-key vertico-map (kbd "C-l") 'vertico-directory-delete-word)
+  (define-key vertico-map "\C-w" "\M-n")
 #+end_src
 
 ** Configure =recentf=
@@ -125,6 +126,7 @@ And force the install of missing packages.
     (consult-customize
      consult-line
      :history nil
+     :initial nil
      :add-history (ab/consult-candidates)))
 #+end_src
 
