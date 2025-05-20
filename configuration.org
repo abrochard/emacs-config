@@ -416,7 +416,8 @@ This uses mutt.
     (newline-and-indent))
 #+end_src
 
-** Eshell here
+** Eshell utility functions
+*** =eshell-here=
 Thanks to Howard https://github.com/howardabrams/dot-files/blob/master/emacs-eshell.org
 #+begin_src emacs-lisp
   (defun eshell-here ()
@@ -432,6 +433,18 @@ Thanks to Howard https://github.com/howardabrams/dot-files/blob/master/emacs-esh
       (eshell-send-input)))
 
   (bind-key "C-!" 'eshell-here)
+#+end_src
+*** =eshell-run=
+#+begin_src emacs-lisp
+  (defun eshell-run (cmd &optional name)
+    (let ((eshell-buffer-name
+           (format "*eshell* <%s>" (or name cmd)))
+          (width (/ (window-total-width) 3)))
+      (split-window-horizontally (- width))
+      (other-window 1)
+      (eshell "new")
+      (insert cmd)
+      (eshell-send-input)))
 #+end_src
 
 ** Show pwd relative to current project
