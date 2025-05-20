@@ -1702,7 +1702,7 @@ Quick custom function to integrate with the moq tool to generate quick mocks
     :straight (:host github :repo "abrochard/go-mod-mode")
     :config
     (flycheck-go-mod-setup)
-    (add-to-list 'auto-mode-alist '("\\go.mod\\'" . go-mod-mode)))
+    (add-to-list 'auto-mode-alist '("go\\.mod\\'" . go-mod-mode)))
 #+end_src
 
 ** Custom testing and utility functions
@@ -1773,12 +1773,6 @@ A few custom functions to add to go-mode. Assumes that the project structure is 
      ("m" "Jump to go.mod menu" go-mod-jump)])
 
   (define-key go-mode-map (kbd "C-c t") #'go-test)
-#+end_src
-
-** Prevent modula major mode for =go.mod= files
-#+begin_src emacs-lisp
-  (setq auto-mode-alist
-        (append '(("go.mod" . text-mode)) auto-mode-alist))
 #+end_src
 
 * Python
