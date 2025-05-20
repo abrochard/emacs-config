@@ -2090,6 +2090,8 @@ No need to configure, just handy to have.
     :config (setq alert-default-style 'notifier))
   (use-package copilot)
   (use-package browse-at-remote)
+  (use-package systemd)
+  (use-package journalctl-mode)
 #+end_src
 
 * Extra file loading
