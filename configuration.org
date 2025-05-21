@@ -1783,23 +1783,15 @@ Assuming that it would be at least IPython 5 so ask for =simple-prompt=.
 #+end_src
 
 * Logs
-** Enable =syslog-mode=
+** Major modes for viewing logs
 #+begin_src emacs-lisp
-  ;; (use-package syslog-mode)
+  (use-package syslog-mode)
+  (use-package journalctl-mode)
 #+end_src
 
 ** Turn on =auto-revert-tail-mode= for log files
 #+begin_src emacs-lisp
   (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-tail-mode))
-#+end_src
-
-** Quickly check syslog
-#+begin_src emacs-lisp
-  (defun open-syslog ()
-    (interactive)
-    (find-file "/var/log/syslog")
-    ;; (syslog-mode)
-    (goto-char (point-max)))
 #+end_src
 
 * Eshell
@@ -2069,7 +2061,6 @@ No need to configure, just handy to have.
   (use-package refine)
   (use-package request)
   (use-package csv-mode)
-  ;; (use-package csharp-mode)
   (use-package keychain-environment)
   (use-package vlf)
   (use-package consult-flyspell)
@@ -2091,7 +2082,6 @@ No need to configure, just handy to have.
   (use-package copilot)
   (use-package browse-at-remote)
   (use-package systemd)
-  (use-package journalctl-mode)
 #+end_src
 
 * Extra file loading
