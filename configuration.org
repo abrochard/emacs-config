@@ -416,37 +416,6 @@ This uses mutt.
     (newline-and-indent))
 #+end_src
 
-** Eshell utility functions
-*** =eshell-here=
-Thanks to Howard https://github.com/howardabrams/dot-files/blob/master/emacs-eshell.org
-#+begin_src emacs-lisp
-  (defun eshell-here ()
-    "Opens up a new shell in the directory associated with the
-      current buffer's file. The eshell is renamed to match that
-      directory to make multiple eshell windows easier."
-    (interactive)
-    (let* ((height (/ (window-total-height) 3)))
-      (split-window-vertically (- height))
-      (other-window 1)
-      (eshell "new")
-      (insert (concat "ls"))
-      (eshell-send-input)))
-
-  (bind-key "C-!" 'eshell-here)
-#+end_src
-*** =eshell-run=
-#+begin_src emacs-lisp
-  (defun eshell-run (cmd &optional name)
-    (let ((eshell-buffer-name
-           (format "*eshell* <%s>" (or name cmd)))
-          (width (/ (window-total-width) 3)))
-      (split-window-horizontally (- width))
-      (other-window 1)
-      (eshell "new")
-      (insert cmd)
-      (eshell-send-input)))
-#+end_src
-
 ** Show pwd relative to current project
 And copy to clipboard
 #+begin_src emacs-lisp
@@ -1844,6 +1813,37 @@ Assuming that it would be at least IPython 5 so ask for =simple-prompt=.
           eshell-save-history-on-exit t
           eshell-prefer-lisp-functions nil
           eshell-destroy-buffer-when-process-dies t))
+#+end_src
+
+** Utility functions
+*** =eshell-here=
+Thanks to Howard https://github.com/howardabrams/dot-files/blob/master/emacs-eshell.org
+#+begin_src emacs-lisp
+  (defun eshell-here ()
+    "Opens up a new shell in the directory associated with the
+      current buffer's file. The eshell is renamed to match that
+      directory to make multiple eshell windows easier."
+    (interactive)
+    (let* ((height (/ (window-total-height) 3)))
+      (split-window-vertically (- height))
+      (other-window 1)
+      (eshell "new")
+      (insert (concat "ls"))
+      (eshell-send-input)))
+
+  (bind-key "C-!" 'eshell-here)
+#+end_src
+*** =eshell-run=
+#+begin_src emacs-lisp
+  (defun eshell-run (cmd &optional name)
+    (let ((eshell-buffer-name
+           (format "*eshell* <%s>" (or name cmd)))
+          (width (/ (window-total-width) 3)))
+      (split-window-horizontally (- width))
+      (other-window 1)
+      (eshell "new")
+      (insert cmd)
+      (eshell-send-input)))
 #+end_src
 
 ** Fancy prompt
