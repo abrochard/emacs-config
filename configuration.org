@@ -1020,7 +1020,7 @@ Auto-yasnippet really comes in handy at times.
 
 
 * Code Format
-** Default tab and indetation
+** Default tab and indentation
 #+begin_src emacs-lisp
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -1758,7 +1758,8 @@ A few custom functions to add to go-mode. Assumes that the project structure is 
      ("-v" "Verbose" "-v")
      ("-c" "Coverage" "-cover")
      ("-r" "Race condition" "-race")
-     ("-t" "Timeout" "-timeout 60s")]
+     ("-t" "Timeout" "-timeout 60s")
+     ("-i" "Ignore cached results" "-count=1")]
     ["Actions"
      ("t" "Unit test current package" go-test-pkg)
      ("a" "Unit test current repository" go-test-repo)
