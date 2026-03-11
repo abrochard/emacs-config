@@ -299,6 +299,16 @@ Thanks to http://emacsredux.com/blog/2013/03/27/copy-filename-to-the-clipboard/
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 #+end_src
 
+** Copy filename with path relative to project
+#+begin_src emacs-lisp
+  (defun copy-filename-for-project ()
+    (interactive)
+    (let* ((repo-path (magit-toplevel))
+           (path (file-relative-name (buffer-file-name) repo-path)))
+      (kill-new path)
+      (message (format "Copied '%s' to the clipboard." path))))
+#+end_src
+
 ** Align docstring
 I put a double space in between what I want to align and call this:
 #+begin_src emacs-lisp
@@ -544,6 +554,22 @@ Taken from Jonathan Arkell
                         (format "%s. [[#%s][%s]]\n" i (replace-regexp-in-string " " "-" (downcase (match-string 1))) (match-string 1))))
           (setq i (+ 1 i)))
         (kill-new output))))
+#+end_src
+
+** Run the next org-babel code block with no confirmations
+
+#+begin_src emacs-lisp
+(defun org-execute-next-src-block ()
+  "Execute the next Org Babel src block in the current buffer.
+[[elisp:(org-execute-next-src-block)][▶ Run]]
+"
+  (interactive)
+  (let ((org-confirm-babel-evaluate nil)
+        (org-link-elisp-confirm-function))
+    (save-excursion
+      (when (re-search-forward org-babel-src-block-regexp nil t)
+        (goto-char (match-beginning 0))
+        (org-babel-execute-src-block)))))
 #+end_src
 
 * Custom key bindings
