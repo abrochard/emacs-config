@@ -900,6 +900,12 @@ From https://zck.org/hide-emacs-customize
 #+end_src
 
 
+** Split window vertically instead of horizontally
+Or the other way around, I can never remember
+#+begin_src emacs-lisp
+  (setq split-height-threshold nil)
+#+end_src
+
 * Load Cool Theme
 Customized light and dark themes. Load light by default.
 #+begin_src  emacs-lisp
