@@ -2028,6 +2028,25 @@ Thanks to http://www.howardism.org/Technical/Emacs/eshell-present.html
     (add-hook 'yaml-mode-hook 'highlight-indentation-mode))
 #+end_src
 
+* Makefile
+Some utility functions to deal with large makefiles
+#+begin_src emacs-lisp
+  (defun makefile-jump-to-target ()
+    (interactive)
+    (let ((word (thing-at-point 'symbol t)))
+      (push-mark)
+      (xref-push-marker-stack)
+      (goto-char (point-min))
+      (re-search-forward (concat "^" (regexp-quote word) " ?:=?"))
+      (beginning-of-line)))
+
+  (defun my-makefile-mode-hook ()
+    "Custom key bindings for makefile mode."
+    (local-set-key (kbd "M-.") 'makefile-jump-to-target))
+
+  (add-hook 'makefile-bsdmake-mode-hook 'my-makefile-mode-hook)
+#+end_src
+
 * Redis
 A few utility functions for my local Redis.
 #+begin_src emacs-lisp
