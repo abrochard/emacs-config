@@ -314,6 +314,9 @@ Thanks to http://emacsredux.com/blog/2013/03/27/copy-filename-to-the-clipboard/
            (path (file-relative-name (buffer-file-name) repo-path)))
       (kill-new path)
       (message (format "Copied '%s' to the clipboard." path))))
+
+  ;; I use it all the time so might as well have a binding for it
+  (global-set-key (kbd "C-c p") 'copy-filename-for-project)
 #+end_src
 
 ** Align docstring
@@ -2141,6 +2144,7 @@ No need to configure, just handy to have.
   (use-package copilot)
   (use-package browse-at-remote)
   (use-package systemd)
+  (use-package ghostel)
 #+end_src
 
 * Extra file loading
